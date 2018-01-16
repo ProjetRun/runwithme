@@ -19,7 +19,6 @@ script:
 env:
   global:
     - secure: "SONATYPE_NEXUS_USERNAME TODO"
-    - secure: "SONATYPE_NEXUS_PASSWORD TODO"
 
 branches:
   except:
