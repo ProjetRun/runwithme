@@ -6,13 +6,54 @@
     android:layout_height="match_parent"
     tools:context="miage.parisnanterre.fr.runwithme.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#B3E5FC">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RunWithMe"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="@android:color/white"
+
+            tools:layout_editor_absoluteX="143dp"
+            tools:layout_editor_absoluteY="191dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|bottom">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Se connecter"
+                android:background="#03A9F4"
+                android:textColor="@android:color/white"
+                tools:layout_editor_absoluteX="105dp"
+                tools:layout_editor_absoluteY="447dp"
+                android:onClick="do_subscribe"/>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:text="S'inscrire"
+                android:background="#29B6F6"
+                android:textColor="@android:color/white"
+                tools:layout_editor_absoluteX="103dp"
+                tools:layout_editor_absoluteY="395dp"
+                android:onClick="do_log"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
