@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void do_subscribe(View v){
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

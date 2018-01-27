@@ -40,7 +40,7 @@
                 android:textColor="@android:color/white"
                 tools:layout_editor_absoluteX="105dp"
                 tools:layout_editor_absoluteY="447dp"
-                android:onClick="do_subscribe"/>
+                android:onClick="do_log"/>
 
             <Button
                 android:id="@+id/button2"
@@ -51,7 +51,7 @@
                 android:textColor="@android:color/white"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="395dp"
-                android:onClick="do_log"/>
+                android:onClick="do_subscribe"/>
         </LinearLayout>
 
     </LinearLayout>
