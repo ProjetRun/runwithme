@@ -6,40 +6,46 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="miage.parisnanterre.fr.runwithme.HomeActivity"
-    tools:showIn="@layout/app_bar_home">
+    tools:showIn="@layout/app_bar_home"
+    android:background="#B3E5FC">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="463dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Event" />
+                android:text="Event"
+                android:background="#03A9F4"
+                android:textColor="@android:color/white"/>
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button_tracking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tracking" />
+                android:text="Tracking"
+                android:background="#03A9F4"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
-            android:layout_width="match_parent"
-            android:layout_height="451dp" />
     </LinearLayout>
 
 

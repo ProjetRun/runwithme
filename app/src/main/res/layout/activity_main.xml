@@ -16,12 +16,12 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RunWithMe"
+            android:layout_height="400dp"
             android:gravity="center"
-            android:textSize="25dp"
+            android:text="RunWithMe"
             android:textColor="@android:color/white"
-
+            android:textSize="25dp"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="143dp"
             tools:layout_editor_absoluteY="191dp" />
 
@@ -32,7 +32,7 @@
             android:gravity="center|bottom">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Se connecter"
@@ -43,7 +43,7 @@
                 android:onClick="do_log"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:text="S'inscrire"

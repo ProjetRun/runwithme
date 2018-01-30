@@ -11,15 +11,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
     }
 
     public void do_log(View v){
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
+        finish();
 
     }
     public void do_subscribe(View v){
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        finish();
     }
 }
