@@ -13,8 +13,8 @@ jdk:
   - oraclejdk8
 
 script:
-  - ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
-  - ./gradlew build
+#  - ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
+#  - ./gradlew build
   - chmod +x ./gradlew
 
 env:
