@@ -13,3 +13,4 @@ RunWithMe est un outil qui vous aidera :
 [![GitHub issues](https://img.shields.io/github/issues/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/issues)
 [![GitHub forks](https://img.shields.io/github/forks/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/network)
 [![GitHub stars](https://img.shields.io/github/stars/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/stargazers)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/309ab3350a7444ad8b63ca537cb848d3)](https://www.codacy.com/app/ProjetRun/runwithme?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ProjetRun/runwithme/&amp;utm_campaign=Badge_Grade)
