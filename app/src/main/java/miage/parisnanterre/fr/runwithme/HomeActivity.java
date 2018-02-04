@@ -138,4 +138,8 @@ public class HomeActivity extends AppCompatActivity
         //Intent intent = new Intent(this, HomeActivity.class);
         //startActivity(intent);
     }
+    public void do_running(View v){
+        Intent intent = new Intent(this, RunningActivity.class);
+        startActivity(intent);
+    }
 }

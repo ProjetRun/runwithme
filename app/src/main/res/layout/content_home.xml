@@ -43,7 +43,8 @@
                 android:layout_weight="1"
                 android:text="Tracking"
                 android:background="#03A9F4"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:onClick="do_running"/>
         </LinearLayout>
 
     </LinearLayout>
