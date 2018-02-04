@@ -16,6 +16,8 @@ script:
 #  - ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
 #  - ./gradlew build
   - chmod +x ./gradlew
+  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew jacocoTestReport
 
 env:
   global:
