@@ -18,6 +18,7 @@ script:
   - chmod +x ./gradlew
   - ./gradlew jacocoTestReport coveralls
   - ./gradlew jacocoTestReport
+  - ./gradlew connectedCheck
 
 env:
   global:
