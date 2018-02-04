@@ -7,6 +7,8 @@ RunWithMe est un outil qui vous aidera :
 - vous améliorer,
 - rencontrer des gens dans la vie réelle, et c’est notre atout comparé à nos concurrents.
 
+Pour plus d'information visitez notre site web : https://projetrun.github.io
+
 
 [![Coverage Status](https://coveralls.io/repos/github/ProjetRun/runwithme/badge.svg?branch=master)](https://coveralls.io/github/ProjetRun/runwithme?branch=master)
 [![GitHub license](https://img.shields.io/github/license/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/blob/master/LICENSE)
@@ -16,3 +18,13 @@ RunWithMe est un outil qui vous aidera :
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/309ab3350a7444ad8b63ca537cb848d3)](https://www.codacy.com/app/ProjetRun/runwithme?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ProjetRun/runwithme/&amp;utm_campaign=Badge_Grade)
 [![GitHub version](https://badge.fury.io/gh/ProjetRun%2Frunwithme.svg)](https://badge.fury.io/gh/ProjetRun%2Frunwithme)
 [![Build Status](https://travis-ci.org/ProjetRun/runwithme.svg?branch=dev_fabien)](https://travis-ci.org/ProjetRun/runwithme)
+
+## Systeme de Build
+* [Gradle](https://gradle.org/)
+
+
+## Contributors
+* GVIMRADZE Ana
+* MICHEL Fabien
+* ROUGE NICOLAS
+* MBARAKA Andlat
