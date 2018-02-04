@@ -13,12 +13,8 @@ jdk:
   - oraclejdk8
 
 script:
-#  - ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
-#  - ./gradlew build
-  - chmod +x ./gradlew
-  - ./gradlew jacocoTestReport coveralls
-  - ./gradlew jacocoTestReport
-  - ./gradlew connectedCheck
+  - ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
+  - ./gradlew build
 
 env:
   global:
@@ -36,8 +32,3 @@ sudo: false
 cache:
   directories:
     - $HOME/.gradle
-before_install:
-    - pip install --user codecov    #Install codecov
-
-after_success:
-    - codecov                       #Run codecov
