@@ -29,7 +29,94 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.295" />
+
+        <TextView
+            android:id="@+id/textView_KM_DISPLAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="00:00"
+            android:textColor="#FFFF"
+            android:textSize="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView_KM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <TextView
+            android:id="@+id/textView_KMH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="KM/H"
+            android:textColor="#FFFF"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.66" />
+
+        <TextView
+            android:id="@+id/textView_MIN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Minutes"
+            android:textColor="#FFFF"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.856"
+            app:layout_constraintStart_toEndOf="@+id/textView_KMH"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.659" />
+
+        <TextView
+            android:id="@+id/textView_MIN_DISPLAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="00:00"
+            android:textColor="#FFFF"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView_MIN"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.848"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.972" />
+
+        <TextView
+            android:id="@+id/textView_KMH_DISPLAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="00:00"
+            android:textColor="#FFFF"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView_KMH"
+            app:layout_constraintEnd_toStartOf="@+id/textView_MIN"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.972" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
