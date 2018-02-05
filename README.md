@@ -22,11 +22,11 @@ Pour plus d'information visitez notre site web : https://projetrun.github.io
 ## Systeme de Build
 * [Gradle](https://gradle.org/)
 
-##Téléchargement
-###APK
+## Téléchargement
+### APK
 L'application peut être téléchargée directement [ici] : https://github.com/ProjetRun/runwithme/raw/dev_fabien/runwithme.apk
 
-###SDK
+### SDK
 RunWithMe utilise android sdk version 26 Gradle télécharge automatiquement le sdk si vous avez déjà accepté les licences avec le SDK manager et que soit :
 
     votre variable d'environnement ANDROID_HOME est présente
