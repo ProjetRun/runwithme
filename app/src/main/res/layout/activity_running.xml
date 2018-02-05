@@ -82,7 +82,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.659" />
 
-        <TextView
+        <Chronometer
             android:id="@+id/textView_MIN_DISPLAY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +90,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="00:00"
             android:textColor="#FFFF"
             android:textSize="25dp"
             app:layout_constraintBottom_toTopOf="@+id/textView_MIN"
