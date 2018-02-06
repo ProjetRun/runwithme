@@ -9,6 +9,7 @@
 
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="389dp"
         android:layout_height="338dp"
         android:background="#29B6F6"
@@ -117,5 +118,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.972" />
     </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#4CAF50"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        android:onClick="do_launch_tracking"
+        app:srcCompat="@mipmap/ic_play_foreground" />
 
 </android.support.constraint.ConstraintLayout>
