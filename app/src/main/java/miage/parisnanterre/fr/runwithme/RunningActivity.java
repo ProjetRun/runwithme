@@ -4,18 +4,23 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.FloatMath;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +37,9 @@ public class RunningActivity extends AppCompatActivity {
     double speed;
     java.text.DecimalFormat df;
     Chronometer simpleChronometer;
+    ImageView play_and_stop;
+
+    boolean isLaunch;
 
 
     @Override
@@ -49,10 +57,12 @@ public class RunningActivity extends AppCompatActivity {
         current_location.setLongitude(12);
         last_location = new Location("last_location");
         distance = 0.2;
+        isLaunch = false;
         df = new java.text.DecimalFormat("0.##");
         simpleChronometer = (Chronometer) findViewById(R.id.textView_MIN_DISPLAY);
-        simpleChronometer.setBase(SystemClock.elapsedRealtime());
-        simpleChronometer.start(); // start a chronometer
+
+        play_and_stop = (ImageView)  findViewById(R.id.imageView_start_and_stop);
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -65,7 +75,8 @@ public class RunningActivity extends AppCompatActivity {
                 distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
                 */
                 distance = distance*1.01;
-                KM_DISPLAY.setText(""+df.format(distance));
+
+                KM_DISPLAY.setText(""+df.format(distance*1000)+"m");
                 calculateAndDisplaySpeed();
 
 
@@ -89,9 +100,6 @@ public class RunningActivity extends AppCompatActivity {
                 startActivity(i);
             }
         };
-        configureLocation();
-
-
     }
 
 
@@ -133,15 +141,70 @@ public class RunningActivity extends AppCompatActivity {
     }
 
 
-    public void do_launch_tracking(View v) {
+    public void do_click_tracking(View v) {
 
+
+        //finish();
+        if(isLaunch == false) {
+            do_click_for_play_tracking();
+        }else{
+            do_click_for_stop_tracking();
+        }
+
+    }
+
+    public void do_click_for_play_tracking(){
+        /*Context context = getApplicationContext();
+        CharSequence text = "clique play!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();*/
+        isLaunch = true;
+       play_and_stop.setImageResource(R.mipmap.ic_stop_foreground);
+       //play_and_stop.setBackgroundColor(Color.rgb(219, 45, 45));
+
+       simpleChronometer.setBase(SystemClock.elapsedRealtime());
+       simpleChronometer.start(); // start a chronometer
+        configureLocation();
+    }
+
+    BottomSheetDialog mBottomSheetDialog;
+    public void do_click_for_stop_tracking(){
+        /*
         Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
+        CharSequence text = "clique stop!";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+        finish();
+        */
+        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+
+        View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
+
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
     }
+
+    public void do_click_for_share(View v){
+        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+
+        View sheetView = this.getLayoutInflater().inflate(R.layout.popup_share, null);
+
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
+    }
+
+    public void cancel_share(View v){
+
+    }
+
+    public void back_to_homeactivity(View v){
+        finish();
+    }
+
 
 
 }

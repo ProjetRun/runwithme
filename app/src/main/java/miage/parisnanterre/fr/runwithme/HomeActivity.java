@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.LatLng;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,6 +31,8 @@ public class HomeActivity extends AppCompatActivity
     MapsFragment mapsFragment;
     FragmentManager fm;
     FrameLayout frameLayout;
+    //GPSTracker gpsTracker = new GPSTracker(this);
+    MyLocationService myLocationService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +40,6 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("RunWithMe");
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,6 +58,27 @@ public class HomeActivity extends AppCompatActivity
         MapView mapView = (MapView) findViewById(R.id.mapView);
 
         excFragement(mapsFragment);
+
+
+        showSnackbar(findViewById(android.R.id.content),"Merci d'activer la localisation pour profiter de toutes les fonctionnalités",6000);
+
+
+    }
+
+    public void showSnackbar(View view, String message, int duration)
+    {
+        // Create snackbar
+        final Snackbar snackbar = Snackbar.make(view, message, duration);
+
+        // Set an action on it, and a handler
+        snackbar.setAction("MASQUER", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+            }
+        });
+
+        snackbar.show();
     }
 
     public void excFragement(Fragment f){

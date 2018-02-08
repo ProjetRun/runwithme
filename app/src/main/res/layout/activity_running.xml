@@ -24,7 +24,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Kilométres"
+            android:text="distance"
             android:textColor="#FFFF"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +57,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="KM/H"
+            android:text="km/h"
             android:textColor="#FFFF"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +73,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Minutes"
+            android:text="minutes"
             android:textColor="#FFFF"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -120,7 +120,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView_start_and_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -130,9 +130,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#4CAF50"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        android:onClick="do_launch_tracking"
+        android:onClick="do_click_tracking"
         app:srcCompat="@mipmap/ic_play_foreground" />
 
 </android.support.constraint.ConstraintLayout>
