@@ -31,8 +31,6 @@ public class HomeActivity extends AppCompatActivity
     MapsFragment mapsFragment;
     FragmentManager fm;
     FrameLayout frameLayout;
-    //GPSTracker gpsTracker = new GPSTracker(this);
-    MyLocationService myLocationService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

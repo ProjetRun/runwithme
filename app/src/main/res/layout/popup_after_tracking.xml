@@ -84,7 +84,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="bottom"
                             android:text="niveaux d'expérience"
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
@@ -96,15 +96,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:max="100"
+                            android:progress="50"/>
 
                         <TextView
                             android:id="@+id/textView7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="20/100"
+                            android:gravity="top"
+                            android:text="50/100 km"
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />

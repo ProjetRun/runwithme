@@ -21,13 +21,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RunningActivity extends AppCompatActivity {
 
-    TextView KM_DISPLAY;
-    TextView KMH_DISPLAY;
+    Button button_rythme;
+    Button button_distance;
+    Button button_distance_titre;
+    Button button_cal;
     LocationManager  locationManager;
     LocationListener locationListener;
 
@@ -36,6 +39,7 @@ public class RunningActivity extends AppCompatActivity {
     double distance;
     double speed;
     java.text.DecimalFormat df;
+    java.text.DecimalFormat df2;
     Chronometer simpleChronometer;
     ImageView play_and_stop;
 
@@ -48,17 +52,20 @@ public class RunningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_running);
         getSupportActionBar().hide();
 
-        KM_DISPLAY= (TextView) findViewById(R.id.textView_KM_DISPLAY);
-        KMH_DISPLAY= (TextView) findViewById(R.id.textView_KMH_DISPLAY);
+        button_distance= (Button) findViewById(R.id.button_distance_display);
+        button_distance_titre = (Button) findViewById(R.id.button_distance);
+        button_rythme= (Button) findViewById(R.id.button_pace_display);
+        button_cal = (Button) findViewById(R.id.button_cal_display);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         current_location = new Location("current_location");
         current_location.setLatitude(40);
         current_location.setLongitude(12);
         last_location = new Location("last_location");
-        distance = 0.2;
+        distance = 0.90;
         isLaunch = false;
-        df = new java.text.DecimalFormat("0.##");
+        df = new java.text.DecimalFormat("0.#");
+        df2 =new java.text.DecimalFormat("0.##");
         simpleChronometer = (Chronometer) findViewById(R.id.textView_MIN_DISPLAY);
 
         play_and_stop = (ImageView)  findViewById(R.id.imageView_start_and_stop);
@@ -76,9 +83,15 @@ public class RunningActivity extends AppCompatActivity {
                 */
                 distance = distance*1.01;
 
-                KM_DISPLAY.setText(""+df.format(distance*1000)+"m");
-                calculateAndDisplaySpeed();
 
+                if(distance*1000 > 1000){
+                    button_distance_titre.setText("Distance(km)");
+                    button_distance.setText(""+df2.format(distance));
+                }else{
+                    button_distance.setText(""+df.format(distance*1000));
+                }
+                calculateAndDisplaySpeed();
+                calcul_kcak();
 
 
             }
@@ -137,7 +150,7 @@ public class RunningActivity extends AppCompatActivity {
         double meter = distance *1000;
         long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
         double second = elapsedMillis/1000;
-        KMH_DISPLAY.setText(""+df.format(meter/second));
+        button_rythme.setText(""+df.format(meter/second));
     }
 
 
@@ -180,6 +193,7 @@ public class RunningActivity extends AppCompatActivity {
         toast.show();
         finish();
         */
+
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
@@ -195,6 +209,9 @@ public class RunningActivity extends AppCompatActivity {
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+
+
+
     }
 
     public void cancel_share(View v){
@@ -203,6 +220,12 @@ public class RunningActivity extends AppCompatActivity {
 
     public void back_to_homeactivity(View v){
         finish();
+    }
+
+    public void calcul_kcak(){
+        //Nombre de kcal dépensées = votre Poids (kg) x Distance (km)
+        //distance parcourue x poid x 1.036
+        button_cal.setText(""+df.format(distance*70*1.036));
     }
 
 
