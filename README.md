@@ -7,7 +7,7 @@ RunWithMe est un outil qui vous aidera :
 - vous améliorer,
 - rencontrer des gens dans la vie réelle, et c’est notre atout comparé à nos concurrents.
 
-Pour plus d'information visitez notre site web : https://projetrun.github.io
+Pour plus d'information visitez notre site web : https://projetrun.github.io/Run-With-Me/
 
 
 [![Coverage Status](https://coveralls.io/repos/github/ProjetRun/runwithme/badge.svg?branch=master)](https://coveralls.io/github/ProjetRun/runwithme?branch=master)
