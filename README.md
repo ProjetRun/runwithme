@@ -10,6 +10,6 @@ RunWithMe est un outil qui vous aidera :
 # APK 
 [APK](https://github.com/ProjetRun/ProjetRun.github.io/raw/master/runwithme.apk)
 
-## How to install
+## Comment l'installer
 ### APK 
-Before you can install it on your phone you will need to make sure that third-party apps are allowed on your device. Go to Menu > Settings > Security > and check Unknown Sources to allow your phone to install apps from sources other than the Google Play Store. Once it's downloaded, open Downloads, tap on the APK file, and tap Yes when prompted. The app will begin installing on your device.
+Avant de pouvoir l'installer sur votre téléphone, vous devez vous assurer que les applications tierces sont autorisées sur votre appareil. Accédez à Menu> Paramètres> Sécurité> et vérifiez les sources inconnues pour permettre à votre téléphone d'installer des applications à partir de sources autres que le Google Play Store. Une fois téléchargé, ouvrez Téléchargements, appuyez sur le fichier APK, puis appuyez sur Oui lorsque vous y êtes invité. L'application va commencer à installer sur votre appareil.
