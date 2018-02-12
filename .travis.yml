@@ -1,21 +1,55 @@
 language: android
 
+jdk: oraclejdk8
+
+before_install:
+  # Download SDK
+  - echo yes | sdkmanager "tools" &>/dev/null
+  - echo yes | sdkmanager "platform-tools" &>/dev/null
+  - echo yes | sdkmanager "build-tools;26.0.2" &>/dev/null
+  - echo yes | sdkmanager "platforms;android-27" &>/dev/null
+  # Update remaining dependencies and accept licenses
+  - echo yes | sdkmanager --update &>/dev/null
+  - echo yes | sdkmanager --licenses &>/dev/null
+
+before_cache:
+    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+cache:
+  directories: #Cache all dirs under .gradle folder
+    - $HOME/.gradle/daemon      #Cache daemon logs
+    - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
+    - $HOME/.gradle/wrapper     #Cache the gradle
+
+
 android:
   components:
     - tools                             # Tools
     - platform-tools                    # Platform tools
-    - build-tools-25.0.2                # Build tools version
-    - android-25                        # Target SDK version
+    - build-tools-26.0.2                # Build tools version
+    - android-27                        # Target SDK version
     - extra-android-m2repository        # Support repo
-    - sys-img-armeabi-v7a-android-18    # Emulator
+    # Additional components
+     # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-26
+    - sys-img-armeabi-v7a-android-27    # Emulator
 
-jdk:
-  - oraclejdk8
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 
+before_script:
+    - mkdir -p "$ANDROID_HOME/licenses"
+    - chmod +x ./gradlew
 script:
   #- ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
   #- ./gradlew build
-  - chmod +x ./gradlew
+  - ./gradlew build check
+  - ./gradlew build jacocoTestReport assembleAndroidTest
 env:
   global:
     - secure: "SONATYPE_NEXUS_USERNAME TODO"
@@ -24,8 +58,11 @@ branches:
   except:
     - gh-pages
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 notifications:
-  email: false
+  email: fabien2811@gmail.com
 
 sudo: false
 
