@@ -19,7 +19,7 @@ Pour plus d'information visitez notre site web : https://projetrun.github.io/Run
 [![GitHub version](https://badge.fury.io/gh/ProjetRun%2Frunwithme.svg)](https://badge.fury.io/gh/ProjetRun%2Frunwithme)
 [![Build Status](https://travis-ci.org/ProjetRun/runwithme.svg?branch=dev_fabien)](https://travis-ci.org/ProjetRun/runwithme)
 [![codecov](https://codecov.io/gh/ProjetRun/runwithme/branch/master/graph/badge.svg)](https://codecov.io/gh/ProjetRun/runwithme)
-
+[![codecov](https://codecov.io/gh/ProjetRun/runwithme/branch/coverage/graph/badge.svg)](https://codecov.io/gh/ProjetRun/runwithme)
 ## Systeme de Build
 * [Gradle](https://gradle.org/)
 
