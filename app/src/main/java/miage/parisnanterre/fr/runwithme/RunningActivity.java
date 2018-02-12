@@ -56,18 +56,19 @@ public class RunningActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                /*last_location.setLatitude(location.getLatitude());
+                last_location.setLatitude(location.getLatitude());
                 last_location.setLongitude(location.getLongitude());
                 current_location.setLatitude(location.getLatitude());
                 current_location.setLongitude(location.getLongitude());
                 //distance = distance + current_location.distanceTo(last_location)/1000;
                 //distance = current_location.ge* distance;
                 distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
-                */
+
+                /*
                 distance = distance*1.01;
                 KM_DISPLAY.setText(""+df.format(distance));
                 calculateAndDisplaySpeed();
-
+                */
 
 
             }
