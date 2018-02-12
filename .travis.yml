@@ -1,5 +1,4 @@
 language: android
-
 jdk: oraclejdk8
 
 before_install:
@@ -21,21 +20,26 @@ cache:
     - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
     - $HOME/.gradle/wrapper     #Cache the gradle
 
-
 android:
   components:
-    - tools                             # Tools
-    - platform-tools                    # Platform tools
-    - build-tools-26.0.2                # Build tools version
-    - android-27                        # Target SDK version
-    - extra-android-m2repository        # Support repo
+
+    - platform-tools
+    - tools
+
+    # The BuildTools version used by our project
+    - build-tools-26.0.2
+
+    # The SDK version used to compile pour project
+    - android-27
+
     # Additional components
-     # Additional components
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-26
-    - sys-img-armeabi-v7a-android-27    # Emulator
+
+    # to run emulator during tests
+    - sys-img-armeabi-v7a-android-27
 
 licenses:
     - 'android-sdk-preview-license-.+'
@@ -45,27 +49,13 @@ licenses:
 before_script:
     - mkdir -p "$ANDROID_HOME/licenses"
     - chmod +x ./gradlew
+
 script:
-  #- ./gradlew check jacocoTestReport coveralls sendCoverageToCodacy
-  #- ./gradlew build
   - ./gradlew build check
   - ./gradlew build jacocoTestReport assembleAndroidTest
-env:
-  global:
-    - secure: "SONATYPE_NEXUS_USERNAME TODO"
-
-branches:
-  except:
-    - gh-pages
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 notifications:
-  email: fabien2811@gmail.com
-
-sudo: false
-
-cache:
-  directories:
-    - $HOME/.gradle
+email: fabien2811@gmail.com
