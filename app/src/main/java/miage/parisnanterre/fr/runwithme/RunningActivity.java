@@ -1,6 +1,9 @@
 package miage.parisnanterre.fr.runwithme;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,11 +12,13 @@ import android.graphics.PorterDuff;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.FloatMath;
@@ -69,7 +74,7 @@ public class RunningActivity extends AppCompatActivity {
         simpleChronometer = (Chronometer) findViewById(R.id.textView_MIN_DISPLAY);
 
         play_and_stop = (ImageView)  findViewById(R.id.imageView_start_and_stop);
-
+        currentContext = this;
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -180,6 +185,7 @@ public class RunningActivity extends AppCompatActivity {
        simpleChronometer.setBase(SystemClock.elapsedRealtime());
        simpleChronometer.start(); // start a chronometer
         configureLocation();
+        sendNotification();
     }
 
     BottomSheetDialog mBottomSheetDialog;
@@ -200,6 +206,7 @@ public class RunningActivity extends AppCompatActivity {
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+        mNotificationManager.cancelAll();
     }
 
     public void do_click_for_share(View v){
@@ -228,6 +235,64 @@ public class RunningActivity extends AppCompatActivity {
         button_cal.setText(""+df.format(distance*70*1.036));
     }
 
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this);
+
+        mBuilder.setOngoing(true);
+
+        //Create the intent that’ll fire when the user taps the notification//
+
+        //Intent notificationIntent = new Intent(this, RunningActivity.class);
+        //
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+         //       | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //Not.addFlags(Intent.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR);
+        //notificationIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+        Intent notificationIntent = new Intent(currentContext, RunningActivity.currentContext.getClass() );
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setAction("android.intent.action.MAIN");
+        notificationIntent.addCategory("android.intent.category.LAUNCHER");
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+
+        mBuilder.setContentIntent(contentIntent);
+
+
+
+        mBuilder.setSmallIcon(R.mipmap.ic_user);
+        mBuilder.setContentTitle("Durée de la session");
+        //mBuilder.setContentText("00:00");
+        mBuilder.setUsesChronometer(true);
+        mNotificationManager =
+
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(001, mBuilder.build());
+
+
+
+
+    }
+
+    public static Context currentContext;
+    NotificationManager mNotificationManager;
 
 
 }
