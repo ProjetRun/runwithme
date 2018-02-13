@@ -713,19 +713,15 @@
 
 /* Nexus 5 */
 
-.device-mockup.nexus_5,
-.device-mockup.nexus_5.portrait {
+.device-mockup.nexus5.portrait.white {
 	padding-bottom: 178.787879%;
 }
 
-.device-mockup.nexus_5.white > .device,
-.device-mockup.nexus_5.portrait.white > .device {
+.device-mockup.nexus5.portrait.white > .device {
 	background-image: url("nexus5/nexus5_white.png");
 }
 
-
-.device-mockup.nexus_5 > .device > .screen,
-.device-mockup.nexus_5.portrait > .device > .screen {
+.device-mockup.nexus5.portrait.white > .device > .screen {
 	top: 12.3728814%; bottom: 15.5367232%; left: 13.8383838%; right: 13.8383838%;
 }
 
