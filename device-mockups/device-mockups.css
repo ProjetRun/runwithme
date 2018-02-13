@@ -71,6 +71,20 @@
 
 /* DEVICES */
 
+/* Nexus 5 */
+
+.device-mockup.nexus5 {
+	padding-bottom: 178.787879%;
+}
+
+.device-mockup.nexus5 > .device {
+	background-image: url("nexus5/nexus5_white.png");
+}
+
+.device-mockup.nexus5 > .device > .screen {
+	top: 12.3728814%; bottom: 15.5367232%; left: 13.8383838%; right: 13.8383838%;
+}
+
 
 /* iMac */
 .device-mockup.imac {
@@ -708,21 +722,6 @@
 
 .device-mockup.lumia920.landscape > .device > .screen {
 	top: 12.2641509%; bottom: 12.2641509%; left: 10.5403012%; right: 18.6005314%;
-}
-
-
-/* Nexus 5 */
-
-.device-mockup.nexus5.portrait.white {
-	padding-bottom: 178.787879%;
-}
-
-.device-mockup.nexus5.portrait.white > .device {
-	background-image: url("nexus5/nexus5_white.png");
-}
-
-.device-mockup.nexus5.portrait.white > .device > .screen {
-	top: 12.3728814%; bottom: 15.5367232%; left: 13.8383838%; right: 13.8383838%;
 }
 
 
