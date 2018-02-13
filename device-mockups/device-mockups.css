@@ -605,6 +605,7 @@
 	background-image: url("galaxy_s3/s3_port_white.png");
 }
 
+
 .device-mockup.galaxy_s3.landscape.white > .device {
 	background-image: url("galaxy_s3/s3_land_white.png");
 }
@@ -708,6 +709,26 @@
 .device-mockup.lumia920.landscape > .device > .screen {
 	top: 12.2641509%; bottom: 12.2641509%; left: 10.5403012%; right: 18.6005314%;
 }
+
+
+/* Nexus 5 */
+
+.device-mockup.nexus_5,
+.device-mockup.nexus_5.portrait {
+	padding-bottom: 178.787879%;
+}
+
+.device-mockup.nexus_5.white > .device,
+.device-mockup.nexus_5.portrait.white > .device {
+	background-image: url("nexus5/nexus5_white.png");
+}
+
+
+.device-mockup.nexus_5 > .device > .screen,
+.device-mockup.nexus5.portrait > .device > .screen {
+	top: 12.3728814%; bottom: 15.5367232%; left: 13.8383838%; right: 13.8383838%;
+}
+
 
 
 /* Nexus 7 */
