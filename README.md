@@ -9,8 +9,6 @@ RunWithMe est un outil qui vous aidera :
 
 Pour plus d'information visitez notre site web : https://projetrun.github.io/Run-With-Me/
 
-
-[![Coverage Status](https://coveralls.io/repos/github/ProjetRun/runwithme/badge.svg?branch=master)](https://coveralls.io/github/ProjetRun/runwithme?branch=master)
 [![GitHub license](https://img.shields.io/github/license/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/issues)
 [![GitHub forks](https://img.shields.io/github/forks/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/network)
@@ -19,7 +17,6 @@ Pour plus d'information visitez notre site web : https://projetrun.github.io/Run
 [![GitHub version](https://badge.fury.io/gh/ProjetRun%2Frunwithme.svg)](https://badge.fury.io/gh/ProjetRun%2Frunwithme)
 [![Build Status](https://travis-ci.org/ProjetRun/runwithme.svg?branch=dev_fabien)](https://travis-ci.org/ProjetRun/runwithme)
 [![codecov](https://codecov.io/gh/ProjetRun/runwithme/branch/master/graph/badge.svg)](https://codecov.io/gh/ProjetRun/runwithme)
-[![codecov](https://codecov.io/gh/ProjetRun/runwithme/branch/coverage/graph/badge.svg)](https://codecov.io/gh/ProjetRun/runwithme)
 ## Systeme de Build
 * [Gradle](https://gradle.org/)
 
