@@ -725,7 +725,7 @@
 
 
 .device-mockup.nexus_5 > .device > .screen,
-.device-mockup.nexus5.portrait > .device > .screen {
+.device-mockup.nexus_5.portrait > .device > .screen {
 	top: 12.3728814%; bottom: 15.5367232%; left: 13.8383838%; right: 13.8383838%;
 }
 
