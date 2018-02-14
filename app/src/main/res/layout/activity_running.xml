@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="389dp"
+        android:layout_width="match_parent"
         android:layout_height="338dp"
         android:background="#29B6F6"
         android:orientation="vertical">
