@@ -73,17 +73,6 @@
 
 /* Nexus 5 */
 
-.device-mockup.nexus5 {
-	padding-bottom: 178.787879%;
-}
-
-.device-mockup.nexus5 > .device {
-	background-image: url("nexus5/nexus5_white.png");
-}
-
-.device-mockup.nexus5 > .device > .screen {
-	top: 12.3728814%; bottom: 15.5367232%; left: 13.8383838%; right: 13.8383838%;
-}
 
 
 /* iMac */
@@ -771,6 +760,52 @@
 	top: 14.5488029%; bottom: 14.9171271%; left: 9.36195587%; right: 9.36195587%;
 }
 
+/*nexus_6*/
+.device-mockup.nexus_6,
+.device-mockup.nexus7.portrait {
+	padding-bottom: 156.521739%;
+}
+
+.device-mockup.nexus_6.landscape {
+	padding-bottom: 63.6678201%;
+}
+
+.device-mockup.nexus_6 > .device,
+.device-mockup.nexus_6.portrait > .device {
+	background-image: url("nexus_6/nexus_6_port.png");
+}
+
+.device-mockup.nexus_6.landscape > .device {
+	background-image: url("nexus_6/nexus_6_land.png");
+}
+
+.device-mockup.nexus_6 > .device > .screen,
+.device-mockup.nexus_6.portrait > .device > .screen {
+	top: 13.1365741%; bottom: 12.7893519%; left: 13.7681159%; right: 13.7681159%;
+}
+/*nexus 5*/
+.device-mockup.nexus5,
+.device-mockup.nexus5.portrait {
+	padding-bottom: 156.521739%;
+}
+
+.device-mockup.nexus5.landscape {
+	padding-bottom: 63.6678201%;
+}
+
+.device-mockup.nexus5 > .device,
+.device-mockup.nexus5.portrait > .device {
+	background-image: url("nexus5/nexus5_white.png");
+}
+
+.device-mockup.nexus5.landscape > .device {
+	background-image: url("nexus5/nexus5_white.png");
+}
+
+.device-mockup.nexus5 > .device > .screen,
+.device-mockup.nexus5.portrait > .device > .screen {
+	top: 13.1365741%; bottom: 12.7893519%; left: 13.7681159%; right: 13.7681159%;
+}
 /* Samsung TV */
 .device-mockup.samsung_tv,
 .device-mockup.samsung_tv.landscape {
