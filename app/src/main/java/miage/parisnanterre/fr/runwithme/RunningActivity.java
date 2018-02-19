@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -57,37 +58,41 @@ public class RunningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_running);
         getSupportActionBar().hide();
 
-        button_distance= (Button) findViewById(R.id.button_distance_display);
-        button_distance_titre = (Button) findViewById(R.id.button_distance);
-        button_rythme= (Button) findViewById(R.id.button_pace_display);
-        button_cal = (Button) findViewById(R.id.button_cal_display);
+        button_distance= findViewById(R.id.button_distance_display);
+        button_distance_titre = findViewById(R.id.button_distance);
+        button_rythme= findViewById(R.id.button_pace_display);
+        button_cal = findViewById(R.id.button_cal_display);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         current_location = new Location("current_location");
-        current_location.setLatitude(40);
-        current_location.setLongitude(12);
+        //current_location.setLatitude(40);
+        //current_location.setLongitude(12);
         last_location = new Location("last_location");
         distance = 0.90;
         isLaunch = false;
         df = new java.text.DecimalFormat("0.#");
         df2 =new java.text.DecimalFormat("0.##");
-        simpleChronometer = (Chronometer) findViewById(R.id.textView_MIN_DISPLAY);
+        simpleChronometer = findViewById(R.id.textView_MIN_DISPLAY);
 
-        play_and_stop = (ImageView)  findViewById(R.id.imageView_start_and_stop);
+
+
+
+        play_and_stop = findViewById(R.id.imageView_start_and_stop);
         currentContext = this;
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                /*last_location.setLatitude(location.getLatitude());
-                last_location.setLongitude(location.getLongitude());
+                //last_location.setLatitude(location.getLatitude());
+                //last_location.setLongitude(location.getLongitude());
+                last_location.setLatitude(current_location.getLatitude());
+                last_location.setLongitude(current_location.getLongitude());
                 current_location.setLatitude(location.getLatitude());
                 current_location.setLongitude(location.getLongitude());
                 //distance = distance + current_location.distanceTo(last_location)/1000;
                 //distance = current_location.ge* distance;
-                distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
-                */
-                distance = distance*1.01;
+                //distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
 
+                distance = distance*1.01;
 
                 if(distance*1000 > 1000){
                     button_distance_titre.setText("Distance(km)");
@@ -97,8 +102,6 @@ public class RunningActivity extends AppCompatActivity {
                 }
                 calculateAndDisplaySpeed();
                 calcul_kcak();
-
-
             }
 
             @Override
