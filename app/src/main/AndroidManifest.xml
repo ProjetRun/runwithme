@@ -38,7 +38,7 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RunningActivity" />
+        <!--<activity android:name=".RunningActivity" />-->
         <service android:name=".GPSService" android:process=":my_service" />
         <activity android:name=".RunningActivity">
             android:launchMode="singleInstance"

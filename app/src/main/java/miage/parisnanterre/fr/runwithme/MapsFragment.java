@@ -115,14 +115,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void onConnectionSuspended(int i) {
+
+    }
+
     private void moveNoLocation(){
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(46.22475, 2.0517),15));
         // Zoom in, animating the camera.
         map.animateCamera(CameraUpdateFactory.zoomIn());
         // Zoom out to zoom level 12, animating with a duration of 2 seconds.
         map.animateCamera(CameraUpdateFactory.zoomTo(6), 2000, null);
-    }
-
     }
 
     @Override
