@@ -42,7 +42,10 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RunningActivity"></activity>
+        <activity android:name=".RunningActivity">
+            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+        </activity>
     </application>
 
 </manifest>
