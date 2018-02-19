@@ -1,28 +1,41 @@
 package miage.parisnanterre.fr.runwithme;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.FloatMath;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RunningActivity extends AppCompatActivity {
 
-    TextView KM_DISPLAY;
-    TextView KMH_DISPLAY;
+    Button button_rythme;
+    Button button_distance;
+    Button button_distance_titre;
+    Button button_cal;
     LocationManager  locationManager;
     LocationListener locationListener;
 
@@ -31,7 +44,11 @@ public class RunningActivity extends AppCompatActivity {
     double distance;
     double speed;
     java.text.DecimalFormat df;
+    java.text.DecimalFormat df2;
     Chronometer simpleChronometer;
+    ImageView play_and_stop;
+
+    boolean isLaunch;
 
 
     @Override
@@ -40,19 +57,24 @@ public class RunningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_running);
         getSupportActionBar().hide();
 
-        KM_DISPLAY= (TextView) findViewById(R.id.textView_KM_DISPLAY);
-        KMH_DISPLAY= (TextView) findViewById(R.id.textView_KMH_DISPLAY);
+        button_distance= (Button) findViewById(R.id.button_distance_display);
+        button_distance_titre = (Button) findViewById(R.id.button_distance);
+        button_rythme= (Button) findViewById(R.id.button_pace_display);
+        button_cal = (Button) findViewById(R.id.button_cal_display);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         current_location = new Location("current_location");
         current_location.setLatitude(40);
         current_location.setLongitude(12);
         last_location = new Location("last_location");
-        distance = 0.2;
-        df = new java.text.DecimalFormat("0.##");
+        distance = 0.90;
+        isLaunch = false;
+        df = new java.text.DecimalFormat("0.#");
+        df2 =new java.text.DecimalFormat("0.##");
         simpleChronometer = (Chronometer) findViewById(R.id.textView_MIN_DISPLAY);
-        simpleChronometer.setBase(SystemClock.elapsedRealtime());
-        simpleChronometer.start(); // start a chronometer
+
+        play_and_stop = (ImageView)  findViewById(R.id.imageView_start_and_stop);
+        currentContext = this;
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -66,8 +88,16 @@ public class RunningActivity extends AppCompatActivity {
 
                 /*
                 distance = distance*1.01;
-                KM_DISPLAY.setText(""+df.format(distance));
+
+
+                if(distance*1000 > 1000){
+                    button_distance_titre.setText("Distance(km)");
+                    button_distance.setText(""+df2.format(distance));
+                }else{
+                    button_distance.setText(""+df.format(distance*1000));
+                }
                 calculateAndDisplaySpeed();
+                calcul_kcak();
                 */
 
 
@@ -90,9 +120,6 @@ public class RunningActivity extends AppCompatActivity {
                 startActivity(i);
             }
         };
-        configureLocation();
-
-
     }
 
 
@@ -130,17 +157,144 @@ public class RunningActivity extends AppCompatActivity {
         double meter = distance *1000;
         long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
         double second = elapsedMillis/1000;
-        KMH_DISPLAY.setText(""+df.format(meter/second));
+        button_rythme.setText(""+df.format(meter/second));
     }
 
 
-    public void do_launch_tracking(View v) {
+    public void do_click_tracking(View v) {
 
+
+        //finish();
+        if(isLaunch == false) {
+            do_click_for_play_tracking();
+        }else{
+            do_click_for_stop_tracking();
+        }
+
+    }
+
+    public void do_click_for_play_tracking(){
+        /*Context context = getApplicationContext();
+        CharSequence text = "clique play!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();*/
+        isLaunch = true;
+       play_and_stop.setImageResource(R.mipmap.ic_stop_foreground);
+       //play_and_stop.setBackgroundColor(Color.rgb(219, 45, 45));
+
+       simpleChronometer.setBase(SystemClock.elapsedRealtime());
+       simpleChronometer.start(); // start a chronometer
+        configureLocation();
+        sendNotification();
+    }
+
+    BottomSheetDialog mBottomSheetDialog;
+    public void do_click_for_stop_tracking(){
+        /*
         Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
+        CharSequence text = "clique stop!";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+        finish();
+        */
+
+        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+
+        View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
+
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
+        mNotificationManager.cancelAll();
     }
+
+    public void do_click_for_share(View v){
+        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+
+        View sheetView = this.getLayoutInflater().inflate(R.layout.popup_share, null);
+
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
+
+
+
+    }
+
+    public void cancel_share(View v){
+
+    }
+
+    public void back_to_homeactivity(View v){
+        finish();
+    }
+
+    public void calcul_kcak(){
+        //Nombre de kcal dépensées = votre Poids (kg) x Distance (km)
+        //distance parcourue x poid x 1.036
+        button_cal.setText(""+df.format(distance*70*1.036));
+    }
+
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this);
+
+        mBuilder.setOngoing(true);
+
+        //Create the intent that’ll fire when the user taps the notification//
+
+        //Intent notificationIntent = new Intent(this, RunningActivity.class);
+        //
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+         //       | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //Not.addFlags(Intent.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR);
+        //notificationIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+        Intent notificationIntent = new Intent(currentContext, RunningActivity.currentContext.getClass() );
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setAction("android.intent.action.MAIN");
+        notificationIntent.addCategory("android.intent.category.LAUNCHER");
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+
+        mBuilder.setContentIntent(contentIntent);
+
+
+
+        mBuilder.setSmallIcon(R.mipmap.ic_user);
+        mBuilder.setContentTitle("Durée de la session");
+        //mBuilder.setContentText("00:00");
+        mBuilder.setUsesChronometer(true);
+        mNotificationManager =
+
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(001, mBuilder.build());
+
+
+
+
+    }
+
+    public static Context currentContext;
+    NotificationManager mNotificationManager;
+
+
 }

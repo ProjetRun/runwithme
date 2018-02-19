@@ -8,119 +8,142 @@
     android:background="#000000">
 
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="389dp"
+        android:layout_width="match_parent"
         android:layout_height="338dp"
         android:background="#29B6F6"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_KM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Kilométres"
-            android:textColor="#FFFF"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.295" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_KM_DISPLAY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="00:00"
-            android:textColor="#FFFF"
-            android:textSize="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView_KM"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            <Chronometer
+                android:id="@+id/textView_MIN_DISPLAY"
+                android:layout_width="match_parent"
+                android:layout_height="146dp"
+                android:layout_gravity="center"
+                android:gravity="bottom"
+                android:textAlignment="center"
+                android:textColor="#FFFF"
+                android:textSize="50dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView_MIN" />
 
-        <TextView
-            android:id="@+id/textView_KMH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="KM/H"
-            android:textColor="#FFFF"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.66" />
+            <TextView
+                android:id="@+id/textView_MIN"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-        <TextView
-            android:id="@+id/textView_MIN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Minutes"
-            android:textColor="#FFFF"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.856"
-            app:layout_constraintStart_toEndOf="@+id/textView_KMH"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.659" />
+                android:layout_gravity="center"
+                android:text="Durée"
+                android:textAlignment="center"
+                android:textColor="#FFFF"
+                android:textSize="20dp" />
 
-        <Chronometer
-            android:id="@+id/textView_MIN_DISPLAY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textColor="#FFFF"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView_MIN"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.848"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.972" />
 
-        <TextView
-            android:id="@+id/textView_KMH_DISPLAY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="00:00"
-            android:textColor="#FFFF"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView_KMH"
-            app:layout_constraintEnd_toStartOf="@+id/textView_MIN"
-            app:layout_constraintHorizontal_bias="0.064"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.972" />
-    </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#03A9F4"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <Button
+                    android:id="@+id/button_distance_display"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#29B6F6"
+                    android:text="0,0"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/button_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#29B6F6"
+                    android:text="Distance(m)"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <Button
+                    android:id="@+id/button_pace_display"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#29B6F6"
+                    android:text="00:00"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/button_pace"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#29B6F6"
+                    android:text="Rythme(km/h)"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <Button
+                    android:id="@+id/button_cal_display"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#29B6F6"
+                    android:text="0"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/button_cal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#29B6F6"
+                    android:text="Calories(cal)"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView_start_and_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -130,9 +153,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#4CAF50"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        android:onClick="do_launch_tracking"
+        android:onClick="do_click_tracking"
         app:srcCompat="@mipmap/ic_play_foreground" />
+
+
 
 </android.support.constraint.ConstraintLayout>
