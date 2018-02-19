@@ -65,8 +65,8 @@ public class RunningActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         current_location = new Location("current_location");
-        //current_location.setLatitude(40);
-        //current_location.setLongitude(12);
+        current_location.setLatitude(40);
+        current_location.setLongitude(12);
         last_location = new Location("last_location");
         distance = 0.90;
         isLaunch = false;
@@ -82,10 +82,10 @@ public class RunningActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                //last_location.setLatitude(location.getLatitude());
-                //last_location.setLongitude(location.getLongitude());
-                last_location.setLatitude(current_location.getLatitude());
-                last_location.setLongitude(current_location.getLongitude());
+                last_location.setLatitude(location.getLatitude());
+                last_location.setLongitude(location.getLongitude());
+                //last_location.setLatitude(current_location.getLatitude());
+                //last_location.setLongitude(current_location.getLongitude());
                 current_location.setLatitude(location.getLatitude());
                 current_location.setLongitude(location.getLongitude());
                 //distance = distance + current_location.distanceTo(last_location)/1000;
