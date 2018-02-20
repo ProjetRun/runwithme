@@ -19,7 +19,7 @@ Pour plus d'information visitez notre site web : https://projetrun.github.io/Run
 
 ## Téléchargement
 ### APK
-L'application peut être téléchargée directement [ici] : https://github.com/ProjetRun/runwithme/raw/dev_fabien/runwithme.apk
+L'application peut être téléchargée directement [ici] : https://github.com/ProjetRun/runwithme/releases/download/0.1.1/runwithme.apk
 
 ### SDK
 RunWithMe utilise android sdk version 26 Gradle télécharge automatiquement le sdk si vous avez déjà accepté les licences avec le SDK manager et que soit :
