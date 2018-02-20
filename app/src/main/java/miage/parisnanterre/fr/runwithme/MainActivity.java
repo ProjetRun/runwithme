@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         //startService(new Intent(this, MyService.class));
         //startActivity(intent);
         //finish();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void do_subscribe(View v){

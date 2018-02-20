@@ -5,8 +5,8 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     lintOptions {
-         abortOnError false
-     }
+        abortOnError false
+    }
     defaultConfig {
         applicationId "miage.parisnanterre.fr.runwithme"
         minSdkVersion 21
