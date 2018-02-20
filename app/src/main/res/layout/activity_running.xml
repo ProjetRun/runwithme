@@ -156,19 +156,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         android:onClick="do_click_tracking"
         app:srcCompat="@mipmap/ic_play_foreground" />
-
-    <SeekBar
-        android:id="@+id/myseek"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:clickable="false"
-        android:max="100"
-        android:progressDrawable="@android:color/transparent"
-        android:thumb="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        android:background="@android:color/white"/>
+    
 
 
 </android.support.constraint.ConstraintLayout>
