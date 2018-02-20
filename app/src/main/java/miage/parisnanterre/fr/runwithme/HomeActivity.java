@@ -6,9 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,18 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.model.LatLng;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    MapsActivity map;
     MapsFragment mapsFragment;
     FragmentManager fm;
-    FrameLayout frameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +41,8 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        map = new MapsActivity();
         mapsFragment = new MapsFragment();
         fm = getFragmentManager();
-
-
-        MapView mapView = (MapView) findViewById(R.id.mapView);
 
         excFragement(mapsFragment);
 
@@ -150,15 +139,11 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void do_tracking(View v){
-        //Intent intent = new Intent(this, HomeActivity.class);
-        //startActivity(intent);
-    }
     public void do_running(View v){
         Intent intent = new Intent(this, RunningActivity.class);
         startActivity(intent);

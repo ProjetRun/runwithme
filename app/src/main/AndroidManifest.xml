@@ -19,7 +19,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,16 +35,14 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
+        <!--<activity android:name=".RunningActivity" />-->
+        <service android:name=".GPSService" android:process=":my_service" />
         <activity android:name=".RunningActivity">
             android:launchMode="singleInstance"
             android:launchMode="singleTask"
         </activity>
     </application>
-
 </manifest>
