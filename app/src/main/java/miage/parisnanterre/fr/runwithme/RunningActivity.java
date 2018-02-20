@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class RunningActivity extends AppCompatActivity {
 
     boolean isLaunch;
 
+    SeekBar sb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +120,39 @@ public class RunningActivity extends AppCompatActivity {
                 startActivity(i);
             }
         };
+
+        sb =  (SeekBar) findViewById(R.id.myseek);
+
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                if (seekBar.getProgress() > 95) {
+
+                } else {
+
+                    seekBar.setThumb(getResources().getDrawable(R.mipmap.ic_snapchat));
+                }
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                if(progress>95){
+                    seekBar.setThumb(getResources().getDrawable(R.mipmap.ic_instagram));
+                }
+
+            }
+        });
+
     }
 
 
