@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="miage.parisnanterre.fr.runwithme.StatActivity">
+    tools:context="miage.parisnanterre.fr.runwithme.RunningStatisticsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="84dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
@@ -32,6 +32,11 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
@@ -48,28 +53,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@mipmap/ic_level_one_foreground" />
+
+
+
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="143dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
+                android:drawableRight="@mipmap/ic_crown_foreground"
                 android:text="Mes records"
+                android:drawableLeft="@mipmap/ic_crown_foreground"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="17dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#03A9F4"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -87,13 +97,15 @@
                         android:background="#29B6F6"
                         android:text="00:00"
                         android:textColor="@android:color/white"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        android:textAllCaps="false"/>
 
                     <ImageView
                         android:id="@+id/imageView14"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginTop="5dp"
                         app:srcCompat="@mipmap/ic_time_foreground" />
 
                 </LinearLayout>
@@ -111,7 +123,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#29B6F6"
-                        android:text="00,00 KM"
+                        android:text="0,0 km"
+
+                        android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textSize="25dp" />
 
@@ -120,6 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginTop="5dp"
                         app:srcCompat="@mipmap/ic_dist_foreground" />
 
                 </LinearLayout>
@@ -139,13 +154,15 @@
                         android:background="#29B6F6"
                         android:text="0 km/h"
                         android:textColor="@android:color/white"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        android:textAllCaps="false"/>
 
                     <ImageView
                         android:id="@+id/imageView16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginTop="5dp"
                         app:srcCompat="@mipmap/ic_speed_foreground" />
 
                 </LinearLayout>
@@ -154,10 +171,21 @@
 
         </LinearLayout>
 
-        <ListView
+        <TextView
+            android:id="@+id/textView11"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listeCourses"/>
+            android:layout_height="wrap_content"
+            android:text="Mes anciennes courses"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/statisticsListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

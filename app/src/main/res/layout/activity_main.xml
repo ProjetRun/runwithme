@@ -20,8 +20,12 @@
             android:gravity="center"
             android:text="RunWithMe"
             android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
+            android:textSize="40dp"
+            android:shadowColor="#03A9F4"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="2"
+            android:textStyle="bold|italic"
             tools:layout_editor_absoluteX="143dp"
             tools:layout_editor_absoluteY="191dp" />
 
