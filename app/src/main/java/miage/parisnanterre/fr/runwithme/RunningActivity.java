@@ -83,17 +83,17 @@ public class RunningActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                last_location.setLatitude(location.getLatitude());
-                last_location.setLongitude(location.getLongitude());
-                //last_location.setLatitude(current_location.getLatitude());
-                //last_location.setLongitude(current_location.getLongitude());
+                //last_location.setLatitude(location.getLatitude());
+                //last_location.setLongitude(location.getLongitude());
+                last_location.setLatitude(current_location.getLatitude());
+                last_location.setLongitude(current_location.getLongitude());
                 current_location.setLatitude(location.getLatitude());
                 current_location.setLongitude(location.getLongitude());
                 //distance = distance + current_location.distanceTo(last_location)/1000;
                 //distance = current_location.ge* distance;
-                //distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
+                distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
 
-                distance = distance*1.01;
+                //distance = distance*1.01;
 
                 if(distance*1000 > 1000){
                     button_distance_titre.setText("Distance(km)");
