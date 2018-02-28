@@ -7,7 +7,7 @@ RunWithMe est un outil qui vous aidera :
 - vous améliorer,
 - rencontrer des gens dans la vie réelle, et c’est notre atout comparé à nos concurrents.
 
-Pour plus d'information visitez notre site web : https://projetrun.github.io/Run-With-Me/
+Pour plus d'information visitez notre site web : https://projetrun.github.io/runwithme/
 
 [![GitHub license](https://img.shields.io/github/license/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/issues)
@@ -35,5 +35,5 @@ Sinon vous pouvez télécharger le sdk grâce au sdk manager disponible https://
 ## Contributors
 * GVIMRADZE Ana
 * MICHEL Fabien
-* ROUGE NICOLAS
+* ROUGE Nicolas
 * MBARAKA Andlat
