@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -32,6 +33,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+
 public class RunningActivity extends AppCompatActivity {
 
     Button button_rythme;
@@ -39,19 +43,21 @@ public class RunningActivity extends AppCompatActivity {
     Button button_distance_titre;
     Button button_cal;
     LocationManager  locationManager;
-    LocationListener locationListener;
+    boolean first_call = true;
 
     Location current_location;
     Location last_location;
     double distance;
-    double speed;
     java.text.DecimalFormat df;
     java.text.DecimalFormat df2;
     Chronometer simpleChronometer;
     ImageView play_and_stop;
 
+    double latitude;
+    double longitude;
     boolean isLaunch;
 
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,73 +75,14 @@ public class RunningActivity extends AppCompatActivity {
         current_location.setLatitude(40);
         current_location.setLongitude(12);
         last_location = new Location("last_location");
-        distance = 0.90;
+        distance = 0.0;
         isLaunch = false;
         df = new java.text.DecimalFormat("0.#");
         df2 =new java.text.DecimalFormat("0.##");
         simpleChronometer = findViewById(R.id.textView_MIN_DISPLAY);
 
-
-
-
         play_and_stop = findViewById(R.id.imageView_start_and_stop);
         currentContext = this;
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                //last_location.setLatitude(location.getLatitude());
-                //last_location.setLongitude(location.getLongitude());
-                last_location.setLatitude(current_location.getLatitude());
-                last_location.setLongitude(current_location.getLongitude());
-                current_location.setLatitude(location.getLatitude());
-                current_location.setLongitude(location.getLongitude());
-                //distance = distance + current_location.distanceTo(last_location)/1000;
-                //distance = current_location.ge* distance;
-                distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
-
-                //distance = distance*1.01;
-
-                if(distance*1000 > 1000){
-                    button_distance_titre.setText("Distance(km)");
-                    button_distance.setText(""+df2.format(distance));
-                }else{
-                    button_distance.setText(""+df.format(distance*1000));
-                }
-                calculateAndDisplaySpeed();
-                calcul_kcak();
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(i);
-            }
-        };
-    }
-
-
-
-
-    void configureLocation(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
-                        ,10);
-            }
-            return;
-        }
-        locationManager.requestLocationUpdates("gps", 500, 0, locationListener);
     }
 
     private double meterDistanceBetweenPoints(float lat_a, float lng_a, float lat_b, float lng_b) {
@@ -150,6 +97,10 @@ public class RunningActivity extends AppCompatActivity {
         double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
         double t3 = Math.sin(a1) * Math.sin(b1);
         double tt = Math.acos(t1 + t2 + t3);
+
+        Toast.makeText(getBaseContext(),
+                "distance = " + 6366000 * tt + "metres",
+                Toast.LENGTH_SHORT).show();
 
         return 6366000 * tt;
     }
@@ -172,7 +123,6 @@ public class RunningActivity extends AppCompatActivity {
         }else{
             do_click_for_stop_tracking();
         }
-
     }
 
     public void do_click_for_play_tracking(){
@@ -188,7 +138,46 @@ public class RunningActivity extends AppCompatActivity {
 
        simpleChronometer.setBase(SystemClock.elapsedRealtime());
        simpleChronometer.start(); // start a chronometer
-        configureLocation();
+        //configureLocation();
+        if(broadcastReceiver == null){
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if(first_call==true){
+                        latitude = (double) intent.getExtras().get("lati");
+                        longitude = (double) intent.getExtras().get("longi");
+                        current_location.setLatitude(latitude);
+                        current_location.setLongitude(longitude);
+                        Toast.makeText(getBaseContext(),
+                                "premières coordonnées " + latitude + longitude ,
+                                Toast.LENGTH_SHORT).show();
+                        first_call=false;
+                    }
+                    else{
+                        last_location.setLatitude(current_location.getLatitude());
+                        last_location.setLongitude(current_location.getLongitude());
+
+                        latitude = (double) intent.getExtras().get("lati");
+                        longitude = (double) intent.getExtras().get("longi");
+
+                        current_location.setLatitude(latitude);
+                        current_location.setLongitude(longitude);
+
+                        distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
+
+                        if(distance*1000 > 1000){
+                            button_distance_titre.setText("Distance(km)");
+                            button_distance.setText(""+df2.format(distance));
+                        }else{
+                            button_distance.setText(""+df.format(distance*1000));
+                        }
+                        calculateAndDisplaySpeed();
+                        calcul_kcak();
+                    }
+                }
+            };
+        }
+        this.registerReceiver(broadcastReceiver,new IntentFilter("location_update"));
         sendNotification();
     }
 
@@ -273,12 +262,7 @@ public class RunningActivity extends AppCompatActivity {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-
-
-
         mBuilder.setContentIntent(contentIntent);
-
-
 
         mBuilder.setSmallIcon(R.mipmap.ic_user);
         mBuilder.setContentTitle("Durée de la session");
@@ -298,5 +282,26 @@ public class RunningActivity extends AppCompatActivity {
     public static Context currentContext;
     NotificationManager mNotificationManager;
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //Unregister your activity to listen for change send by the service
+        //getActivity().unregisterReceiver(receiver);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(broadcastReceiver != null){
+            this.unregisterReceiver(broadcastReceiver);
+        }
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+    }
 
 }

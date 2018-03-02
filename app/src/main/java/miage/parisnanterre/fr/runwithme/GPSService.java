@@ -25,6 +25,7 @@ public class GPSService extends Service
             Log.e(TAG, "LocationListener " + provider);
             mLastLocation = new Location(provider);
         }
+
         @Override
         public void onLocationChanged(Location location)
         {
@@ -39,9 +40,9 @@ public class GPSService extends Service
             i.putExtra("longi",location.getLongitude());
             sendBroadcast(i);
 
-            Toast.makeText(getBaseContext(),
-                    "Service localisation : " + latitude + " " + longitude,
-                    Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),
+             //       "Service localisation : " + latitude + " " + longitude,
+             //       Toast.LENGTH_LONG).show();
         }
         @Override
         public void onProviderDisabled(String provider)
