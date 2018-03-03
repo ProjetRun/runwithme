@@ -1,7 +1,9 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
@@ -32,17 +34,14 @@ public class GPSService extends Service
             Log.e(TAG, "onLocationChanged: " + location);
             mLastLocation.set(location);
 
-            Double latitude = location.getLatitude();
-            Double longitude = location.getLongitude();
-
             Intent i = new Intent("location_update");
             i.putExtra("lati",location.getLatitude());
             i.putExtra("longi",location.getLongitude());
             sendBroadcast(i);
 
-            //Toast.makeText(getBaseContext(),
-             //       "Service localisation : " + latitude + " " + longitude,
-             //       Toast.LENGTH_LONG).show();
+            //  Toast.makeText(getBaseContext(),
+            //  "Service localisation : " + latitude + " " + longitude,
+            //  Toast.LENGTH_LONG).show();
         }
         @Override
         public void onProviderDisabled(String provider)
@@ -79,12 +78,14 @@ public class GPSService extends Service
         super.onStartCommand(intent, flags, startId);
         return START_STICKY;
     }
+
     @Override
     public void onCreate()
     {
         Log.e(TAG, "onCreate");
         initializeLocationManager();
         try {
+
             mLocationManager.requestLocationUpdates(
                     LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[1]);
@@ -113,7 +114,7 @@ public class GPSService extends Service
                 try {
                     mLocationManager.removeUpdates(mLocationListeners[i]);
                 } catch (Exception ex) {
-                    Log.i(TAG, "fail to remove location listners, ignore", ex);
+                    Log.i(TAG, "fail to remove location listeners, ignore", ex);
                 }
             }
         }

@@ -1,10 +1,13 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,6 +32,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     double latitude;
     double longitude;
     private BroadcastReceiver broadcastReceiver;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         getActivity().registerReceiver(broadcastReceiver,new IntentFilter("location_update"));
         //checkPermissions();
     }
+
 
 
     @Override

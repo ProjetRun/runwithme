@@ -1,40 +1,23 @@
 package miage.parisnanterre.fr.runwithme;
 
-import android.Manifest;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.FloatMath;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
 
 public class RunningActivity extends AppCompatActivity {
 
@@ -106,7 +89,6 @@ public class RunningActivity extends AppCompatActivity {
     }
 
     private void calculateAndDisplaySpeed(){
-        //int speed = distance/simpleChronometer.getBase();
         double meter = distance *1000;
         long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
         double second = elapsedMillis/1000;
@@ -126,12 +108,13 @@ public class RunningActivity extends AppCompatActivity {
     }
 
     public void do_click_for_play_tracking(){
-        /*Context context = getApplicationContext();
+        /*
+        Context context = getApplicationContext();
         CharSequence text = "clique play!";
         int duration = Toast.LENGTH_SHORT;
-
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();*/
+        toast.show();
+        */
         isLaunch = true;
        play_and_stop.setImageResource(R.mipmap.ic_stop_foreground);
        //play_and_stop.setBackgroundColor(Color.rgb(219, 45, 45));
@@ -143,6 +126,7 @@ public class RunningActivity extends AppCompatActivity {
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
+
                     if(first_call==true){
                         latitude = (double) intent.getExtras().get("lati");
                         longitude = (double) intent.getExtras().get("longi");
