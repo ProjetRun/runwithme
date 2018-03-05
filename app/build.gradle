@@ -47,4 +47,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.0.5-beta'
+    //  compile 'com.amazonaws:aws-android-sdk-core:2.2.+'
+    //compile 'com.amazonaws:aws-android-sdk-s3:2.2.+'
+    //compile 'com.amazonaws:aws-android-sdk-ddb:2.2.+'
 }
