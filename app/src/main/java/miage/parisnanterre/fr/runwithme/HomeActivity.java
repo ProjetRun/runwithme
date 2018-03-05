@@ -1,13 +1,17 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,6 +27,8 @@ public class HomeActivity extends AppCompatActivity
 
     MapsFragment mapsFragment;
     FragmentManager fm;
+    private static final int PERMS_CALL_ID = 1234;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +51,31 @@ public class HomeActivity extends AppCompatActivity
         fm = getFragmentManager();
 
         excFragement(mapsFragment);
-
+        checkPermissions();
 
         showSnackbar(findViewById(android.R.id.content),"Merci d'activer la localisation pour profiter de toutes les fonctionnalités",6000);
+    }
 
 
+
+    private void checkPermissions(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            },PERMS_CALL_ID );
+            return;
+        }
+    }
+
+    //se déclenche à chaque fois qu'une demande d'activation des permissions est faite
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == PERMS_CALL_ID){
+            checkPermissions();
+        }
     }
 
     public void showSnackbar(View view, String message, int duration)
