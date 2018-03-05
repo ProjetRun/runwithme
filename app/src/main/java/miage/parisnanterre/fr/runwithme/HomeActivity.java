@@ -53,7 +53,7 @@ public class HomeActivity extends AppCompatActivity
         excFragement(mapsFragment);
         checkPermissions();
 
-        //showSnackbar(findViewById(android.R.id.content),"Merci d'activer la localisation pour profiter de toutes les fonctionnalités",6000);
+        showSnackbar(findViewById(android.R.id.content),"Merci d'activer la localisation pour profiter de toutes les fonctionnalités",6000);
     }
 
 

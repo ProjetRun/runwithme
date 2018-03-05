@@ -1,7 +1,5 @@
 package miage.parisnanterre.fr.runwithme;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;

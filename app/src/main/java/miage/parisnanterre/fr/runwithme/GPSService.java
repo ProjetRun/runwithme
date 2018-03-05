@@ -3,8 +3,8 @@ package miage.parisnanterre.fr.runwithme;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -85,16 +85,20 @@ public class GPSService extends Service
         Log.e(TAG, "onCreate");
         initializeLocationManager();
         try {
-
+            //LocationManager mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String best = mLocationManager.getBestProvider(criteria, true);
+//since you are using true as the second parameter, you will only get the best of providers which are enabled.
+            //Location location = mLocationManager.getLastKnownLocation(best);
             mLocationManager.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
+                    best, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[1]);
         } catch (java.lang.SecurityException ex) {
             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
             Log.d(TAG, "network provider does not exist, " + ex.getMessage());
         }
-        try {
+        /*try {
             mLocationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[0]);
@@ -102,7 +106,7 @@ public class GPSService extends Service
             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
             Log.d(TAG, "gps provider does not exist " + ex.getMessage());
-        }
+        }*/
     }
     @Override
     public void onDestroy()
