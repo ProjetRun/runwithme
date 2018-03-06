@@ -16,8 +16,8 @@ public class GPSService extends Service
 {
     private static final String TAG = "GEOLOCALISATION";
     private LocationManager mLocationManager = null;
-    private static final int LOCATION_INTERVAL = 10000;
-    private static final float LOCATION_DISTANCE = 10f;
+    private static final int LOCATION_INTERVAL = 1000;
+    private static final float LOCATION_DISTANCE = 0;
 
     private class LocationListener implements android.location.LocationListener{
         Location mLastLocation;
