@@ -33,6 +33,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -219,11 +220,18 @@ public class RunningActivity extends AppCompatActivity {
         mNotificationManager.cancelAll();
 
         Date currentTime = Calendar.getInstance().getTime();
-        date = currentTime.toString();
-        heure = currentTime.toString();
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println( sdf.format(cal.getTime()) );
 
+        date = sdf.format(cal.getTime());
+        cal = Calendar.getInstance();
+        sdf = new SimpleDateFormat("HH:mm:ss");
+        System.out.println( sdf.format(cal.getTime()) );
+        heure =sdf.format(cal.getTime());
+        //#dev
         distancee = button_distance.getText().toString();
-        duree = "4555";
+        duree =  String.valueOf((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000 );
         rythme = button_rythme.getText().toString();
         calories = button_cal.getText().toString();
         RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
@@ -233,9 +241,9 @@ public class RunningActivity extends AppCompatActivity {
         //user_name = ET_USER_NAME.getText().toString();
         //user_pass =ET_USER_PASS.getText().toString();
         String method = "ajout";
-        BackgroundTask backgroundTask = new BackgroundTask(this);
+        PushStatsBackgroundTask backgroundTask = new PushStatsBackgroundTask(this);
         backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
-        finish();
+        //finish();
 
     }
 

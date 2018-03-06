@@ -18,11 +18,11 @@ import java.net.URLEncoder;
  * Created by Gvimra on 06/03/2018.
  */
 
-public class BackgroundTask extends AsyncTask<String,Void,String> {
+public class PushStatsBackgroundTask extends AsyncTask<String,Void,String> {
 
     Context ctx;
 
-    BackgroundTask(Context ctx){
+    PushStatsBackgroundTask(Context ctx){
         this.ctx=ctx;
     }
 
