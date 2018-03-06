@@ -1,8 +1,10 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ public class GPSService extends Service
     private static final String TAG = "GEOLOCALISATION";
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 1000;
-    private static final float LOCATION_DISTANCE = 10f;
+    private static final float LOCATION_DISTANCE = 0;
 
     private class LocationListener implements android.location.LocationListener{
         Location mLastLocation;
@@ -25,23 +27,21 @@ public class GPSService extends Service
             Log.e(TAG, "LocationListener " + provider);
             mLastLocation = new Location(provider);
         }
+
         @Override
         public void onLocationChanged(Location location)
         {
             Log.e(TAG, "onLocationChanged: " + location);
             mLastLocation.set(location);
 
-            Double latitude = location.getLatitude();
-            Double longitude = location.getLongitude();
-
             Intent i = new Intent("location_update");
             i.putExtra("lati",location.getLatitude());
             i.putExtra("longi",location.getLongitude());
             sendBroadcast(i);
 
-            Toast.makeText(getBaseContext(),
-                    "Service localisation : " + latitude + " " + longitude,
-                    Toast.LENGTH_LONG).show();
+            //  Toast.makeText(getBaseContext(),
+            //  "Service localisation : " + latitude + " " + longitude,
+            //  Toast.LENGTH_LONG).show();
         }
         @Override
         public void onProviderDisabled(String provider)
@@ -78,21 +78,27 @@ public class GPSService extends Service
         super.onStartCommand(intent, flags, startId);
         return START_STICKY;
     }
+
     @Override
     public void onCreate()
     {
         Log.e(TAG, "onCreate");
         initializeLocationManager();
         try {
+            //LocationManager mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String best = mLocationManager.getBestProvider(criteria, true);
+//since you are using true as the second parameter, you will only get the best of providers which are enabled.
+            //Location location = mLocationManager.getLastKnownLocation(best);
             mLocationManager.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
+                    best, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[1]);
         } catch (java.lang.SecurityException ex) {
             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
             Log.d(TAG, "network provider does not exist, " + ex.getMessage());
         }
-        try {
+        /*try {
             mLocationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[0]);
@@ -100,7 +106,7 @@ public class GPSService extends Service
             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
             Log.d(TAG, "gps provider does not exist " + ex.getMessage());
-        }
+        }*/
     }
     @Override
     public void onDestroy()
@@ -112,7 +118,7 @@ public class GPSService extends Service
                 try {
                     mLocationManager.removeUpdates(mLocationListeners[i]);
                 } catch (Exception ex) {
-                    Log.i(TAG, "fail to remove location listners, ignore", ex);
+                    Log.i(TAG, "fail to remove location listeners, ignore", ex);
                 }
             }
         }
