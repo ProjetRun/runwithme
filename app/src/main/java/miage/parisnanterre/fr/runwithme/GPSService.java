@@ -87,12 +87,13 @@ public class GPSService extends Service
         try {
             //LocationManager mgr = (LocationManager) getSystemService(LOCATION_SERVICE);
             Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_FINE); // Choose your accuracy requirement.
             String best = mLocationManager.getBestProvider(criteria, true);
 //since you are using true as the second parameter, you will only get the best of providers which are enabled.
             //Location location = mLocationManager.getLastKnownLocation(best);
             mLocationManager.requestLocationUpdates(
                     best, LOCATION_INTERVAL, LOCATION_DISTANCE,
-                    mLocationListeners[1]);
+                    new LocationListener(LocationManager.GPS_PROVIDER));
         } catch (java.lang.SecurityException ex) {
             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
