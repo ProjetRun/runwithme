@@ -31,4 +31,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         }
+
+    public void do_click_for_stop_tracking(){
+        startActivity(new Intent(this,RunningActivity.class));
+    }
     }

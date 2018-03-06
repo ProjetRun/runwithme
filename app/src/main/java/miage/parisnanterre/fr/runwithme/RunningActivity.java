@@ -22,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.FloatMath;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,9 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class RunningActivity extends AppCompatActivity {
 
@@ -51,6 +55,8 @@ public class RunningActivity extends AppCompatActivity {
     ImageView play_and_stop;
 
     boolean isLaunch;
+
+    String date, heure, distancee,duree,rythme, calories;
 
 
     @Override
@@ -211,6 +217,26 @@ public class RunningActivity extends AppCompatActivity {
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
         mNotificationManager.cancelAll();
+
+        Date currentTime = Calendar.getInstance().getTime();
+        date = currentTime.toString();
+        heure = currentTime.toString();
+
+        distancee = button_distance.getText().toString();
+        duree = "4555";
+        rythme = button_rythme.getText().toString();
+        calories = button_cal.getText().toString();
+        RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
+
+
+        //ET_NAME.getText().toString();
+        //user_name = ET_USER_NAME.getText().toString();
+        //user_pass =ET_USER_PASS.getText().toString();
+        String method = "ajout";
+        BackgroundTask backgroundTask = new BackgroundTask(this);
+        backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
+        finish();
+
     }
 
     public void do_click_for_share(View v){
@@ -223,7 +249,26 @@ public class RunningActivity extends AppCompatActivity {
 
 
 
+
     }
+
+   /* public void userReg(View view)
+    {
+
+        date = "hello";
+        heure = "hello";
+        distancee = "hello";
+        duree = "hello";
+        rythme = "hello";
+        calories = "hello";//ET_NAME.getText().toString();
+        //user_name = ET_USER_NAME.getText().toString();
+        //user_pass =ET_USER_PASS.getText().toString();
+        String method = "ajout";
+        BackgroundTask backgroundTask = new BackgroundTask(this);
+        backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
+        finish();
+
+    }*/
 
     public void cancel_share(View v){
 
