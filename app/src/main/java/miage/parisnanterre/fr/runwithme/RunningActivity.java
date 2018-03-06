@@ -229,7 +229,6 @@ public class RunningActivity extends AppCompatActivity {
         sdf = new SimpleDateFormat("HH:mm:ss");
         System.out.println( sdf.format(cal.getTime()) );
         heure =sdf.format(cal.getTime());
-        //#dev
         distancee = button_distance.getText().toString();
         duree =  String.valueOf((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000 );
         rythme = button_rythme.getText().toString();
