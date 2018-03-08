@@ -74,7 +74,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#29B6F6"
-                    android:text="Distance(m)"
+                    android:text="Distance\n(m)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />
@@ -103,7 +103,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#29B6F6"
-                    android:text="Rythme(km/h)"
+                    android:text="Rythme\n(km/h)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />
@@ -132,7 +132,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#29B6F6"
-                    android:text="Calories(cal)"
+                    android:text="Calories\n(cal)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />

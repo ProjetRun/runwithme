@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
 
 import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.adapter;
 import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.statistics;
@@ -92,6 +93,7 @@ public class PullStatsBackgroundTask extends AsyncTask<String,Void,String> {
                         jsonArray.getJSONObject(i).getString("rythme"),
                         jsonArray.getJSONObject(i).getString("calories")));
             }
+            Collections.reverse(statistics);
         } catch (JSONException e) {
             e.printStackTrace();
         }
