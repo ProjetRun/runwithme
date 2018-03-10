@@ -2,6 +2,7 @@ package miage.parisnanterre.fr.runwithme;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -18,6 +19,9 @@ import java.net.URL;
 import java.util.Collections;
 
 import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.adapter;
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_dist;
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_speed;
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_time;
 import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.statistics;
 
 
@@ -80,7 +84,12 @@ public class PullStatsBackgroundTask extends AsyncTask<String,Void,String> {
 
         //Toast.makeText(ctx,result,Toast.LENGTH_LONG).show();
 
+
+
         JSONArray jsonArray = null;
+        int best_duree = 0;
+        int best_rythme = 0;
+        int best_distance=0;
         try {
             jsonArray = json.getJSONArray("activity");
 
@@ -92,13 +101,27 @@ public class PullStatsBackgroundTask extends AsyncTask<String,Void,String> {
                         jsonArray.getJSONObject(i).getString("duree"),
                         jsonArray.getJSONObject(i).getString("rythme"),
                         jsonArray.getJSONObject(i).getString("calories")));
+
+                if(Integer.parseInt(jsonArray.getJSONObject(i).getString("duree"))>best_duree){
+                    best_duree = Integer.parseInt(jsonArray.getJSONObject(i).getString("duree"));
+                }
+                if(jsonArray.getJSONObject(i).getInt("distance") > best_distance){
+                    best_distance = Integer.parseInt(jsonArray.getJSONObject(i).getString("distance"));
+                }
+                if(jsonArray.getJSONObject(i).getInt("rythme") > best_rythme){
+                    best_rythme = Integer.parseInt(jsonArray.getJSONObject(i).getString("rythme"));
+                }
+
+
             }
             Collections.reverse(statistics);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         adapter.notifyDataSetChanged();
-
+        button_record_time.setText(best_duree+"min.");
+        button_record_dist.setText(best_distance+"km");
+        button_record_speed.setText(best_rythme+"km/h");
     }
 }
 

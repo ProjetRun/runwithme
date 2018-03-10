@@ -3,6 +3,7 @@ package miage.parisnanterre.fr.runwithme;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,20 +26,24 @@ public class RunningStatisticsActivity extends AppCompatActivity {
     private ListView statisticsListView;
     static List<RunningStatistics> statistics;
     static RunningStatisticsAdapter adapter;
+
+    static Button button_record_time;
+    static Button button_record_dist;
+    static Button button_record_speed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
 
         statistics = new ArrayList<RunningStatistics>();
-        //statistics.add(new RunningStatistics("28/11/2017","15h30","12","15","7,6","8,6"));
-
-
         statisticsListView = (ListView) findViewById(R.id.statisticsListView);
         adapter = new RunningStatisticsAdapter(RunningStatisticsActivity.this,statistics);
         statisticsListView.setAdapter(adapter);
 
-        //makeServiceCall("http://runwithme-france.fr/selectall.php");
+        button_record_dist = (Button) findViewById(R.id.button_record_dist);
+        button_record_speed = (Button) findViewById(R.id.button_record_speed);
+        button_record_time = (Button) findViewById(R.id.button_record_time);
 
         PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
         load.execute();

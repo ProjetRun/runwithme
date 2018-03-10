@@ -14,6 +14,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_dist;
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_speed;
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_time;
+import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.statistics;
+
 public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
 
     Context context;
@@ -23,6 +28,8 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
         this.context = context;
         this.listes = listes;
     }
+
+
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -52,18 +59,6 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
         viewHolder.calories.setText(statistics.getCalories());
         viewHolder.date.setText(String.valueOf(statistics.getDate()));
 
-        //convertView.setClickable(true);
-
-
-        //convertView.setOnClickListener(myClickListener);
-        /*
-        convertView.setOnClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // When clicked, show a toast with the TextView text or do whatever you need.
-                Toast.makeText(context, getItem(position).getNom(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
 
 
         return convertView;
