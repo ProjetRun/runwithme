@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -191,6 +192,8 @@ public class RunningActivity extends AppCompatActivity {
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+        ProgressBar progressBar4 = (ProgressBar) mBottomSheetDialog.getWindow().findViewById(R.id.progressBar4);
+        progressBar4.setProgress(12);
         mNotificationManager.cancelAll();
 
         Date currentTime = Calendar.getInstance().getTime();
