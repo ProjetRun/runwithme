@@ -20,11 +20,18 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
+
+import static miage.parisnanterre.fr.runwithme.MainActivity.user;
 
 public class RunningActivity extends AppCompatActivity {
 
@@ -32,6 +39,7 @@ public class RunningActivity extends AppCompatActivity {
     Button button_distance;
     Button button_distance_titre;
     Button button_cal;
+    TextView txtv_pogress;
     LocationManager  locationManager;
     boolean first_call = true;
 
@@ -185,27 +193,88 @@ public class RunningActivity extends AppCompatActivity {
         toast.show();
         finish();
         */
+        List<String> citations = new ArrayList<String>();
+        citations.add("Si tu n’as pas confiance, tu trouveras toujours une manière de perdre. - Carl Lewis");
+        citations.add("Nous avons tous des rêves, mais pour les réaliser, il faut beaucoup de détermination, de dévouement, de discipline et d’efforts - Jesse Owens");
+        citations.add("La course est la plus grande métaphore de la vie, parce que vous en tirez ce dont vous en mettez. - Oprah Winfrey");
+        citations.add("Le miracle n'est pas que j'ai terminé. Le miracle est que j'ai eu le courage de commencer. - John Bingham");
+        citations.add("La motivation vous sert de départ. L’habitude vous fait continuer - Jim Ryun ");
+        //(int) (Math.random() * (monArrayList.size() - 1));
 
+        int nb = Integer.parseInt(button_distance.getText().toString());
+        user.updateKm(nb);
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+        //User u = db.getUsers();
+
+        txtv_pogress = (TextView)  mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
+        //u.updateKm(Integer.parseInt(button_distance.getText().toString()));
+        txtv_pogress.setText(user.getKm()+"/"+user.getkmNextLevel()+"km");
         ProgressBar progressBar4 = (ProgressBar) mBottomSheetDialog.getWindow().findViewById(R.id.progressBar4);
-        progressBar4.setProgress(12);
+        //progressBar4.setMax(u.getkmNextLevel());
+        progressBar4.setMax(user.getkmNextLevel());
+        //progressBar4.setProgress(12);
+        progressBar4.setProgress(user.getKm());
+
+        TextView txtv_cita = (TextView) mBottomSheetDialog.getWindow().findViewById(R.id.textView5);
+        txtv_cita.setText(citations.get((int) (Math.random() * (citations.size() - 1))));
+
+        ImageView img_level = (ImageView)  mBottomSheetDialog.getWindow().findViewById(R.id.imageView6);
+
+        ImageView img_next_level = (ImageView)  mBottomSheetDialog.getWindow().findViewById(R.id.imageView9);
+
+
+        switch (user.getLevel()){
+            case 1:
+                img_level.setImageResource(R.mipmap.ic_level_one_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level_two_foreground);
+                break;
+            case 2:
+                img_level.setImageResource(R.mipmap.ic_level_two_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level3_foreground);
+                break;
+            case 3:
+                img_level.setImageResource(R.mipmap.ic_level3_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level4_foreground);
+                break;
+            case 4:
+                img_level.setImageResource(R.mipmap.ic_level4_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level5_foreground);
+                break;
+            case 5:
+                img_level.setImageResource(R.mipmap.ic_level5_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level6_foreground);
+                break;
+            case 6:
+                img_level.setImageResource(R.mipmap.ic_level6_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
+                break;
+            default:
+                img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
+
+        }
+
         mNotificationManager.cancelAll();
 
         Date currentTime = Calendar.getInstance().getTime();
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println( sdf.format(cal.getTime()) );
 
         date = sdf.format(cal.getTime());
         cal = Calendar.getInstance();
         sdf = new SimpleDateFormat("HH:mm:ss");
+        TimeZone gmt = TimeZone.getTimeZone("GMT");
+        sdf.setTimeZone(gmt);
         System.out.println( sdf.format(cal.getTime()) );
         heure =sdf.format(cal.getTime());
+
+
         distancee = button_distance.getText().toString();
         duree =  String.valueOf((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000 );
 
@@ -223,7 +292,7 @@ public class RunningActivity extends AppCompatActivity {
         RunningStatistics pushStats = new RunningStatistics();
         pushStats.setDate(date);
         pushStats.setHeure(heure);
-        pushStats.setDistance(duree);
+        pushStats.setDistance(distancee);
         pushStats.setDuree(duree);
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);
@@ -246,6 +315,21 @@ public class RunningActivity extends AppCompatActivity {
 
     }
 
+    public void writeFileUser(){
+        String filename = "myfile";
+        String fileContents = user.getId()+"\n"+
+                user.getKm()+"\n"+
+                user.getLevel()+"\n";
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
    /* public void userReg(View view)
     {
 
@@ -269,6 +353,7 @@ public class RunningActivity extends AppCompatActivity {
     }
 
     public void back_to_homeactivity(View v){
+        writeFileUser();
         finish();
     }
 
