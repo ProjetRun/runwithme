@@ -30,13 +30,15 @@ public class RunningStatisticsActivity extends AppCompatActivity {
     static Button button_record_time;
     static Button button_record_dist;
     static Button button_record_speed;
+    final DatabaseStats db = new DatabaseStats(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
 
-        statistics = new ArrayList<RunningStatistics>();
+        //statistics = new ArrayList<RunningStatistics>();
+        statistics = db.getAllStats();
         statisticsListView = (ListView) findViewById(R.id.statisticsListView);
         adapter = new RunningStatisticsAdapter(RunningStatisticsActivity.this,statistics);
         statisticsListView.setAdapter(adapter);
@@ -45,8 +47,8 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         button_record_speed = (Button) findViewById(R.id.button_record_speed);
         button_record_time = (Button) findViewById(R.id.button_record_time);
 
-        PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
-        load.execute();
+        //PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
+        //load.execute();
 
     }
 

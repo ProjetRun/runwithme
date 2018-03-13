@@ -48,6 +48,8 @@ public class RunningActivity extends AppCompatActivity {
     String date, heure, distancee,duree,rythme, calories;
     private BroadcastReceiver broadcastReceiver;
 
+    final DatabaseStats db = new DatabaseStats(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,6 +205,7 @@ public class RunningActivity extends AppCompatActivity {
         heure =sdf.format(cal.getTime());
         distancee = button_distance.getText().toString();
         duree =  String.valueOf((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000 );
+
         rythme = button_rythme.getText().toString();
         calories = button_cal.getText().toString();
         RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
@@ -211,9 +214,18 @@ public class RunningActivity extends AppCompatActivity {
         //ET_NAME.getText().toString();
         //user_name = ET_USER_NAME.getText().toString();
         //user_pass =ET_USER_PASS.getText().toString();
-        String method = "ajout";
-        PushStatsBackgroundTask backgroundTask = new PushStatsBackgroundTask(this);
-        backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
+        //String method = "ajout";
+        //PushStatsBackgroundTask backgroundTask = new PushStatsBackgroundTask(this);
+        //backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
+        RunningStatistics pushStats = new RunningStatistics();
+        pushStats.setDate(date);
+        pushStats.setHeure(heure);
+        pushStats.setDistance(duree);
+        pushStats.setDuree(duree);
+        pushStats.setRythme(rythme);
+        pushStats.setCalories(calories);
+
+        db.addStats(pushStats);
         //finish();
 
     }

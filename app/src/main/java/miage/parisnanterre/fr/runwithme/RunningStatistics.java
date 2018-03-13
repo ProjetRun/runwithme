@@ -2,6 +2,8 @@ package miage.parisnanterre.fr.runwithme;
 
 public class RunningStatistics {
 
+
+    int id;
     String date;
     String heure;
     String distance;
@@ -9,6 +11,9 @@ public class RunningStatistics {
     String rythme;
     String calories;
 
+    public RunningStatistics(){
+
+    }
     public RunningStatistics(String date, String heure,String distance, String duree, String rythme, String calories) {
         this.date = date;
         this.heure = heure;
@@ -17,6 +22,10 @@ public class RunningStatistics {
         this.rythme = rythme;
         this.calories = calories;
     }
+
+    public int getId() { return id;}
+
+    public void setId(int id) { this.id = id;}
 
     public String getHeure() {
         return heure;
