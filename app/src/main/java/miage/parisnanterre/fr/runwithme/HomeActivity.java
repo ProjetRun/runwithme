@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
@@ -53,11 +54,33 @@ public class HomeActivity extends AppCompatActivity
         excFragement(mapsFragment);
         checkPermissions();
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         showSnackbar(findViewById(android.R.id.content),"Merci d'activer la localisation pour profiter de toutes les fonctionnalités",6000);
     }
 
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_dashboard:
+
+                    return true;
+                case R.id.navigation_notifications:
+                    exec_running();
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    private void exec_running(){
+        Intent intent = new Intent(this, RunningActivity.class);
+        startActivity(intent);
+    }
     private void checkPermissions(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

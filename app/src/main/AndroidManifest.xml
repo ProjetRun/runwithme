@@ -49,7 +49,7 @@
             android:launchMode="singleInstance"
             android:launchMode="singleTask"
         </activity>
-        <activity android:name=".RunningStatisticsActivity"></activity>
+        <activity android:name=".RunningStatisticsActivity" />
     </application>
 
 </manifest>
