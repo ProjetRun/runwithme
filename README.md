@@ -41,6 +41,8 @@ L'application peut être téléchargée
 - soit via l'url:https://github.com/ProjetRun/runwithme/releases/download/1.0.0_Alpha/runwithme.apk
 
 - soit via le QR Code : 
+
+
 <a href='http://www.unitag.io/qrcode'><img src='http://www.unitag.io/qreator/generate?crs=xnjFkEn%252FP85fCPDXJ%252FXXKg5g6yQi7H4qzUlRVUntU035Re8CX7iHj071HbqF%252BCfYW0fkByoDtlWAYEP%252FkF2dipjP8Ux69VtYkusoonlKTAkgSRnmfwEzhpz3ulb%252BfgcH8xxrpOTbfLtqZS7YE5Pf9g%253D%253D&crd=fhOysE0g3Bah%252BuqXA7NPQx2rrS2o9rjHfmG68tV%252F4kxUO%252FYpN3tUfh15i8xOwmYDv%252Ff1kwlxP8bpaEE4xpYk8NIv3kMMuP5b5PcABpqsLU1k06UAxaFyKnSLtF5U%252B3jWuzv8Vzy0eXteUJKIDXoIiXJrds95Pws9k1PRIHZPah0%253D' alt='QR Code'/></a>
 
 ### SDK et android studio
