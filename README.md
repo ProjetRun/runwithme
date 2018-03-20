@@ -1,13 +1,5 @@
 # RunWithMe
-RunWithMe, une solution pour trouver des partenaires de course ou vous voulez quand vous voulez.
-Destinée aux coureurs occasionnels, réguliers , professionnels ou en recherche de motivation.
-Vous pourrez localiser des coureurs près de chez vous les inviter à courir.
-RunWithMe est un outil qui vous aidera :
-- à pratiquer votre sport régulièrement, 
-- vous améliorer,
-- rencontrer des gens dans la vie réelle, et c’est notre atout comparé à nos concurrents.
 
-Pour plus d'information visitez notre site web : https://projetrun.github.io/runwithme/
 
 [![GitHub license](https://img.shields.io/github/license/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ProjetRun/runwithme.svg)](https://github.com/ProjetRun/runwithme/issues)
@@ -17,9 +9,37 @@ Pour plus d'information visitez notre site web : https://projetrun.github.io/run
 [![codecov](https://codecov.io/gh/ProjetRun/runwithme/branch/master/graph/badge.svg)](https://codecov.io/gh/ProjetRun/runwithme)
 
 
-## Téléchargement
+## RunWithMe c'est quoi ? 
+
+RunWithMe est une application mobile permettant de trouver des partenaires de course ou vous voulez quand vous voulez.
+Destinée aux coureurs occasionnels, réguliers , professionnels ou en recherche de motivation.
+Vous pourrez localiser des coureurs près de chez vous les inviter à courir.
+RunWithMe est un outil qui vous aidera :
+
+- à pratiquer votre sport régulièrement, 
+- vous améliorer,
+- rencontrer des gens dans la vie réelle, et c’est notre atout comparé à nos concurrents.
+
+Pour plus d'information visitez notre site web : https://projetrun.github.io/runwithme/
+
+## Fonctionnalités
+
+### version 1.0-alpha
+ - effectuer une course 
+ - récupérer des statistiques 
+ - voir nos reccords 
+ - pouvoir etre motiver à courrir d'avantage grâce a un système de niveau intelligent 
+
+
+
+
+## Téléchargement et installation 
 ### APK
-L'application peut être téléchargée directement [ici] : https://github.com/ProjetRun/runwithme/releases/download/0.1.1/runwithme.apk
+
+L'application peut être téléchargée directement [ici] :https://github.com/ProjetRun/runwithme/releases/download/1.0.0_Alpha/runwithme.apk
+
+ou via le QR Code : 
+<a href='http://www.unitag.io/qrcode'><img src='http://www.unitag.io/qreator/generate?crs=xnjFkEn%252FP85fCPDXJ%252FXXKg5g6yQi7H4qzUlRVUntU035Re8CX7iHj071HbqF%252BCfYW0fkByoDtlWAYEP%252FkF2dipjP8Ux69VtYkusoonlKTAkgSRnmfwEzhpz3ulb%252BfgcH8xxrpOTbfLtqZS7YE5Pf9g%253D%253D&crd=fhOysE0g3Bah%252BuqXA7NPQx2rrS2o9rjHfmG68tV%252F4kxUO%252FYpN3tUfh15i8xOwmYDv%252Ff1kwlxP8bpaEE4xpYk8NIv3kMMuP5b5PcABpqsLU1k06UAxaFyKnSLtF5U%252B3jWuzv8Vzy0eXteUJKIDXoIiXJrds95Pws9k1PRIHZPah0%253D' alt='QR Code'/></a>
 
 ### SDK
 RunWithMe utilise android sdk version 26 Gradle télécharge automatiquement le sdk si vous avez déjà accepté les licences avec le SDK manager et que soit :
@@ -32,8 +52,7 @@ Sinon vous pouvez télécharger le sdk grâce au sdk manager disponible https://
 
 
 
-## Contributors
+## Auteurs
 * GVIMRADZE Ana
-* MICHEL Fabien
+* MICHEL Fabien  : https://github.com/fabienmcl 
 * ROUGE Nicolas
-* MBARAKA Andlat
