@@ -210,6 +210,8 @@ public class RunningActivity extends AppCompatActivity {
         //(int) (Math.random() * (monArrayList.size() - 1));
 
 
+        simpleChronometer.stop();
+
         DecimalFormat df3 = new DecimalFormat("#");
         int nb = Integer.parseInt(button_distance.getText().toString());
         if(is_km==false){
