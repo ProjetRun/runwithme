@@ -21,8 +21,6 @@ public class DatabaseStats extends SQLiteOpenHelper {
 
     // Contacts table name
     private static final String TABLE_STATS = "stats";
-    private static final String TABLE_LEVEL = "level";
-    private static final String TABLE_USER="user";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
@@ -32,15 +30,6 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String DUREE = "duree";
     public static final String RYTHME = "rythme";
     public static final String CALORIES = "calories";
-
-    public static final String KEY_LV = "lv";
-    public static final String KEY_ACTUAL_KM = "akm";
-    public static final String KEY_VALIDATE_KM ="vkm";
-
-
-    public static final String KEY_USER = "id";
-    public static final String USER_LEVEL = "level";
-    public static final String USER_KM="km";
 
 
     public DatabaseStats(Context context) {
@@ -58,14 +47,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 DUREE+ " INTEGER, " +
                 RYTHME+ " INTEGER, " +
                 CALORIES + " INTEGER);";
-
-        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_USER + " INTEGER PRIMARY KEY," +
-                USER_LEVEL + " INTEGER ," +
-                USER_KM + " INTEGER);";
         db.execSQL(CREATE_STATS_TABLE);
-        db.execSQL(CREATE_USER_TABLE);
-        initUser();
     }
 
     public void onDestroy(){
@@ -78,78 +60,8 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LEVEL);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         // Create tables again
         onCreate(db);
-    }
-
-    public User getUsers() {
-        System.out.println("€€€€€€€€ get all user ######");
-        List<User> statisticsList = new ArrayList<User>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_USER;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                User u = new User();
-
-                u.setId(Integer.parseInt(cursor.getString(0)));
-                u.setKm(Integer.parseInt(cursor.getString(1)));
-                u.setLevel(Integer.parseInt(cursor.getString(2)));
-
-                statisticsList.add(u);
-            } while (cursor.moveToNext());
-        }
-
-        // return contact list
-        return statisticsList.get(0);
-    }
-    public User getUser() {
-        String selectQuery = "SELECT  * FROM " + TABLE_USER;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        User u = new User();
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-
-                u.setId(Integer.parseInt(cursor.getString(0)));
-                u.setLevel(Integer.parseInt(cursor.getString(1)));
-                u.setKm(Integer.parseInt(cursor.getString(2)));
-                //return u;
-                // Adding contact to list
-            } while (cursor.moveToNext());
-        }
-
-        // return contact list
-        return u;
-    }
-    public void UpdateUser(User u){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE "+TABLE_USER +
-                "SET "+USER_LEVEL+" ="+u.getLevel()+
-                        USER_KM+"= "+u.getKm()+
-                "WHERE"+u.getId()+" = 0");
-    }
-    public void initLevel(){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        for(int i=1;i<6;i++){
-            ContentValues values = new ContentValues();
-            values.put(KEY_LV, i);
-            values.put(KEY_ACTUAL_KM, 0);
-            values.put(KEY_VALIDATE_KM, i*20);
-            db.insert(TABLE_LEVEL, null, values);
-        }
-
-        db.close(); // Closing database connection
     }
 
     public void addStats(RunningStatistics stats) {
@@ -169,18 +81,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    public void initUser() {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_USER, 0);
-        values.put(USER_LEVEL, 1);
-        values.put(USER_KM, 0);
-
-        // Inserting Row
-        db.insert(TABLE_USER, null, values);
-        db.close(); // Closing database connection
-    }
 
     public List<RunningStatistics> getAllStats() {
         System.out.println("€€€€€€€€ get all ######");
@@ -194,15 +95,6 @@ public class DatabaseStats extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                /*
-        id
-        values.put(DATE, stats.getDate());
-        values.put(HEURE, stats.getHeure());
-        values.put(DISTANCE, stats.getDistance());
-        values.put(DUREE, stats.getDuree());
-        values.put(RYTHME, stats.getRythme());
-        values.put(CALORIES, stats.getCalories());
-                 */
                 RunningStatistics rs = new RunningStatistics();
                 rs.setId(Integer.parseInt(cursor.getString(0)));
                 rs.setDate(cursor.getString(1));
@@ -216,40 +108,10 @@ public class DatabaseStats extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        // return contact list
         return statisticsList;
     }
-    /*
-    public int updateContact(RunningStatistics rs) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_PSEUDO, user.get_pseudo());
-        values.put(KEY_PASS, user.get_pass());
-        values.put(KEY_EMAIL, user.get_email());
 
-        // updating row
-        return db.update(TABLE_USERS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(user.get_id()) });
-    }
-    */
-    public int getActualKM(int myLV){
-
-        String selectQuery = "SELECT "+KEY_ACTUAL_KM+" FROM " + TABLE_LEVEL+" WHERE "+KEY_LV+"="+myLV;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        cursor.moveToFirst();
-        return 0;
-
-    }
-    public void updateLevel(int lv,int km){
-        km += getActualKM(lv);
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.execSQL("UPDATE "+TABLE_LEVEL+"SET "+KEY_ACTUAL_KM+" ="+km+" WHERE KEY_LV ="+lv+";");
-
-    }
     public void deleteStatistics(RunningStatistics rs) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_STATS, KEY_ID + " = ?",

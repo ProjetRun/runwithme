@@ -17,11 +17,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
-    // GPSTracker class
-    //GpsTracker gps;
+
     static User user;
     final DatabaseStats db = new DatabaseStats(this);
     final DatabaseUser dbU = new DatabaseUser(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void do_log(View v){
-        //Intent intent = new Intent(this, HomeActivity.class);
-        //startService(new Intent(this, MyService.class));
-        //startActivity(intent);
-        //finish();
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
@@ -46,15 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
-        }
+    }
 
-    public void do_click_for_stop_tracking(){
-        startActivity(new Intent(this,RunningActivity.class));
-    }
-    public static File getFilePath(String fileName){
-        String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-        File folder = new File(extStorageDirectory, "FOLDER_NAME");
-        File filePath = new File(folder + "/" + fileName);
-        return filePath;
-    }
-    }
+
+}

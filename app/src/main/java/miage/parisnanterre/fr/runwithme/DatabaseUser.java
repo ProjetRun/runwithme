@@ -105,11 +105,6 @@ public class DatabaseUser extends SQLiteOpenHelper {
         db.insert(TABLE_USER, null, values);
         db.close(); // Closing database connection
     }
-    public void updateUser(User u){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE "+TABLE_USER+" SET "+USER_KM+" ="+u.getKm()+" AND "+USER_LEVEL+"="+u.getLevel()+" WHERE id=0;");
-        db.close();
-    }
 
     public void  update(User u) {
         SQLiteDatabase db = this.getWritableDatabase();

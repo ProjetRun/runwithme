@@ -122,8 +122,6 @@ public class RunningActivity extends AppCompatActivity {
 
 
     public void do_click_tracking(View v) {
-
-
         //finish();
         if(isLaunch == false) {
             do_click_for_play_tracking();
@@ -133,13 +131,7 @@ public class RunningActivity extends AppCompatActivity {
     }
 
     public void do_click_for_play_tracking(){
-        /*
-        Context context = getApplicationContext();
-        CharSequence text = "clique play!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        */
+
         isLaunch = true;
        play_and_stop.setImageResource(R.mipmap.ic_stop_foreground);
        //play_and_stop.setBackgroundColor(Color.rgb(219, 45, 45));
@@ -194,15 +186,6 @@ public class RunningActivity extends AppCompatActivity {
     BottomSheetDialog mBottomSheetDialog;
     boolean in_bmBottomSheetDialog=false;
     public void do_click_for_stop_tracking(){
-        /*
-        Context context = getApplicationContext();
-        CharSequence text = "clique stop!";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        finish();
-        */
         in_bmBottomSheetDialog = true;
         List<String> citations = new ArrayList<String>();
         citations.add("Si tu n’as pas confiance, tu trouveras toujours une manière de perdre. - Carl Lewis");
@@ -326,7 +309,6 @@ public class RunningActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
         db.addStats(pushStats);
         dbU.update(user);
-        //finish();
 
     }
 
@@ -404,21 +386,6 @@ public class RunningActivity extends AppCompatActivity {
                 new NotificationCompat.Builder(this);
 
         mBuilder.setOngoing(true);
-
-        //Create the intent that’ll fire when the user taps the notification//
-
-        //Intent notificationIntent = new Intent(this, RunningActivity.class);
-        //
-        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-         //       | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        //Not.addFlags(Intent.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR);
-        //notificationIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
-        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
 
         Intent notificationIntent = new Intent(currentContext, RunningActivity.currentContext.getClass() );
         notificationIntent.setAction(Intent.ACTION_MAIN);
