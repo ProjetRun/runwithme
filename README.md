@@ -36,18 +36,53 @@ Pour plus d'information visitez notre site web : https://projetrun.github.io/run
 ## Téléchargement et installation 
 ### APK
 
-L'application peut être téléchargée directement [ici] :https://github.com/ProjetRun/runwithme/releases/download/1.0.0_Alpha/runwithme.apk
+L'application peut être téléchargée 
 
-ou via le QR Code : 
+- soit via l'url:https://github.com/ProjetRun/runwithme/releases/download/1.0.0_Alpha/runwithme.apk
+
+- soit via le QR Code : 
 <a href='http://www.unitag.io/qrcode'><img src='http://www.unitag.io/qreator/generate?crs=xnjFkEn%252FP85fCPDXJ%252FXXKg5g6yQi7H4qzUlRVUntU035Re8CX7iHj071HbqF%252BCfYW0fkByoDtlWAYEP%252FkF2dipjP8Ux69VtYkusoonlKTAkgSRnmfwEzhpz3ulb%252BfgcH8xxrpOTbfLtqZS7YE5Pf9g%253D%253D&crd=fhOysE0g3Bah%252BuqXA7NPQx2rrS2o9rjHfmG68tV%252F4kxUO%252FYpN3tUfh15i8xOwmYDv%252Ff1kwlxP8bpaEE4xpYk8NIv3kMMuP5b5PcABpqsLU1k06UAxaFyKnSLtF5U%252B3jWuzv8Vzy0eXteUJKIDXoIiXJrds95Pws9k1PRIHZPah0%253D' alt='QR Code'/></a>
 
-### SDK
+### SDK et android studio
 RunWithMe utilise android sdk version 26 Gradle télécharge automatiquement le sdk si vous avez déjà accepté les licences avec le SDK manager et que soit :
 
     votre variable d'environnement ANDROID_HOME est présente
     un fichier local.properties est présent avec le chemin vers votre sdk local.
 
 Sinon vous pouvez télécharger le sdk grâce au sdk manager disponible https://developer.android.com/studio/index.html et configurer une variable ANDROID_HOME
+
+
+####Prérequis
+
+Avant de pouvoir utiliser notre projet, il faut installer certains outils.
+
+####Installer Android Studio et le SDK
+ - Télécharger Android studio et l'installer : https://developer.android.com/studio/index.html
+ - Télécharger le SDK :
+
+Depuis la fenêtres de bienvenue : Configure > SDK Manager > SDK TOOLS > Cocher Android SDK Tools > OK
+
+#####Installer Git
+
+- Télécharger et installer Git : https://gitforwindows.org/
+
+#####Cloner RunWithMe
+
+Une fois Git installé, il suffit de suivre les instructions ci-dessous.
+
+######Lier Git à Android Studio
+
+Depuis Android studio : File > Settings > Version Control > Git > Dans " path to git Excecutable ", coller le chemin du git.exe > OK
+
+######Cloner le répertoire RunWithMe
+
+Depuis Android studio : VCS > Checkout from version control > Git > Dans " Git Repository URL ", coller https://github.com/ProjetRun/runwithme.git > OK
+
+####Installation et lancement du avd manager
+
+Suivre ce tuto : Tutoriel AVD Manager
+
+Et voila ! le projet est prêt pour utilisation.
 
 
 
