@@ -1,9 +1,11 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
@@ -11,6 +13,8 @@ import android.location.LocationManager;
 import android.os.SystemClock;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Time;
@@ -24,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileOutputStream;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,6 +48,7 @@ public class RunningActivity extends AppCompatActivity {
     TextView txtv_pogress;
     LocationManager  locationManager;
     boolean first_call = true;
+    boolean is_km = false;
 
     Location current_location;
     Location last_location;
@@ -169,6 +176,7 @@ public class RunningActivity extends AppCompatActivity {
                         if(distance*1000 > 1000){
                             button_distance_titre.setText("Distance(km)");
                             button_distance.setText(""+df2.format(distance));
+                            is_km = true;
                         }else{
                             button_distance.setText(""+df.format(distance*1000));
                         }
@@ -201,7 +209,15 @@ public class RunningActivity extends AppCompatActivity {
         citations.add("La motivation vous sert de départ. L’habitude vous fait continuer - Jim Ryun ");
         //(int) (Math.random() * (monArrayList.size() - 1));
 
+
+        DecimalFormat df3 = new DecimalFormat("#");
         int nb = Integer.parseInt(button_distance.getText().toString());
+        if(is_km==false){
+            nb=1;
+        }else{
+            df3.setRoundingMode(RoundingMode.HALF_UP);
+            nb = Integer.parseInt(df3.format(nb));
+        }
         user.updateKm(nb);
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
@@ -313,6 +329,32 @@ public class RunningActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(isLaunch == true){
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                //super.onBackPressed();
+                new AlertDialog.Builder(this)
+                        .setTitle("Really Exit?")
+                        .setMessage("Are you sure you want to exit?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //HomeActivity.super.onBackPressed();
+                                finish();
+                            }
+                        }).create().show();
+            }
+        }else {
+            finish();
+        }
     }
 
     public void writeFileUser(){
