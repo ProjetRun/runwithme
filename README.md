@@ -52,33 +52,33 @@ RunWithMe utilise android sdk version 26 Gradle télécharge automatiquement le 
 Sinon vous pouvez télécharger le sdk grâce au sdk manager disponible https://developer.android.com/studio/index.html et configurer une variable ANDROID_HOME
 
 
-####Prérequis
+#### Prérequis
 
 Avant de pouvoir utiliser notre projet, il faut installer certains outils.
 
-####Installer Android Studio et le SDK
+#### Installer Android Studio et le SDK
  - Télécharger Android studio et l'installer : https://developer.android.com/studio/index.html
  - Télécharger le SDK :
 
 Depuis la fenêtres de bienvenue : Configure > SDK Manager > SDK TOOLS > Cocher Android SDK Tools > OK
 
-#####Installer Git
+##### Installer Git
 
 - Télécharger et installer Git : https://gitforwindows.org/
 
-#####Cloner RunWithMe
+##### Cloner RunWithMe
 
 Une fois Git installé, il suffit de suivre les instructions ci-dessous.
 
-######Lier Git à Android Studio
+###### Lier Git à Android Studio
 
 Depuis Android studio : File > Settings > Version Control > Git > Dans " path to git Excecutable ", coller le chemin du git.exe > OK
 
-######Cloner le répertoire RunWithMe
+###### Cloner le répertoire RunWithMe
 
 Depuis Android studio : VCS > Checkout from version control > Git > Dans " Git Repository URL ", coller https://github.com/ProjetRun/runwithme.git > OK
 
-####Installation et lancement du avd manager
+#### Installation et lancement du avd manager
 
 Suivre ce tuto : Tutoriel AVD Manager
 
