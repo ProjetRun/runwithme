@@ -65,6 +65,7 @@ public class RunningActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
 
     final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseUser dbU = new DatabaseUser(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +192,7 @@ public class RunningActivity extends AppCompatActivity {
     }
 
     BottomSheetDialog mBottomSheetDialog;
+    boolean in_bmBottomSheetDialog=false;
     public void do_click_for_stop_tracking(){
         /*
         Context context = getApplicationContext();
@@ -201,6 +203,7 @@ public class RunningActivity extends AppCompatActivity {
         toast.show();
         finish();
         */
+        in_bmBottomSheetDialog = true;
         List<String> citations = new ArrayList<String>();
         citations.add("Si tu n’as pas confiance, tu trouveras toujours une manière de perdre. - Carl Lewis");
         citations.add("Nous avons tous des rêves, mais pour les réaliser, il faut beaucoup de détermination, de dévouement, de discipline et d’efforts - Jesse Owens");
@@ -269,6 +272,10 @@ public class RunningActivity extends AppCompatActivity {
                 break;
             case 6:
                 img_level.setImageResource(R.mipmap.ic_level6_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level7_foreground);
+                break;
+            case 7:
+                img_level.setImageResource(R.mipmap.ic_level7_foreground);
                 img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
                 break;
             default:
@@ -294,7 +301,7 @@ public class RunningActivity extends AppCompatActivity {
 
 
         distancee = button_distance.getText().toString();
-        duree =  String.valueOf((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000 );
+        duree =  String.valueOf(((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000)/60 );
 
         rythme = button_rythme.getText().toString();
         calories = button_cal.getText().toString();
@@ -310,12 +317,15 @@ public class RunningActivity extends AppCompatActivity {
         RunningStatistics pushStats = new RunningStatistics();
         pushStats.setDate(date);
         pushStats.setHeure(heure);
-        pushStats.setDistance(distancee);
+        pushStats.setDistance(String.valueOf(nb));
         pushStats.setDuree(duree);
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);
 
+
+        Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
         db.addStats(pushStats);
+        dbU.update(user);
         //finish();
 
     }
@@ -336,7 +346,7 @@ public class RunningActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(isLaunch == true){
+        if(isLaunch == true & in_bmBottomSheetDialog==false){
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
@@ -354,7 +364,7 @@ public class RunningActivity extends AppCompatActivity {
                             }
                         }).create().show();
             }
-        }else {
+        }else{
             finish();
         }
     }
@@ -374,27 +384,8 @@ public class RunningActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-   /* public void userReg(View view)
-    {
 
-        date = "hello";
-        heure = "hello";
-        distancee = "hello";
-        duree = "hello";
-        rythme = "hello";
-        calories = "hello";//ET_NAME.getText().toString();
-        //user_name = ET_USER_NAME.getText().toString();
-        //user_pass =ET_USER_PASS.getText().toString();
-        String method = "ajout";
-        BackgroundTask backgroundTask = new BackgroundTask(this);
-        backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
-        finish();
 
-    }*/
-
-    public void cancel_share(View v){
-
-    }
 
     public void back_to_homeactivity(View v){
         writeFileUser();

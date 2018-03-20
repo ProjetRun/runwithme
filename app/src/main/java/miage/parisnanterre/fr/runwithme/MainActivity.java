@@ -20,13 +20,17 @@ public class MainActivity extends AppCompatActivity {
     // GPSTracker class
     //GpsTracker gps;
     static User user;
+    final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseUser dbU = new DatabaseUser(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        user = new User();
+
+        /*
+
         File sdDir = Environment.getExternalStorageDirectory();
         //File file = new File(sdDir+"myfile");
 
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(directory, "myfile");
 
 
+        user = new User();
         if( file.exists() == true){
 
             Toast.makeText(getApplicationContext(), "file true", Toast.LENGTH_SHORT).show();
@@ -89,7 +94,10 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        } */
+        user = dbU.getUsers();
+        Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+
     }
 
     public void do_log(View v){

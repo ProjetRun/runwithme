@@ -73,7 +73,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#29B6F6"
-                    android:text="Distance \n(m)"
+                    android:text="Distance \n(km)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />
@@ -102,7 +102,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#29B6F6"
-                    android:text="Durée \n(m)"
+                    android:text="Durée \n(min.)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />

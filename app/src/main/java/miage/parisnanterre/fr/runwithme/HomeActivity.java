@@ -32,6 +32,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static miage.parisnanterre.fr.runwithme.MainActivity.user;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -63,6 +65,7 @@ public class HomeActivity extends AppCompatActivity
         excFragement(mapsFragment);
         checkPermissions();
 
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         showSnackbar(findViewById(android.R.id.content),"Merci d'activer la localisation pour profiter de toutes les fonctionnalités",6000);
@@ -73,6 +76,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseUser dbU = new DatabaseUser(this);
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -81,6 +85,8 @@ public class HomeActivity extends AppCompatActivity
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
                     db.onDestroy();
+                    dbU.onDestroy();
+                    user = new User();
                     return true;
                 case R.id.navigation_notifications:
                     exec_running();

@@ -34,6 +34,7 @@ public class RunningStatisticsActivity extends AppCompatActivity {
     static Button button_record_dist;
     static Button button_record_speed;
     final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseUser dbU = new DatabaseUser(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,9 @@ public class RunningStatisticsActivity extends AppCompatActivity {
 
         //PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
         //load.execute();
-
+        User us = dbU.getUsers();
         ImageView img_level = (ImageView) findViewById(R.id.imageView10);
-        switch (user.getLevel()){
+        switch (us.getLevel()){
             case 1:
                 img_level.setImageResource(R.mipmap.ic_level_one_foreground);
                 break;
@@ -73,6 +74,9 @@ public class RunningStatisticsActivity extends AppCompatActivity {
             case 6:
                 img_level.setImageResource(R.mipmap.ic_level6_foreground);
                 break;
+            case 7:
+                img_level.setImageResource(R.mipmap.ic_level7_foreground);
+                break;
             default:
                 img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
         }
@@ -86,9 +90,9 @@ public class RunningStatisticsActivity extends AppCompatActivity {
 
         }
 
-        button_record_time.setText(best_temps+"m.");
+        button_record_time.setText(best_temps+"min.");
         button_record_speed.setText(best_rythme+"km/h");
-        button_record_dist.setText(best_distance+"m.");
+        button_record_dist.setText(best_distance+"km");
     }
 
 }

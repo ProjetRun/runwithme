@@ -58,20 +58,13 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 DUREE+ " INTEGER, " +
                 RYTHME+ " INTEGER, " +
                 CALORIES + " INTEGER);";
-        String CREATE_LV_TABLE = "CREATE TABLE " + TABLE_LEVEL + "("
-                + KEY_LV + " INTEGER PRIMARY KEY," +
-                KEY_ACTUAL_KM + " INTEGER ," +
-                KEY_VALIDATE_KM + " INTEGER);";
+
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_USER + " INTEGER PRIMARY KEY," +
                 USER_LEVEL + " INTEGER ," +
                 USER_KM + " INTEGER);";
         db.execSQL(CREATE_STATS_TABLE);
-        //db.execSQL(CREATE_LV_TABLE);
         db.execSQL(CREATE_USER_TABLE);
-        //db.execSQL("INSERT INTO "+TABLE_USER+" ("+KEY_USER+", "+USER_LEVEL+","+USER_KM+") VALUES ('0', '1', '0')");
-
-        //initLevel();
         initUser();
     }
 
@@ -127,7 +120,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
 
-                //u.setId(Integer.parseInt(cursor.getString(0)));
+                u.setId(Integer.parseInt(cursor.getString(0)));
                 u.setLevel(Integer.parseInt(cursor.getString(1)));
                 u.setKm(Integer.parseInt(cursor.getString(2)));
                 //return u;
