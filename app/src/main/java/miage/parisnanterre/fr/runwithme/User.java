@@ -42,14 +42,14 @@ public class User {
     }
     public void updateKm(int u){
         km+=u;
-        if(km>(60*level)){
+        if(km>(20*level)){
             level++;
             km=0;
         }
 
     }
     public int getkmNextLevel(){
-        return level*60;
+        return level*20;
     }
 
     @Override
