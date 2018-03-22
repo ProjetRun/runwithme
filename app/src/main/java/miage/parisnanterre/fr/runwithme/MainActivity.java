@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         user = dbU.getUsers();
-        Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
 
     }
 

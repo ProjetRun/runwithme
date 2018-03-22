@@ -105,11 +105,10 @@ public class RunningActivity extends AppCompatActivity {
         double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
         double t3 = Math.sin(a1) * Math.sin(b1);
         double tt = Math.acos(t1 + t2 + t3);
-
         Toast.makeText(getBaseContext(),
                 "distance = " + 6366000 * tt + "metres",
                 Toast.LENGTH_SHORT).show();
-
+        
         return 6366000 * tt;
     }
 
@@ -306,7 +305,7 @@ public class RunningActivity extends AppCompatActivity {
         pushStats.setCalories(calories);
 
 
-        Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
         db.addStats(pushStats);
         dbU.update(user);
 
