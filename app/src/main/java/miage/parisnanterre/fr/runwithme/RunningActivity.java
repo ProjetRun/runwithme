@@ -212,8 +212,62 @@ public class RunningActivity extends AppCompatActivity {
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
-        mBottomSheetDialog.setCancelable(false);
-        
+        //User u = db.getUsers();
+
+        txtv_pogress = (TextView)  mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
+        //u.updateKm(Integer.parseInt(button_distance.getText().toString()));
+        txtv_pogress.setText(user.getKm()+"/"+user.getkmNextLevel()+"km");
+        ProgressBar progressBar4 = (ProgressBar) mBottomSheetDialog.getWindow().findViewById(R.id.progressBar4);
+        //progressBar4.setMax(u.getkmNextLevel());
+        progressBar4.setMax(user.getkmNextLevel());
+        //progressBar4.setProgress(12);
+        progressBar4.setProgress(user.getKm());
+
+        TextView txtv_cita = (TextView) mBottomSheetDialog.getWindow().findViewById(R.id.textView5);
+        txtv_cita.setText(citations.get((int) (Math.random() * (citations.size() - 1))));
+
+        ImageView img_level = (ImageView)  mBottomSheetDialog.getWindow().findViewById(R.id.imageView6);
+
+        ImageView img_next_level = (ImageView)  mBottomSheetDialog.getWindow().findViewById(R.id.imageView9);
+
+
+        switch (user.getLevel()){
+            case 1:
+                img_level.setImageResource(R.mipmap.ic_level_one_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level_two_foreground);
+                break;
+            case 2:
+                img_level.setImageResource(R.mipmap.ic_level_two_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level3_foreground);
+                break;
+            case 3:
+                img_level.setImageResource(R.mipmap.ic_level3_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level4_foreground);
+                break;
+            case 4:
+                img_level.setImageResource(R.mipmap.ic_level4_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level5_foreground);
+                break;
+            case 5:
+                img_level.setImageResource(R.mipmap.ic_level5_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level6_foreground);
+                break;
+            case 6:
+                img_level.setImageResource(R.mipmap.ic_level6_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_level7_foreground);
+                break;
+            case 7:
+                img_level.setImageResource(R.mipmap.ic_level7_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
+                break;
+            default:
+                img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
+                img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
+
+        }
+
+        mNotificationManager.cancelAll();
+
         Date currentTime = Calendar.getInstance().getTime();
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -254,6 +308,7 @@ public class RunningActivity extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
         db.addStats(pushStats);
         dbU.update(user);
+
     }
 
     public void do_click_for_share(View v){
