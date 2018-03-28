@@ -180,8 +180,69 @@ public class RunningActivity extends AppCompatActivity {
         }
         this.registerReceiver(broadcastReceiver,new IntentFilter("location_update"));
         sendNotification();
+        //distancee = button_distance.getText().toString();
+        //rythme = button_rythme.getText().toString();
+        //calories = button_cal.getText().toString();
+        thread_demo();
     }
+    private Thread thread;
+    int km = 0;
+    int virgule = 0;
+    public void thread_demo(){
+        thread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    synchronized (this) {
+                        wait(1000);
 
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                if(is_km==true){
+                                    virgule +=(4+(int)(Math.random() * ( 9 - 7 )));
+                                    if(virgule > 1000){
+                                        km++;
+                                        virgule=0;
+                                    }
+                                    if(10 > virgule){
+                                        button_distance.setText(km+",00"+virgule);
+                                    }else if(100>virgule){
+                                        button_distance.setText(km+",0"+virgule);
+                                    }else{
+                                        button_distance.setText(km+","+virgule);
+                                    }
+
+                                }else{
+                                    int dist = Integer.parseInt(button_distance.getText().toString())+(4+(int)(Math.random() * ( 9 - 7 )));
+                                    button_distance.setText(dist+"");
+                                    if(dist>1000){
+                                        is_km = true;
+                                        km++;
+                                        button_distance.setText(1+"");
+                                        button_distance_titre.setText("Distance \n(km)");
+                                    }
+                                }
+
+
+                                int cal = Integer.parseInt(button_cal.getText().toString())+(int)(Math.random() * ( 9 - 7 ));
+                                button_cal.setText(cal+"");
+                                button_rythme.setText((7+(int)(Math.random() * ( 9 - 7 )))+","+((int)(Math.random() * ( 9 - 1 ))));
+
+                            }
+                        });
+
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                thread_demo();
+            };
+        };
+        thread.start();
+    }
     BottomSheetDialog mBottomSheetDialog;
     boolean in_bmBottomSheetDialog=false;
     public void do_click_for_stop_tracking(){
@@ -198,12 +259,14 @@ public class RunningActivity extends AppCompatActivity {
         simpleChronometer.stop();
 
         DecimalFormat df3 = new DecimalFormat("#");
-        int nb = Integer.parseInt(button_distance.getText().toString());
+        //float f = Float.parseFloat(button_distance.getText().toString());
+        int nb;// = Integer.parseInt(button_distance.getText().toString());
         if(is_km==false){
             nb=1;
         }else{
             df3.setRoundingMode(RoundingMode.HALF_UP);
-            nb = Integer.parseInt(df3.format(nb));
+            nb=km;// = Integer.parseInt(df3.format(f));
+           //float f = (float)((int)(f < 0 ? f - 0.5 : f + 0.5));
         }
         user.updateKm(nb);
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
@@ -286,7 +349,8 @@ public class RunningActivity extends AppCompatActivity {
         distancee = button_distance.getText().toString();
         duree =  String.valueOf(((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000)/60 );
 
-        rythme = button_rythme.getText().toString();
+        //rythme = button_rythme.getText().toString();
+        rythme = (7+(int)(Math.random() * ( 9 - 7 )))+"";
         calories = button_cal.getText().toString();
         RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
 
