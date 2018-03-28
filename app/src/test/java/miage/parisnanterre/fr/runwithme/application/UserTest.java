@@ -1,6 +1,8 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.application;
 
 import org.junit.Test;
+
+import miage.parisnanterre.fr.runwithme.User;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
