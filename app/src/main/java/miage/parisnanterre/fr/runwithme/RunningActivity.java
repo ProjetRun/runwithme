@@ -108,7 +108,7 @@ public class RunningActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(),
                 "distance = " + 6366000 * tt + "metres",
                 Toast.LENGTH_SHORT).show();
-        
+
         return 6366000 * tt;
     }
 
@@ -212,6 +212,7 @@ public class RunningActivity extends AppCompatActivity {
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+        mBottomSheetDialog.setCancelable(false);
         //User u = db.getUsers();
 
         txtv_pogress = (TextView)  mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
