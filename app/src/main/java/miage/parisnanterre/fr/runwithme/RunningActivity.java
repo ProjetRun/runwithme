@@ -108,7 +108,7 @@ public class RunningActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(),
                 "distance = " + 6366000 * tt + "metres",
                 Toast.LENGTH_SHORT).show();
-        
+
         return 6366000 * tt;
     }
 
