@@ -200,7 +200,7 @@ public class RunningActivity extends AppCompatActivity {
         DecimalFormat df3 = new DecimalFormat("#");
         int nb = Integer.parseInt(button_distance.getText().toString());
         if(is_km==false){
-            nb=1;
+            nb=0;
         }else{
             df3.setRoundingMode(RoundingMode.HALF_UP);
             nb = Integer.parseInt(df3.format(nb));
@@ -212,6 +212,7 @@ public class RunningActivity extends AppCompatActivity {
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+        mBottomSheetDialog.setCancelable(false);
         //User u = db.getUsers();
 
         txtv_pogress = (TextView)  mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
