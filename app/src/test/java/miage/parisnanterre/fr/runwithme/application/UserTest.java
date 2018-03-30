@@ -35,17 +35,17 @@ public class UserTest {
     @Test
     public void userUpdateKm() throws Exception {
         User user = new User();
-        user.setKm(30);
+        user.setKm(5);
         user.updateKm(10);
-        assertEquals(user.getKm(), 40);
+        assertEquals(user.getKm(), 15);
     }
 
     @Test
     public void userNextLevel() throws Exception {
         User user = new User();
-        user.setLevel(10);
-        user.getkmNextLevel();
-        assertEquals(user.getLevel(), 200);
+        user.setLevel(1);
+        user.setLevel(user.getkmNextLevel());
+        assertEquals(user.getLevel(), 20);
     }
 
 }
