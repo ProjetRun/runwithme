@@ -15,7 +15,7 @@ RunWithMe is a mobile application for finding running partners wherever and when
 Aimed to occasional, regular or professional runners or even for the ones looking for motivation.
 You will be able to locate runners near you to invite them to run with you.
 
-RunWithMe is a tool that will help you:
+RunWithMe is a tool that will help you :
 
 - practice your sport regularly,
 - improve yourself,
@@ -23,13 +23,13 @@ RunWithMe is a tool that will help you:
 
 For more information visit our website : https://projetrun.github.io/runwithme/
 
-## Functionalities
+## Features
 
 ### version 1.0-alpha
 - do a running with tracking
 - see your statistics
 - see your reccords
-- you're able to stay motivated to run more thanks to a system of intelligent level
+- you will stay motivated to run even more thanks to a system of intelligent level
 
 
 
