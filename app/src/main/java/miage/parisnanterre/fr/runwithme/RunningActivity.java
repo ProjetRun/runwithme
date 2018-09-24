@@ -198,14 +198,15 @@ public class RunningActivity extends AppCompatActivity {
         simpleChronometer.stop();
 
         DecimalFormat df3 = new DecimalFormat("#");
-        int nb = Integer.parseInt(button_distance.getText().toString());
+        double nbKilometre = Double.parseDouble(button_distance.getText().toString());
+        int nbKilometreArrondi;
         if(is_km==false){
-            nb=0;
+            nbKilometreArrondi=0;
         }else{
             df3.setRoundingMode(RoundingMode.HALF_UP);
-            nb = Integer.parseInt(df3.format(nb));
+            nbKilometreArrondi = Integer.parseInt(df3.format(nbKilometre));
         }
-        user.updateKm(nb);
+        user.updateKm(nbKilometreArrondi);
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
@@ -300,7 +301,7 @@ public class RunningActivity extends AppCompatActivity {
         RunningStatistics pushStats = new RunningStatistics();
         pushStats.setDate(date);
         pushStats.setHeure(heure);
-        pushStats.setDistance(String.valueOf(nb));
+        pushStats.setDistance(String.valueOf(nbKilometreArrondi));
         pushStats.setDuree(duree);
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);
