@@ -84,9 +84,9 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         int best_rythme = 0;
         int best_temps = 0;
         for(RunningStatistics rs : statistics){
-            best_distance = Integer.parseInt(rs.getDistance()) > best_distance ? Integer.parseInt(rs.getDistance()) : best_distance;
-            best_rythme = Integer.parseInt(rs.getRythme()) > best_rythme ? Integer.parseInt(rs.getRythme()) : best_rythme;
-            best_temps = Integer.parseInt(rs.getDuree()) > best_temps ? Integer.parseInt(rs.getDuree()) : best_temps;
+            //best_distance = Integer.parseInt(rs.getDistance()) > best_distance ? Integer.parseInt(rs.getDistance()) : best_distance;
+            //best_rythme = Integer.parseInt(rs.getRythme()) > best_rythme ? Integer.parseInt(rs.getRythme()) : best_rythme;
+            //best_temps = Integer.parseInt(rs.getDuree()) > best_temps ? Integer.parseInt(rs.getDuree()) : best_temps;
 
         }
 

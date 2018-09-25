@@ -55,6 +55,15 @@ public class RunningStatistics {
         return duree;
     }
 
+    public String getDureeHeuresMinutesSecondes(){
+        int milliseconds = Integer.parseInt(this.duree);
+        int seconds = (milliseconds / 1000) % 60 ;
+        int minutes = ((milliseconds / (1000*60)) % 60);
+        int hours   = ((milliseconds / (1000*60*60)) % 24);
+        String result = String.valueOf(hours) + ':' + String.valueOf(minutes) + ':' + String.valueOf(seconds);
+        return result;
+    };
+
     public void setDuree(String duree) {
         this.duree = duree;
     }

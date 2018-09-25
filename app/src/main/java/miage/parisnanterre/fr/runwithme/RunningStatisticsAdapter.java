@@ -52,7 +52,7 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
         }
 
         RunningStatistics statistics = getItem(position);
-        viewHolder.duree.setText(statistics.getDuree());
+        viewHolder.duree.setText(statistics.getDureeHeuresMinutesSecondes());
         viewHolder.heure.setText(statistics.getHeure());
         viewHolder.distance.setText(statistics.getDistance());
         viewHolder.rythme.setText(statistics.getRythme());

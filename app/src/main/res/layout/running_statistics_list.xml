@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,25 +17,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="La course du " />
-
-            <TextView
                 android:id="@+id/textViewDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="le 22/02/18 a 18h30" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="effectué à" />
+                android:text=" à " />
 
             <TextView
                 android:id="@+id/textViewHeure"
@@ -46,124 +38,136 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#03A9F4"
-            android:orientation="horizontal">
+            android:layout_height="68dp"
+            android:background="#29B6F6">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="22dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="62dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_running" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="127dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:padding="3sp">
 
-                <Button
-                    android:id="@+id/button_distance_display"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="0,0"
-                    android:textColor="@android:color/white"
-                    android:textSize="25dp" />
+                    android:layout_height="32dp"
+                    android:baselineAligned="false">
 
-                <Button
-                    android:id="@+id/button_distance"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="Distance \n(km)"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="15dp" />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/button_distance_display"
+                        android:layout_width="58dp"
+                        android:layout_height="match_parent"
+                        android:background="#29B6F6"
+                        android:text="0,0"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+                        android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="3sp">
+                    <Button
+                        android:id="@+id/button_distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#29B6F6"
+                        android:text="m"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/button_time_display"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="32dp"
                     android:background="#29B6F6"
+                    android:baselineAligned="false"
                     android:text="0,0"
-                    android:textColor="@android:color/white"
-                    android:textSize="25dp" />
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/common_google_signin_btn_text_light_focused"
+                    android:textSize="24sp" />
 
-                <Button
-                    android:id="@+id/button_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="Durée \n(min.)"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="3sp">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/button_pace_display"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="00:00"
-                    android:textColor="@android:color/white"
-                    android:textSize="25dp" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button_pace"
-                    android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/button_pace_display"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="#29B6F6"
+                        android:baselineAligned="false"
+                        android:text="00:00"
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/button_pace"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#29B6F6"
+                        android:text="km/h"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="148dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="Rythme \n(km/h)"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="15dp" />
-            </LinearLayout>
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="3sp">
+                    <Button
+                        android:id="@+id/button_cal_display"
+                        android:layout_width="45dp"
+                        android:layout_height="match_parent"
+                        android:background="#29B6F6"
+                        android:text="0"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/common_google_signin_btn_text_light_default"
+                        android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/button_cal_display"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="0"
-                    android:textColor="@android:color/white"
-                    android:textSize="25dp" />
+                    <Button
+                        android:id="@+id/button_cal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#29B6F6"
+                        android:text="cal"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/common_google_signin_btn_text_light_focused"
+                        android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/button_cal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#29B6F6"
-                    android:text="Calories\n(cal)"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="15dp" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>

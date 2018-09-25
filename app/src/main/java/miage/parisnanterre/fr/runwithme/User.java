@@ -8,7 +8,7 @@ public class User {
 
     int id;
     int level;
-    int km;
+    double km;
 
     public User() {
 
@@ -33,14 +33,14 @@ public class User {
         this.level = level;
     }
 
-    public int getKm() {
+    public double getKm() {
         return km;
     }
 
     public void setKm(int km) {
         this.km = km;
     }
-    public void updateKm(int u){
+    public void updateKm(double u){
         km+=u;
         if(km>(20*level)){
             level++;

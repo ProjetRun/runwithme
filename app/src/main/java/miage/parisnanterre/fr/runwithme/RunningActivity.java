@@ -37,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import static java.sql.DriverManager.println;
 import static miage.parisnanterre.fr.runwithme.MainActivity.user;
 
 public class RunningActivity extends AppCompatActivity {
@@ -197,16 +198,19 @@ public class RunningActivity extends AppCompatActivity {
 
         simpleChronometer.stop();
 
-        DecimalFormat df3 = new DecimalFormat("#");
+        //DecimalFormat df3 = new DecimalFormat("#");
         double nbKilometre = Double.parseDouble(button_distance.getText().toString());
-        int nbKilometreArrondi;
+
+        String nb = button_distance.getText().toString();
+        println(nb);
+
         if(is_km==false){
-            nbKilometreArrondi=0;
-        }else{
-            df3.setRoundingMode(RoundingMode.HALF_UP);
-            nbKilometreArrondi = Integer.parseInt(df3.format(nbKilometre));
-        }
-        user.updateKm(nbKilometreArrondi);
+            nbKilometre=0.0;
+        }//else{
+            //df3.setRoundingMode(RoundingMode.HALF_UP);
+            //nbKilometre = Double.parseDouble(df.format(nbKilometre));
+        //}
+        user.updateKm(nbKilometre);
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
@@ -216,14 +220,14 @@ public class RunningActivity extends AppCompatActivity {
         mBottomSheetDialog.setCancelable(false);
         //User u = db.getUsers();
 
-        txtv_pogress = (TextView)  mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
+        txtv_pogress = mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
         //u.updateKm(Integer.parseInt(button_distance.getText().toString()));
         txtv_pogress.setText(user.getKm()+"/"+user.getkmNextLevel()+"km");
         ProgressBar progressBar4 = (ProgressBar) mBottomSheetDialog.getWindow().findViewById(R.id.progressBar4);
         //progressBar4.setMax(u.getkmNextLevel());
         progressBar4.setMax(user.getkmNextLevel());
         //progressBar4.setProgress(12);
-        progressBar4.setProgress(user.getKm());
+        progressBar4.setProgress((int)user.getKm());
 
         TextView txtv_cita = (TextView) mBottomSheetDialog.getWindow().findViewById(R.id.textView5);
         txtv_cita.setText(citations.get((int) (Math.random() * (citations.size() - 1))));
@@ -285,8 +289,16 @@ public class RunningActivity extends AppCompatActivity {
 
 
         distancee = button_distance.getText().toString();
-        duree =  String.valueOf(((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000)/60 );
+        //duree =  String.valueOf(((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000)/60 );
 
+        int elapsedMillis = (int)((SystemClock.elapsedRealtime()-simpleChronometer.getBase()));
+        //double dureeEcoulee = (double) elapsedMillis/60000;
+
+        //DecimalFormat twoDForm = new DecimalFormat("#.##");
+        //dureeEcoulee = Double.valueOf(twoDForm.format(dureeEcoulee));
+
+        //duree = Double.toString(dureeEcoulee);
+        duree = Integer.toString(elapsedMillis);
         rythme = button_rythme.getText().toString();
         calories = button_cal.getText().toString();
         RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
@@ -301,7 +313,7 @@ public class RunningActivity extends AppCompatActivity {
         RunningStatistics pushStats = new RunningStatistics();
         pushStats.setDate(date);
         pushStats.setHeure(heure);
-        pushStats.setDistance(String.valueOf(nbKilometreArrondi));
+        pushStats.setDistance(distancee);
         pushStats.setDuree(duree);
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);
