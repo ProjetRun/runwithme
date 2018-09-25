@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void do_log(View v){
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
         finish();
     }
