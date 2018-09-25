@@ -28,6 +28,10 @@ public class DashboardActivity extends AppCompatActivity {
                     return true;
                 case R.id.entrainement:
                     return true;
+                case R.id.defis:
+                    return true;
+                case R.id.clan:
+                    return true;
                 case R.id.profil:
                     currentFragment = new ProfilFragment();
                     ft = getSupportFragmentManager().beginTransaction();

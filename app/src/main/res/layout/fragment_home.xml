@@ -4,10 +4,23 @@
     android:layout_height="match_parent"
     tools:context="miage.parisnanterre.fr.runwithme.HomeFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home"
-        android:gravity="center_vertical|center_horizontal"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Home" />
+
+        <Button
+            android:id="@+id/buttonLaunchRunning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GO RUNNING"
+            android:onClick="launchRunningActivity"/>
+    </LinearLayout>
 
 </FrameLayout>

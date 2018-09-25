@@ -1,13 +1,15 @@
 package miage.parisnanterre.fr.runwithme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
 
 
 public class HomeFragment extends Fragment {
@@ -25,5 +27,26 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+        Button b = (Button) view.findViewById(R.id.buttonLaunchRunning);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                launchRunningActivity(v);
+            }
+        });
+    }
+
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonLaunchRunning:
+                launchRunningActivity(v);
+                break;
+        }
+    }
+
+    public void launchRunningActivity(View v){
+        Intent intent = new Intent(getActivity(), RunningActivity.class);
+        startActivity(intent);
     }
 }

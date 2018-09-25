@@ -31,4 +31,6 @@
         android:icon="@drawable/ic_menu_share"
         android:title="string/text_music"
         app:showAsAction="ifRoom" />
+
+
 </menu>
