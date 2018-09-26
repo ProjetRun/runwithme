@@ -37,7 +37,7 @@ public class User {
         return km;
     }
 
-    public void setKm(int km) {
+    public void setKm(double km) {
         this.km = km;
     }
     public void updateKm(double u){

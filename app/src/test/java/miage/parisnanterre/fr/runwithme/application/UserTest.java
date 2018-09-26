@@ -35,9 +35,9 @@ public class UserTest {
     @Test
     public void userUpdateKm() throws Exception {
         User user = new User();
-        user.setKm(5);
-        user.updateKm(10);
-        assertEquals(user.getKm(), 15);
+        user.setKm(5.0);
+        user.updateKm(10.0);
+        assertEquals(user.getKm(), 15.0);
     }
 
     @Test
