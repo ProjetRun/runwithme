@@ -53,6 +53,7 @@
             android:launchMode="singleTask"
         </activity>
         <activity android:name=".RunningStatisticsActivity" />
+        <activity android:name=".WeatherActivity" />
     </application>
 
 </manifest>

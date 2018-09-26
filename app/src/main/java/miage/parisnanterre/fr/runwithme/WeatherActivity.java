@@ -41,7 +41,7 @@ public class WeatherActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_weather);
 
         loader = (ProgressBar) findViewById(R.id.loader);
         selectCity = (TextView) findViewById(R.id.selectCity);
