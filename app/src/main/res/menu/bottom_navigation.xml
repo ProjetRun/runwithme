@@ -5,31 +5,32 @@
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="string/text_favorites"
+        android:title="Home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/entrainement"
+        android:id="@+id/training"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="string/text_schedules"
+        android:icon="@drawable/ic_running"
+        android:title="Training"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/clan"
+        android:id="@+id/group"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_share"
-        android:title="string/text_music"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Group"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/defis"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="string/text_schedules"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Defis"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/profil"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_share"
-        android:title="string/text_music"
+        android:icon="@drawable/ic_users"
+        android:title="Profil"
         app:showAsAction="ifRoom" />
 
 
