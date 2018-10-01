@@ -16,8 +16,8 @@
     <item
         android:id="@+id/group"
         android:enabled="true"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Group"
+        android:icon="@drawable/ic_news"
+        android:title="News"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/defis"
