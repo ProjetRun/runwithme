@@ -165,7 +165,6 @@ public class RunningActivity extends AppCompatActivity {
                         current_location.setLongitude(longitude);
 
                         distance += meterDistanceBetweenPoints((float) current_location.getLatitude(), (float) current_location.getLongitude(), (float) last_location.getLatitude(),(float) last_location.getLongitude())/1000;
-
                         if(distance*1000 > 1000){
                             button_distance_titre.setText("Distance(km)");
                             button_distance.setText(""+df2.format(distance));
@@ -301,7 +300,7 @@ public class RunningActivity extends AppCompatActivity {
         duree = Integer.toString(elapsedMillis);
         rythme = button_rythme.getText().toString();
         calories = button_cal.getText().toString();
-        RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
+        //RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
 
 
         //ET_NAME.getText().toString();
@@ -314,6 +313,13 @@ public class RunningActivity extends AppCompatActivity {
         pushStats.setDate(date);
         pushStats.setHeure(heure);
         pushStats.setDistance(distancee);
+
+        String uniteMesure = button_distance_titre.getText().toString();
+        if(uniteMesure.equals("Distance(km)"))
+            pushStats.setUniteMesure("km");
+        else
+            pushStats.setUniteMesure("m");
+
         pushStats.setDuree(duree);
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);

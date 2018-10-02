@@ -10,6 +10,7 @@ public class RunningStatistics {
     String duree;
     String rythme;
     String calories;
+    String uniteMesure;
 
     public RunningStatistics(){
 
@@ -51,6 +52,12 @@ public class RunningStatistics {
         this.distance = distance;
     }
 
+    public String getUniteMesure() { return uniteMesure; }
+
+    public void setUniteMesure(String uniteMesure) {
+        this.uniteMesure = uniteMesure;
+    }
+
     public String getDuree() {
         return duree;
     }
@@ -62,8 +69,7 @@ public class RunningStatistics {
         int hours   = ((milliseconds / (1000*60*60)) % 24);
         String result = String.valueOf(hours) + ':' + String.valueOf(minutes) + ':' + String.valueOf(seconds);
         return result;
-    };
-
+    }
     public void setDuree(String duree) {
         this.duree = duree;
     }

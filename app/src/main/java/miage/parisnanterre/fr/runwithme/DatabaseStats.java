@@ -14,7 +14,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "userManager";
@@ -30,6 +30,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String DUREE = "duree";
     public static final String RYTHME = "rythme";
     public static final String CALORIES = "calories";
+    public static final String UNITEMESURE = "uniteMesure";
 
 
     public DatabaseStats(Context context) {
@@ -46,7 +47,8 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 DISTANCE+ " INTEGER, " +
                 DUREE+ " INTEGER, " +
                 RYTHME+ " INTEGER, " +
-                CALORIES + " INTEGER);";
+                CALORIES + " INTEGER," +
+                UNITEMESURE + " INTEGER)";
         db.execSQL(CREATE_STATS_TABLE);
     }
 
@@ -74,6 +76,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         values.put(DUREE, stats.getDuree());
         values.put(RYTHME, stats.getRythme());
         values.put(CALORIES, stats.getCalories());
+        values.put(UNITEMESURE, stats.getUniteMesure());
 
 
         // Inserting Row
@@ -103,6 +106,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 rs.setDuree(cursor.getString(4));
                 rs.setRythme(cursor.getString(5));
                 rs.setCalories(cursor.getString(6));
+                rs.setUniteMesure(cursor.getString(7));
                 // Adding contact to list
                 statisticsList.add(rs);
             } while (cursor.moveToNext());

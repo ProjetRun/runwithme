@@ -45,6 +45,7 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
             viewHolder.date = (TextView) convertView.findViewById(R.id.textViewDate);
             viewHolder.heure = (TextView) convertView.findViewById(R.id.textViewHeure);
             viewHolder.distance = (Button) convertView.findViewById(R.id.button_distance_display);
+            viewHolder.uniteMesure = convertView.findViewById(R.id.button_distance_liste);
             viewHolder.duree = (Button) convertView.findViewById(R.id.button_time_display);
             viewHolder.rythme = (Button) convertView.findViewById(R.id.button_pace_display);
             viewHolder.calories = (Button) convertView.findViewById(R.id.button_cal_display);
@@ -55,6 +56,7 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
         viewHolder.duree.setText(statistics.getDureeHeuresMinutesSecondes());
         viewHolder.heure.setText(statistics.getHeure());
         viewHolder.distance.setText(statistics.getDistance());
+        viewHolder.uniteMesure.setText(" " + statistics.getUniteMesure());
         viewHolder.rythme.setText(statistics.getRythme());
         viewHolder.calories.setText(statistics.getCalories());
         viewHolder.date.setText(String.valueOf(statistics.getDate()));
@@ -74,5 +76,6 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
         public Button duree;
         public Button rythme;
         public Button calories;
+        public Button uniteMesure;
     }
 }
