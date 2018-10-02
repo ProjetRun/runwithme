@@ -61,34 +61,37 @@
             <LinearLayout
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
+                android:baselineAligned="false"
                 android:orientation="vertical"
                 android:padding="3sp">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="113dp"
                     android:layout_height="32dp"
                     android:baselineAligned="false">
 
                     <Button
                         android:id="@+id/button_distance_display"
-                        android:layout_width="58dp"
+                        android:layout_width="72dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
                         android:text="0,0"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/common_google_signin_btn_text_dark_default"
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/button_distance"
-                        android:layout_width="match_parent"
+                        android:id="@+id/button_distance_liste"
+                        android:layout_width="46dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
-                        android:text="m"
-                        android:textAlignment="viewStart"
+                        android:baselineAligned="false"
+                        android:text=" m"
+                        android:textAlignment="textStart"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textSize="24sp" />
+
                 </LinearLayout>
 
                 <Button
@@ -98,7 +101,7 @@
                     android:background="#29B6F6"
                     android:baselineAligned="false"
                     android:text="0,0"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_light_focused"
                     android:textSize="24sp" />
 
@@ -122,7 +125,7 @@
                         android:background="#29B6F6"
                         android:baselineAligned="false"
                         android:text="00:00"
-                        android:textAlignment="viewStart"
+                        android:textAlignment="textEnd"
                         android:textColor="@android:color/white"
                         android:textSize="18sp" />
 
@@ -131,7 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
-                        android:text="km/h"
+                        android:text=" km/h"
                         android:textAlignment="viewStart"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
@@ -147,11 +150,11 @@
 
                     <Button
                         android:id="@+id/button_cal_display"
-                        android:layout_width="45dp"
+                        android:layout_width="51dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
                         android:text="0"
-                        android:textAlignment="viewStart"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/common_google_signin_btn_text_light_default"
                         android:textSize="18sp" />
 
@@ -160,7 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
-                        android:text="cal"
+                        android:text=" cal"
                         android:textAlignment="viewStart"
                         android:textAllCaps="false"
                         android:textColor="@color/common_google_signin_btn_text_light_focused"

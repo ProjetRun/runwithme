@@ -115,9 +115,11 @@ public class RunningActivity extends AppCompatActivity {
 
     private void calculateAndDisplaySpeed(){
         double meter = distance *1000;
+        double kilometre = meter / 1000;
         long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
         double second = elapsedMillis/1000;
-        button_rythme.setText(""+df.format(meter/second));
+        double heures = second/3600;
+        button_rythme.setText(""+df.format(kilometre/heures));
     }
 
 
