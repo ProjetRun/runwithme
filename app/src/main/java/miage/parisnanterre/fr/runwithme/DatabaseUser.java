@@ -72,7 +72,7 @@ public class DatabaseUser extends SQLiteOpenHelper {
 
                 u.setId(Integer.parseInt(cursor.getString(0)));
                 u.setLevel(Integer.parseInt(cursor.getString(1)));
-                u.setKm(Integer.parseInt(cursor.getString(2)));
+                u.setKm((int)Double.parseDouble(cursor.getString(2)));
 
                 statisticsList.add(u);
             } while (cursor.moveToNext());
