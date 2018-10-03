@@ -1,20 +1,14 @@
 package miage.parisnanterre.fr.runwithme;
 
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.Fragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -28,8 +22,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Created by Gvimra on 26/09/2018.
+ */
 
-public class HomeFragment extends Fragment {
+public class WeatherActivity extends AppCompatActivity{
 
     TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, pressure_field, weatherIcon, updatedField;
     ProgressBar loader;
@@ -39,33 +36,24 @@ public class HomeFragment extends Fragment {
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
 
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation.
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        // Defines the xml file for the fragment
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        setContentView(R.layout.fragment_home);
 
-
-
-        return inflater.inflate(R.layout.fragment_home, parent, false);
-    }
-
-    // This event is triggered soon after onCreateView().
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Setup any handles to view objects here
-        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
-        loader = (ProgressBar) view.findViewById(R.id.loader);
-        selectCity = (TextView) view.findViewById(R.id.selectCity);
-        cityField = (TextView) view.findViewById(R.id.city_field);
-        updatedField = (TextView) view.findViewById(R.id.updated_field);
-        detailsField = (TextView) view.findViewById(R.id.details_field);
-        currentTemperatureField = (TextView) view.findViewById(R.id.current_temperature_field);
-        humidity_field = (TextView) view.findViewById(R.id.humidity_field);
-        pressure_field = (TextView) view.findViewById(R.id.pressure_field);
-        weatherIcon = (TextView) view.findViewById(R.id.weather_icon);
-        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
+        loader = (ProgressBar) findViewById(R.id.loader);
+        selectCity = (TextView) findViewById(R.id.selectCity);
+        cityField = (TextView) findViewById(R.id.city_field);
+        updatedField = (TextView) findViewById(R.id.updated_field);
+        detailsField = (TextView) findViewById(R.id.details_field);
+        currentTemperatureField = (TextView) findViewById(R.id.current_temperature_field);
+        humidity_field = (TextView) findViewById(R.id.humidity_field);
+        pressure_field = (TextView) findViewById(R.id.pressure_field);
+        weatherIcon = (TextView) findViewById(R.id.weather_icon);
+        weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
         weatherIcon.setTypeface(weatherFont);
 
         taskLoadUp(city);
@@ -73,9 +61,9 @@ public class HomeFragment extends Fragment {
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(WeatherActivity.this);
                 alertDialog.setTitle("Change City");
-                final EditText input = new EditText(getActivity());
+                final EditText input = new EditText(WeatherActivity.this);
                 input.setText(city);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -100,22 +88,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Button b = (Button) view.findViewById(R.id.buttonLaunchRunning);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                launchRunningActivity(v);
-            }
-        });
     }
 
 
     public void taskLoadUp(String query) {
-        if (Weather.isNetworkAvailable(getActivity())) {
-            HomeFragment.DownloadWeather task = new HomeFragment.DownloadWeather();
+        if (Weather.isNetworkAvailable(getApplicationContext())) {
+            DownloadWeather task = new DownloadWeather();
             task.execute(query);
         } else {
-            Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -157,7 +138,7 @@ public class HomeFragment extends Fragment {
 
                 }
             } catch (JSONException e) {
-                Toast.makeText(getActivity(), "Error, Check City", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error, Check City", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -169,18 +150,4 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.buttonLaunchRunning:
-                launchRunningActivity(v);
-                break;
-        }
-    }
-
-    public void launchRunningActivity(View v){
-        Intent intent = new Intent(getActivity(), RunningActivity.class);
-        startActivity(intent);
-    }
 }

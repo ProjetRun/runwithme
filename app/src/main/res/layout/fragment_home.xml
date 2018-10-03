@@ -5,7 +5,7 @@
     android:background="#3F51B5"
     tools:context="miage.parisnanterre.fr.runwithme.HomeFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -22,8 +22,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:id="@+id/updated_field"
@@ -31,30 +31,30 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/city_field"
                 android:layout_centerHorizontal="true"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="13sp" />
-
             <TextView
                 android:id="@+id/selectCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/updated_field"
-                android:layout_centerHorizontal="true"
                 android:text="Change City"
-                android:textColor="@color/colorAccent"
+                android:textStyle="italic"
                 android:textSize="11dp"
-                android:textStyle="italic" />
+                android:textColor="@color/colorAccent"
+                android:layout_below="@+id/updated_field"
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/weather_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_centerHorizontal="true"
                 android:textColor="#FFFFFF"
-                android:textSize="90sp" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="90sp"
+                />
 
             <TextView
                 android:id="@+id/current_temperature_field"
@@ -62,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="50sp" />
 
             <TextView
@@ -72,42 +72,44 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/weather_icon"
                 android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF" />
-
+                />
             <TextView
                 android:id="@+id/humidity_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/details_field"
                 android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF" />
-
+                />
             <TextView
                 android:id="@+id/pressure_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/humidity_field"
                 android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF" />
+                />
 
             <ProgressBar
                 android:id="@+id/loader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"/>
 
 
+            <Button
+                android:id="@+id/buttonLaunchRunning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="GO RUNNING"
+                android:onClick="launchRunningActivity"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/buttonLaunchRunning"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GO RUNNING"
-            android:onClick="launchRunningActivity"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>

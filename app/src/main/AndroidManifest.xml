@@ -52,6 +52,7 @@
             android:launchMode="singleTask"
         </activity>
         <activity android:name=".RunningStatisticsActivity" />
+        <activity android:name=".WeatherActivity" />
         <activity
             android:name=".TabActivity"
             android:label="@string/title_activity_tab"
