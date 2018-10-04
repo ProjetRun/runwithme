@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/training"
+        android:enabled="true"
+        android:icon="@drawable/ic_running"
+        android:title="Training"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/group"
+        android:enabled="true"
+        android:icon="@drawable/ic_news"
+        android:title="News"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/defis"
+        android:enabled="true"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Defis"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/profil"
+        android:enabled="true"
+        android:icon="@drawable/ic_users"
+        android:title="Profil"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
