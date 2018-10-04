@@ -83,16 +83,23 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         int best_distance = 0;
         int best_rythme = 0;
         int best_temps = 0;
+        String best_duree_course = "00:00:00";
+        String uniteMesure = "";
         for(RunningStatistics rs : statistics){
-            //best_distance = Integer.parseInt(rs.getDistance()) > best_distance ? Integer.parseInt(rs.getDistance()) : best_distance;
-            //best_rythme = Integer.parseInt(rs.getRythme()) > best_rythme ? Integer.parseInt(rs.getRythme()) : best_rythme;
-            //best_temps = Integer.parseInt(rs.getDuree()) > best_temps ? Integer.parseInt(rs.getDuree()) : best_temps;
+            if (Double.parseDouble(rs.getDistance()) > best_distance){
+                best_distance = (int) Double.parseDouble(rs.getDistance());
+                uniteMesure = rs.getUniteMesure();
+            }
+            best_rythme = (int)(Double.parseDouble(rs.getRythme()) > best_rythme ? Double.parseDouble(rs.getRythme()) : best_rythme);
 
+            if((Double.parseDouble(rs.getDuree()) > best_temps)){
+                best_temps = (int) Double.parseDouble(rs.getDuree());
+                best_duree_course = rs.getDureeHeuresMinutesSecondes();
+            }
         }
-
-        button_record_time.setText(best_temps+"min.");
+        button_record_time.setText(best_duree_course);
         button_record_speed.setText(best_rythme+"km/h");
-        button_record_dist.setText(best_distance+"km");
+        button_record_dist.setText(best_distance+" "+uniteMesure);
     }
 
 }

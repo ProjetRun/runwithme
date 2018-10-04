@@ -43,14 +43,28 @@
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="22dp"
+                android:layout_width="30dp"
                 android:layout_height="match_parent" />
 
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="62dp"
+            <LinearLayout
+                android:layout_width="54dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_running" />
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="47dp"
+                    android:layout_height="12dp"
+                    android:baselineAligned="false" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="53dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="false"
+                    app:srcCompat="@drawable/ic_running" />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView12"
@@ -59,20 +73,20 @@
                 android:layout_weight="1" />
 
             <LinearLayout
-                android:layout_width="127dp"
+                android:layout_width="146dp"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
                 android:orientation="vertical"
                 android:padding="3sp">
 
                 <LinearLayout
-                    android:layout_width="113dp"
+                    android:layout_width="131dp"
                     android:layout_height="32dp"
                     android:baselineAligned="false">
 
                     <Button
                         android:id="@+id/button_distance_display"
-                        android:layout_width="72dp"
+                        android:layout_width="77dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
                         android:text="0,0"
@@ -82,7 +96,7 @@
 
                     <Button
                         android:id="@+id/button_distance_liste"
-                        android:layout_width="46dp"
+                        android:layout_width="56dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
                         android:baselineAligned="false"
@@ -96,12 +110,12 @@
 
                 <Button
                     android:id="@+id/button_time_display"
-                    android:layout_width="match_parent"
+                    android:layout_width="104dp"
                     android:layout_height="32dp"
                     android:background="#29B6F6"
                     android:baselineAligned="false"
                     android:text="0,0"
-                    android:textAlignment="center"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/common_google_signin_btn_text_light_focused"
                     android:textSize="24sp" />
 
@@ -120,14 +134,14 @@
 
                     <Button
                         android:id="@+id/button_pace_display"
-                        android:layout_width="50dp"
+                        android:layout_width="69dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
                         android:baselineAligned="false"
                         android:text="00:00"
                         android:textAlignment="textEnd"
                         android:textColor="@android:color/white"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
 
                     <Button
                         android:id="@+id/button_pace"
@@ -138,7 +152,7 @@
                         android:textAlignment="viewStart"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,13 +164,13 @@
 
                     <Button
                         android:id="@+id/button_cal_display"
-                        android:layout_width="51dp"
+                        android:layout_width="70dp"
                         android:layout_height="match_parent"
                         android:background="#29B6F6"
                         android:text="0"
                         android:textAlignment="textEnd"
                         android:textColor="@color/common_google_signin_btn_text_light_default"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
 
                     <Button
                         android:id="@+id/button_cal"
@@ -167,7 +181,7 @@
                         android:textAlignment="viewStart"
                         android:textAllCaps="false"
                         android:textColor="@color/common_google_signin_btn_text_light_focused"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
 
                 </LinearLayout>
 
