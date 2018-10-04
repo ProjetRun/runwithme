@@ -1,17 +1,18 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment {
     ProgressBar loader;
     Typeface weatherFont;
     String city = "Paris, FR";
-
+    private static final int PERMS_CALL_ID = 1234;
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
 
@@ -56,6 +57,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+        checkPermissions();
+
+        Intent i =new Intent(getActivity().getApplicationContext(),GPSService.class);
+        getActivity().startService(i);
+
         loader = (ProgressBar) view.findViewById(R.id.loader);
         selectCity = (TextView) view.findViewById(R.id.selectCity);
         cityField = (TextView) view.findViewById(R.id.city_field);
@@ -163,13 +169,28 @@ public class HomeFragment extends Fragment {
 
         }
 
-
-
     }
 
 
+    private void checkPermissions(){
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            },PERMS_CALL_ID );
+            return;
+        }
+    }
 
-
+    //se déclenche à chaque fois qu'une demande d'activation des permissions est faite
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == PERMS_CALL_ID){
+            checkPermissions();
+        }
+    }
 
     public void onClick(View v) {
         switch (v.getId()) {

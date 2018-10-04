@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.Manifest;
 
 import java.io.FileOutputStream;
 import java.math.RoundingMode;
