@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 public class TrainingFragment extends Fragment {
@@ -16,11 +18,40 @@ public class TrainingFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_training, parent, false);
     }
 
+    LinearLayout cardioLayout;
+    LinearLayout stretchingLayout;
+    LinearLayout hiitLayout;
+
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+
+        cardioLayout = (LinearLayout) view.findViewById(R.id.lay1);
+        stretchingLayout = (LinearLayout) view.findViewById(R.id.lay2);
+        hiitLayout = (LinearLayout) view.findViewById(R.id.lay3);
+        cardioLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Cardio!",
+                        Toast. LENGTH_SHORT ).show();
+            }
+        });
+        stretchingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Stretching!",
+                        Toast. LENGTH_SHORT ).show();
+            }
+        });
+        hiitLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "HIIT!",
+                        Toast. LENGTH_SHORT ).show();
+            }
+        });
     }
 }
