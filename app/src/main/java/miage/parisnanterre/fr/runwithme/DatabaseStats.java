@@ -37,6 +37,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {

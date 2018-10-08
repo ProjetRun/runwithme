@@ -187,6 +187,7 @@ public class RunningActivity extends AppCompatActivity {
 
     BottomSheetDialog mBottomSheetDialog;
     boolean in_bmBottomSheetDialog=false;
+
     public void do_click_for_stop_tracking(){
         in_bmBottomSheetDialog = true;
         List<String> citations = new ArrayList<String>();
@@ -197,10 +198,8 @@ public class RunningActivity extends AppCompatActivity {
         citations.add("La motivation vous sert de départ. L’habitude vous fait continuer - Jim Ryun ");
         //(int) (Math.random() * (monArrayList.size() - 1));
 
-
         simpleChronometer.stop();
 
-        //DecimalFormat df3 = new DecimalFormat("#");
         double nbKilometre = Double.parseDouble(button_distance.getText().toString());
 
         String nb = button_distance.getText().toString();
@@ -216,6 +215,10 @@ public class RunningActivity extends AppCompatActivity {
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
+
+        CheckAddBadgesTask checkAddBadges = new CheckAddBadgesTask(this);
+        checkAddBadges.execute();
+        //boucle for sur checkAddBadges.badgesajoutés pour les ajouter au layout
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();

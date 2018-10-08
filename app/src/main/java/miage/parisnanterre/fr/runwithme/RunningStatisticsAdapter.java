@@ -29,7 +29,10 @@ public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
         this.listes = listes;
     }
 
-
+    @Override
+    public int getCount() {
+        return super.getCount();
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
