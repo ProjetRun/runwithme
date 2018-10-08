@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F51B5"
+    android:background="#1E90FF"
     tools:context="miage.parisnanterre.fr.runwithme.HomeFragment">
 
     <RelativeLayout
@@ -107,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="GO RUNNING"
+                android:background="#B3E5FC"
                 android:onClick="launchRunningActivity"/>
         </LinearLayout>
 
