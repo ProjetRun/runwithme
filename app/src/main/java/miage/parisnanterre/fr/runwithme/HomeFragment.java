@@ -32,13 +32,17 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
-    TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, pressure_field, weatherIcon, updatedField;
+    TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, pressure_field,
+            weatherIcon, updatedField, aqius, aqicn, levelp;
     ProgressBar loader;
     Typeface weatherFont;
     String city = "Paris, FR";
+    String cityloc = "48.8566,2.3522";
     private static final int PERMS_CALL_ID = 1234;
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
+
+    String POLLUTION_API = "BfsDNLRQan6JbNrts";
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
@@ -70,6 +74,11 @@ public class HomeFragment extends Fragment {
         currentTemperatureField = (TextView) view.findViewById(R.id.current_temperature_field);
         humidity_field = (TextView) view.findViewById(R.id.humidity_field);
         pressure_field = (TextView) view.findViewById(R.id.pressure_field);
+
+        aqius = view.findViewById(R.id.aqius);
+        aqicn = view.findViewById(R.id.aqicn);
+        levelp = view.findViewById(R.id.levelp);
+
         weatherIcon = (TextView) view.findViewById(R.id.weather_icon);
         weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
         weatherIcon.setTypeface(weatherFont);
@@ -120,6 +129,10 @@ public class HomeFragment extends Fragment {
         if (Weather.isNetworkAvailable(getActivity())) {
             HomeFragment.DownloadWeather task = new HomeFragment.DownloadWeather();
             task.execute(query);
+
+            HomeFragment.DownloadPollution task2 = new HomeFragment.DownloadPollution();
+            task2.execute(query);
+
         } else {
             Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
         }
@@ -137,8 +150,13 @@ public class HomeFragment extends Fragment {
         protected String doInBackground(String...args) {
             String xml = Weather.excuteGet("http://api.openweathermap.org/data/2.5/weather?q=" + args[0] +
                     "&units=metric&appid=" + OPEN_WEATHER_MAP_API);
+
+
             return xml;
         }
+
+
+
         @Override
         protected void onPostExecute(String xml) {
 
@@ -161,6 +179,7 @@ public class HomeFragment extends Fragment {
 
                     loader.setVisibility(View.GONE);
 
+
                 }
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "Error, Check City", Toast.LENGTH_SHORT).show();
@@ -170,6 +189,59 @@ public class HomeFragment extends Fragment {
         }
 
     }
+
+
+    class DownloadPollution extends AsyncTask< String, Void, String > {
+
+        protected String doInBackground(String...args) {
+
+            String xml = Weather.excuteGet("http://api.airvisual.com/v2/nearest_city?key="
+                    + POLLUTION_API);
+            return xml;
+        }
+        @Override
+        protected void onPostExecute(String xml) {
+
+            try {
+                JSONObject json = new JSONObject(xml);
+                if (json != null) {
+                    JSONObject details2 = json.getJSONObject("data").getJSONObject("current").getJSONObject("pollution");
+                    aqius.setText("AQI US: " +details2.getInt("aqius")+" " +details2.getString("mainus"));
+                    aqicn.setText("AQI CN: " +details2.getInt("aqicn")+" " +details2.getString("maincn"));
+
+                    if(details2.getInt("aqius") <= 50){
+                        levelp.setText("Level: Good");
+                    }
+                    else if(details2.getInt("aqius") >50 & details2.getInt("aqius" )<=100){
+                        levelp.setText("Level: Moderate");
+                    }
+                    else if(details2.getInt("aqius") >100 & details2.getInt("aqius" )<=150){
+                        levelp.setText("Level: Unhealthy for Sensitive Groups");
+                    }
+                    else if(details2.getInt("aqius") >150 & details2.getInt("aqius" )<=200){
+                        levelp.setText("Level: Unhealthy");
+                    }
+                    else if(details2.getInt("aqius") >200 & details2.getInt("aqius" )<=300){
+                        levelp.setText("Level: Very Unhealthy");
+                    }
+                    else {
+                        levelp.setText("Level: Hazardous");
+                    }
+
+
+
+
+                }
+            } catch (JSONException e) {
+                Toast.makeText(getActivity(), "Error, Check City", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+
+    }
+
+
 
 
     private void checkPermissions(){
