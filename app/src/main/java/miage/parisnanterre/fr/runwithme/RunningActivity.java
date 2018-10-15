@@ -67,7 +67,9 @@ public class RunningActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
 
     final DatabaseStats db = new DatabaseStats(this);
+    //ca peut pas fonctionner ça, on peut invoquer une seule classe qui etend openclasshelper
     final DatabaseUser dbU = new DatabaseUser(this);
+    static RunningStatisticsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,9 +218,22 @@ public class RunningActivity extends AppCompatActivity {
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
 
-        CheckAddBadgesTask checkAddBadges = new CheckAddBadgesTask(this);
-        checkAddBadges.execute();
+
+        //
+
+        //CheckAddBadgesTask checkAddBadges = new CheckAddBadgesTask(this);
+        //checkAddBadges.onPostExecute();
+        //checkAddBadges.execute();
         //boucle for sur checkAddBadges.badgesajoutés pour les ajouter au layout
+
+        List<RunningStatistics> statistics = db.getAllStats();
+        adapter = new RunningStatisticsAdapter(this,statistics);
+
+        if(adapter.getCount() == 1){
+            DatabaseStats dbBadge = new DatabaseStats(this);
+            dbBadge.addBadge(new Badge(1,"Badge premiere course"));
+            dbBadge.close();
+        }
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
