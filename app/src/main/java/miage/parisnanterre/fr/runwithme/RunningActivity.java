@@ -258,33 +258,35 @@ public class RunningActivity extends AppCompatActivity {
         List<Badge> badges = new ArrayList<>();//liste destiné à contenir les nouveaux badges
         adapter = new RunningStatisticsAdapter(this,statistics);
         DatabaseStats db = new DatabaseStats(this);
+
+        //on stock les badges uniquement gagnés dans hmap
+        HashMap hmap = user.getHmap();
+
         if(adapter.getCount() == 1){
-            Badge badge1 = new Badge(1,"Badge premier run");
+            Badge badge1 = new Badge(1,"first run");
             db.addBadge(badge1);
-            //badges.set(1,badge1);
+            badges.add(badge1);
+            db.close();
+        }
+        if(adapter.getCount() == 2){
+            Badge badge2 = new Badge(2,"X2 RUN");
+            db.addBadge(badge2);
+            badges.add(badge2);
             db.close();
         }
         if(adapter.getCount() == 3){
-            Badge badge2 = new Badge(3,"Badge 3 run");
+            Badge badge2 = new Badge(3,"X3 RUN");
             db.addBadge(badge2);
-            //badges.set(10,badge2);
+            badges.add(badge2);
             db.close();
         }
-
         //boutons de la popup de fin de course
         txtv_pogress = mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
         txtv_badge = mBottomSheetDialog.getWindow().findViewById(R.id.button_badge);
+        txtv_badge.setVisibility(View.GONE);//on masque le bouton "badge" par défaut si l'utilisateur n'en gagne pas pendant la course
 
-        //récupération de tous les badges
-        HashMap hmap = user.getHmap();
-        for(Badge badge : badges)
-            hmap.put(hmap.size(),badge);
-
-        Set cles = hmap.keySet();
-        Iterator it = cles.iterator();
-        while (it.hasNext()){
-            int cle = (int) it.next();
-            Badge badge = (Badge) hmap.get(cle);
+        for(Badge badge : badges){
+            txtv_badge.setVisibility(View.VISIBLE);
             txtv_badge.setText(badge.getNom());
         }
 
@@ -302,7 +304,6 @@ public class RunningActivity extends AppCompatActivity {
         ImageView img_level = (ImageView)  mBottomSheetDialog.getWindow().findViewById(R.id.imageView6);
 
         ImageView img_next_level = (ImageView)  mBottomSheetDialog.getWindow().findViewById(R.id.imageView9);
-
 
         switch (user.getLevel()){
             case 1:

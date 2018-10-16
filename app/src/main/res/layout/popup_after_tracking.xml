@@ -55,10 +55,15 @@
 
                 <Button
                     android:id="@+id/button_badge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="108dp"
+                    android:layout_height="105dp"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="@mipmap/badge_orange"
+                    android:fontFamily="@font/arsenal_bold"
+                    android:text="Button"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

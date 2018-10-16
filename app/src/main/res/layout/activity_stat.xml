@@ -7,13 +7,18 @@
     tools:context="miage.parisnanterre.fr.runwithme.RunningStatisticsActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="111dp"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
@@ -27,7 +32,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal">
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -47,22 +54,39 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="87dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/imageView10"
-                        android:layout_width="147dp"
+                        android:layout_width="94dp"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="false"
                         android:baselineAligned="false"
                         app:srcCompat="@mipmap/ic_level_one_foreground" />
 
                     <Button
                         android:id="@+id/dernier_badge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Button" />
+                        android:layout_width="87dp"
+                        android:layout_height="match_parent"
+                        android:background="@mipmap/badge_orange"
+                        android:fontFamily="@font/arsenal_bold"
+                        android:text="Button"
+                        android:textColor="@color/common_google_signin_btn_text_dark_default"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="105dp"
+                        android:layout_height="56dp"
+                        android:background="@mipmap/ic_first_badge"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:fontFamily="@font/arsenal_bold"
+                        android:text="voir tous les badges"
+                        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -72,12 +96,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="143dp"
+            android:layout_height="113dp"
             android:orientation="vertical">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -94,7 +119,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="84dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -111,16 +136,16 @@
                         android:layout_weight="1"
                         android:background="#29B6F6"
                         android:text="00:00"
+                        android:textAllCaps="false"
                         android:textColor="@android:color/white"
-                        android:textSize="25dp"
-                        android:textAllCaps="false"/>
+                        android:textSize="25dp" />
 
                     <ImageView
                         android:id="@+id/imageView14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="118dp"
+                        android:layout_height="65dp"
                         android:layout_marginTop="5dp"
+                        android:layout_weight="1"
                         app:srcCompat="@mipmap/ic_time_foreground" />
 
                 </LinearLayout>
@@ -148,8 +173,8 @@
                         android:id="@+id/imageView15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginTop="5dp"
+                        android:layout_weight="1"
                         app:srcCompat="@mipmap/ic_dist_foreground" />
 
                 </LinearLayout>
@@ -168,16 +193,16 @@
                         android:layout_weight="1"
                         android:background="#29B6F6"
                         android:text="0 km/h"
+                        android:textAllCaps="false"
                         android:textColor="@android:color/white"
-                        android:textSize="25dp"
-                        android:textAllCaps="false"/>
+                        android:textSize="25dp" />
 
                     <ImageView
                         android:id="@+id/imageView16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginTop="5dp"
+                        android:layout_weight="1"
                         app:srcCompat="@mipmap/ic_speed_foreground" />
 
                 </LinearLayout>
@@ -185,10 +210,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray" />
+
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
@@ -204,10 +231,11 @@
             android:id="@+id/statisticsListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -76,18 +76,25 @@ public class RunningStatisticsActivity extends AppCompatActivity {
             default:
                 img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
         }
+
+        ImageView img_next_level = findViewById(R.id.imageView10);
+        img_next_level.setImageResource(R.mipmap.firstrun_badge);
+
         HashMap hmap = user.getHmap();
         db.getAllBadges();
-        for(Badge badge : db.getAllBadges())
+        for(Badge badge : db.getAllBadges()){
             hmap.put(hmap.size(),badge);
-
+            dernier_badge.setText(badge.getNom());
+        }
+        /*
         Set cles = hmap.keySet();
         Iterator it = cles.iterator();
+
         while (it.hasNext()){
             int cle = (int) it.next();
             Badge badge = (Badge) hmap.get(cle);
             dernier_badge.setText(badge.getNom());
-        }
+        }*/
 
         int best_distance = 0;
         int best_rythme = 0;
