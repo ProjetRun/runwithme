@@ -41,7 +41,7 @@
                 android:text="Change City"
                 android:textStyle="italic"
                 android:textSize="11dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="#FFD700"
                 android:layout_below="@+id/updated_field"
                 android:layout_centerHorizontal="true"/>
 
@@ -93,6 +93,48 @@
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
+
+            <TextView
+                android:id="@+id/pollution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="POLLUTION"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:id="@+id/aqius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/aqius"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
+            <TextView
+                android:id="@+id/aqicn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/aqicn"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
+            <TextView
+                android:id="@+id/levelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/levelp"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp"/>
+
 
             <ProgressBar
                 android:id="@+id/loader"

@@ -1,5 +1,6 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,8 +36,11 @@ public class TrainingFragment extends Fragment {
         cardioLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Cardio!",
+                Toast.makeText(getActivity(), "Warmup!",
                         Toast. LENGTH_SHORT ).show();
+                Intent intent = new Intent(getActivity(), WarmActivity.class);
+                startActivity(intent);
+
             }
         });
         stretchingLayout.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +48,8 @@ public class TrainingFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Stretching!",
                         Toast. LENGTH_SHORT ).show();
+                Intent intent = new Intent(getActivity(), WorkoutActivity.class);
+                startActivity(intent);
             }
         });
         hiitLayout.setOnClickListener(new View.OnClickListener() {
