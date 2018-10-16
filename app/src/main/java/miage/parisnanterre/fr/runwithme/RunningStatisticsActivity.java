@@ -49,7 +49,6 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         //PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
         //load.execute();
         User us = dbU.getUsers();
-        db.addBadge(new Badge(1,"Badge premiere course"));
         db.getAllBadges();
         ImageView img_level = (ImageView) findViewById(R.id.imageView10);
         switch (us.getLevel()){

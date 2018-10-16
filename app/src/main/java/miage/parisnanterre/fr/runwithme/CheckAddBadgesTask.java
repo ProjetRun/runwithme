@@ -21,9 +21,7 @@ public class CheckAddBadgesTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         DatabaseStats db = new DatabaseStats(mContext);
-        DatabaseUser dbU = new DatabaseUser(mContext);
         List<RunningStatistics> statistics = db.getAllStats();
-        User user = dbU.getUsers();
         adapter = new RunningStatisticsAdapter(mContext,statistics);
 
         if(adapter.getCount() == 1){

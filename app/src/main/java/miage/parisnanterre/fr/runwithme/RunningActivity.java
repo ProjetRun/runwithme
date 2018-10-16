@@ -17,8 +17,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.Time;
-import android.util.FloatMath;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -26,16 +24,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.Manifest;
 
 import java.io.FileOutputStream;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
 
 import static java.sql.DriverManager.println;
@@ -48,6 +45,7 @@ public class RunningActivity extends AppCompatActivity {
     Button button_distance_titre;
     Button button_cal;
     TextView txtv_pogress;
+    Button txtv_badge;
     LocationManager  locationManager;
     boolean first_call = true;
     boolean is_km = false;
@@ -67,7 +65,8 @@ public class RunningActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
 
     final DatabaseStats db = new DatabaseStats(this);
-    //ca peut pas fonctionner ça, on peut invoquer une seule classe qui etend openclasshelper
+    //ca peut pas fonctionner ça, on peut invoquer que une seule classe qui etend openclasshelper
+    //ca peut pas fonctionner ça, on peut invoquer que une seule classe qui etend openclasshelper
     final DatabaseUser dbU = new DatabaseUser(this);
     static RunningStatisticsAdapter adapter;
 
@@ -187,7 +186,6 @@ public class RunningActivity extends AppCompatActivity {
         sendNotification();
     }
 
-    BottomSheetDialog mBottomSheetDialog;
     boolean in_bmBottomSheetDialog=false;
 
     public void do_click_for_stop_tracking(){
@@ -209,38 +207,87 @@ public class RunningActivity extends AppCompatActivity {
 
         if(is_km==false){
             nbKilometre=0.0;
-        }//else{
-            //df3.setRoundingMode(RoundingMode.HALF_UP);
-            //nbKilometre = Double.parseDouble(df.format(nbKilometre));
-        //}
+        }
         user.updateKm(nbKilometre);
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
 
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
+        mBottomSheetDialog.setCancelable(false);
 
-        //
+        //ajouter données du footing dans la bd
+        mNotificationManager.cancelAll();
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println( sdf.format(cal.getTime()) );
+        date = sdf.format(cal.getTime());
+        cal = Calendar.getInstance();
+        sdf = new SimpleDateFormat("HH:mm:ss");
+        TimeZone gmt = TimeZone.getTimeZone("GMT");
+        sdf.setTimeZone(gmt);
+        System.out.println( sdf.format(cal.getTime()) );
+        heure =sdf.format(cal.getTime());
+        distancee = button_distance.getText().toString();
+        int elapsedMillis = (int)((SystemClock.elapsedRealtime()-simpleChronometer.getBase()));
+        duree = Integer.toString(elapsedMillis);
+        rythme = button_rythme.getText().toString();
+        calories = button_cal.getText().toString();
+        RunningStatistics pushStats = new RunningStatistics();
+        pushStats.setDate(date);
+        pushStats.setHeure(heure);
+        pushStats.setDistance(distancee);
+        String uniteMesure = button_distance_titre.getText().toString();
+        if(uniteMesure.equals("Distance(km)"))
+            pushStats.setUniteMesure("km");
+        else
+            pushStats.setUniteMesure("m");
+        pushStats.setDuree(duree);
+        pushStats.setRythme(rythme);
+        pushStats.setCalories(calories);
+        db.addStats(pushStats);
+        dbU.update(user);
 
+        //add badges if conditions
         //CheckAddBadgesTask checkAddBadges = new CheckAddBadgesTask(this);
         //checkAddBadges.onPostExecute();
         //checkAddBadges.execute();
         //boucle for sur checkAddBadges.badgesajoutés pour les ajouter au layout
-
         List<RunningStatistics> statistics = db.getAllStats();
+        List<Badge> badges = new ArrayList<>();//liste destiné à contenir les nouveaux badges
         adapter = new RunningStatisticsAdapter(this,statistics);
-
+        DatabaseStats db = new DatabaseStats(this);
         if(adapter.getCount() == 1){
-            DatabaseStats dbBadge = new DatabaseStats(this);
-            dbBadge.addBadge(new Badge(1,"Badge premiere course"));
-            dbBadge.close();
+            Badge badge1 = new Badge(1,"Badge premier run");
+            db.addBadge(badge1);
+            //badges.set(1,badge1);
+            db.close();
+        }
+        if(adapter.getCount() == 3){
+            Badge badge2 = new Badge(3,"Badge 3 run");
+            db.addBadge(badge2);
+            //badges.set(10,badge2);
+            db.close();
         }
 
-        mBottomSheetDialog.setContentView(sheetView);
-        mBottomSheetDialog.show();
-        mBottomSheetDialog.setCancelable(false);
-        //User u = db.getUsers();
-
+        //boutons de la popup de fin de course
         txtv_pogress = mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
+        txtv_badge = mBottomSheetDialog.getWindow().findViewById(R.id.button_badge);
+
+        //récupération de tous les badges
+        HashMap hmap = user.getHmap();
+        for(Badge badge : badges)
+            hmap.put(hmap.size(),badge);
+
+        Set cles = hmap.keySet();
+        Iterator it = cles.iterator();
+        while (it.hasNext()){
+            int cle = (int) it.next();
+            Badge badge = (Badge) hmap.get(cle);
+            txtv_badge.setText(badge.getNom());
+        }
+
         //u.updateKm(Integer.parseInt(button_distance.getText().toString()));
         txtv_pogress.setText(user.getKm()+"/"+user.getkmNextLevel()+"km");
         ProgressBar progressBar4 = (ProgressBar) mBottomSheetDialog.getWindow().findViewById(R.id.progressBar4);
@@ -289,66 +336,7 @@ public class RunningActivity extends AppCompatActivity {
             default:
                 img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
                 img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
-
         }
-
-        mNotificationManager.cancelAll();
-
-        Date currentTime = Calendar.getInstance().getTime();
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println( sdf.format(cal.getTime()) );
-
-        date = sdf.format(cal.getTime());
-        cal = Calendar.getInstance();
-        sdf = new SimpleDateFormat("HH:mm:ss");
-        TimeZone gmt = TimeZone.getTimeZone("GMT");
-        sdf.setTimeZone(gmt);
-        System.out.println( sdf.format(cal.getTime()) );
-        heure =sdf.format(cal.getTime());
-
-
-        distancee = button_distance.getText().toString();
-        //duree =  String.valueOf(((SystemClock.elapsedRealtime() - simpleChronometer.getBase())/1000)/60 );
-
-        int elapsedMillis = (int)((SystemClock.elapsedRealtime()-simpleChronometer.getBase()));
-        //double dureeEcoulee = (double) elapsedMillis/60000;
-
-        //DecimalFormat twoDForm = new DecimalFormat("#.##");
-        //dureeEcoulee = Double.valueOf(twoDForm.format(dureeEcoulee));
-
-        //duree = Double.toString(dureeEcoulee);
-        duree = Integer.toString(elapsedMillis);
-        rythme = button_rythme.getText().toString();
-        calories = button_cal.getText().toString();
-        //RunningStatistics statistics = new RunningStatistics(date, heure, distancee, duree, rythme,calories);
-
-
-        //ET_NAME.getText().toString();
-        //user_name = ET_USER_NAME.getText().toString();
-        //user_pass =ET_USER_PASS.getText().toString();
-        //String method = "ajout";
-        //PushStatsBackgroundTask backgroundTask = new PushStatsBackgroundTask(this);
-        //backgroundTask.execute(method,date,heure,distancee,duree,rythme,calories);
-        RunningStatistics pushStats = new RunningStatistics();
-        pushStats.setDate(date);
-        pushStats.setHeure(heure);
-        pushStats.setDistance(distancee);
-
-        String uniteMesure = button_distance_titre.getText().toString();
-        if(uniteMesure.equals("Distance(km)"))
-            pushStats.setUniteMesure("km");
-        else
-            pushStats.setUniteMesure("m");
-
-        pushStats.setDuree(duree);
-        pushStats.setRythme(rythme);
-        pushStats.setCalories(calories);
-
-
-        //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
-        db.addStats(pushStats);
-        dbU.update(user);
 
     }
 
@@ -407,8 +395,6 @@ public class RunningActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void back_to_homeactivity(View v){
         writeFileUser();
         finish();
@@ -419,7 +405,6 @@ public class RunningActivity extends AppCompatActivity {
         //distance parcourue x poid x 1.036
         button_cal.setText(""+df.format(distance*70*1.036));
     }
-
 
     public void sendNotification() {
         NotificationCompat.Builder mBuilder =
