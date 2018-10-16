@@ -3,6 +3,7 @@ package miage.parisnanterre.fr.runwithme;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -45,6 +46,7 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         button_record_speed = (Button) findViewById(R.id.button_record_speed);
         button_record_time = (Button) findViewById(R.id.button_record_time);
         dernier_badge = findViewById(R.id.dernier_badge);
+        dernier_badge.setVisibility(View.GONE);
 
         //PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
         //load.execute();
@@ -79,12 +81,14 @@ public class RunningStatisticsActivity extends AppCompatActivity {
 
         ImageView img_next_level = findViewById(R.id.imageView10);
         img_next_level.setImageResource(R.mipmap.firstrun_badge);
+        img_next_level.setVisibility(View.GONE);
 
         HashMap hmap = user.getHmap();
         db.getAllBadges();
         for(Badge badge : db.getAllBadges()){
             hmap.put(hmap.size(),badge);
             dernier_badge.setText(badge.getNom());
+            dernier_badge.setVisibility(View.VISIBLE);
         }
         /*
         Set cles = hmap.keySet();
