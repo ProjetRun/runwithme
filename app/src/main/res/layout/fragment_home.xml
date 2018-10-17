@@ -2,20 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E90FF"
+    android:background="#E3E3E3"
     tools:context="miage.parisnanterre.fr.runwithme.HomeFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:background="#696969"
 
-
+            android:layout_marginBottom="2dp">
             <TextView
                 android:id="@+id/city_field"
                 android:layout_width="wrap_content"
@@ -23,8 +26,25 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textColor="#FFFFFF"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+        </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded"
+
+            >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/updated_field"
                 android:layout_width="wrap_content"
@@ -33,7 +53,10 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:layout_marginTop="7dp"
+                />
+
             <TextView
                 android:id="@+id/selectCity"
                 android:layout_width="wrap_content"
@@ -46,17 +69,6 @@
                 android:layout_centerHorizontal="true"/>
 
             <TextView
-                android:id="@+id/weather_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textColor="#FFFFFF"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="90sp"
-                />
-
-            <TextView
                 android:id="@+id/current_temperature_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,16 +77,6 @@
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="50sp"/>
-
-            <TextView
-                android:id="@+id/details_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/weather_icon"
-                android:layout_centerHorizontal="true"
-                android:textColor="#FFFFFF"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                />
             <TextView
                 android:id="@+id/humidity_field"
                 android:layout_width="wrap_content"
@@ -84,6 +86,8 @@
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
+
+
             <TextView
                 android:id="@+id/pressure_field"
                 android:layout_width="wrap_content"
@@ -93,6 +97,52 @@
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/weather_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="90sp"
+                android:layout_marginStart="66dp"
+                />
+
+            <TextView
+                android:id="@+id/details_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/weather_icon"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginStart="80dp"
+                />
+         </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded2"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
 
             <TextView
                 android:id="@+id/pollution"
@@ -103,7 +153,7 @@
                 android:text="POLLUTION"
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="40sp"/>
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/aqius"
@@ -135,24 +185,56 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="20sp"/>
 
-
             <ProgressBar
-                android:id="@+id/loader"
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                android:orientation="vertical"
+                android:layout_marginTop="37dp"
+                android:layout_marginStart="90dp"
+                >
+
+            <ImageView
+                android:id="@+id/pollutionicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="80dp"
+                android:maxHeight="80dp"
+
+                />
+            </LinearLayout>
 
 
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+
+        >
             <Button
                 android:id="@+id/buttonLaunchRunning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="GO RUNNING"
-                android:background="#B3E5FC"
-                android:onClick="launchRunningActivity"/>
-        </LinearLayout>
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"
+                android:onClick="launchRunningActivity"
+                />
+    </LinearLayout>
+</LinearLayout>
 
-    </RelativeLayout>
 
 </FrameLayout>
