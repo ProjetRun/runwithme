@@ -2,11 +2,17 @@ package miage.parisnanterre.fr.runwithme;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,25 +33,33 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements LocationListener {
 
     TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, pressure_field,
             weatherIcon, updatedField, aqius, aqicn, levelp;
     ProgressBar loader;
     Typeface weatherFont;
     ImageView pollutionicon;
-    String city = "Nanterre, FR";
+    String city ;
+    double lat;
+    double longit;
     String cityloc = "48.8566,2.3522";
     private static final int PERMS_CALL_ID = 1234;
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
 
     String POLLUTION_API = "BfsDNLRQan6JbNrts";
+
+    LocationManager locationManager;
+    double latitude;
+    double longitude;
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
@@ -68,6 +82,27 @@ public class HomeFragment extends Fragment {
 
         Intent i =new Intent(getActivity().getApplicationContext(),GPSService.class);
         getActivity().startService(i);
+
+
+
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+
+        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
+        }
+
+        Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
+        onLocationChanged(location);
+        loc_fun(location);
+
+
 
         loader = (ProgressBar) view.findViewById(R.id.loader);
         selectCity = (TextView) view.findViewById(R.id.selectCity);
@@ -143,6 +178,48 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+
+        lat = latitude;
+        longit = longitude;
+
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
+
+    private void loc_fun(Location location){
+
+        Geocoder geocoder = new Geocoder(getActivity());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            String country = addresses.get(0).getCountryName();
+            String ville = addresses.get(0).getLocality();
+
+            city = ville +"," + country;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
     class DownloadWeather extends AsyncTask< String, Void, String > {
@@ -200,7 +277,7 @@ public class HomeFragment extends Fragment {
 
         protected String doInBackground(String...args) {
 
-            String xml = Weather.excuteGet("http://api.airvisual.com/v2/nearest_city?key="
+            String xml = Weather.excuteGet("http://api.airvisual.com/v2/nearest_city?lat="+lat+"&lon="+longit+"&key="
                     + POLLUTION_API);
             return xml;
         }

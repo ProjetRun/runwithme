@@ -113,7 +113,7 @@
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="90sp"
-                android:layout_marginStart="66dp"
+                android:layout_marginStart="90dp"
                 />
 
             <TextView
