@@ -19,6 +19,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,6 +212,10 @@ public class HomeFragment extends Fragment implements LocationListener {
             addresses = geocoder.getFromLocation(latitude, longitude, 1);
             String country = addresses.get(0).getCountryName();
             String ville = addresses.get(0).getLocality();
+
+      //      String region = addresses.get(0).getAdminArea();
+
+      //      Log.d(":::::::::::::::",region);
 
             city = ville +"," + country;
 
