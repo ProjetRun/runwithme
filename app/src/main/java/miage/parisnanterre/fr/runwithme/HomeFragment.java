@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,7 +38,8 @@ public class HomeFragment extends Fragment {
             weatherIcon, updatedField, aqius, aqicn, levelp;
     ProgressBar loader;
     Typeface weatherFont;
-    String city = "Paris, FR";
+    ImageView pollutionicon;
+    String city = "Nanterre, FR";
     String cityloc = "48.8566,2.3522";
     private static final int PERMS_CALL_ID = 1234;
     /*  API Key à partir du siteweb https://openweathermap.org*/
@@ -78,6 +81,8 @@ public class HomeFragment extends Fragment {
         aqius = view.findViewById(R.id.aqius);
         aqicn = view.findViewById(R.id.aqicn);
         levelp = view.findViewById(R.id.levelp);
+
+        pollutionicon = view.findViewById(R.id.pollutionicon);
 
         weatherIcon = (TextView) view.findViewById(R.id.weather_icon);
         weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
@@ -211,21 +216,27 @@ public class HomeFragment extends Fragment {
 
                     if(details2.getInt("aqius") <= 50){
                         levelp.setText("Level: Good");
+                        pollutionicon.setImageResource(R.drawable.level1);
                     }
                     else if(details2.getInt("aqius") >50 & details2.getInt("aqius" )<=100){
                         levelp.setText("Level: Moderate");
+                        pollutionicon.setImageResource(R.drawable.level2);
                     }
                     else if(details2.getInt("aqius") >100 & details2.getInt("aqius" )<=150){
                         levelp.setText("Level: Unhealthy for Sensitive Groups");
+                        pollutionicon.setImageResource(R.drawable.level3);
                     }
                     else if(details2.getInt("aqius") >150 & details2.getInt("aqius" )<=200){
                         levelp.setText("Level: Unhealthy");
+                        pollutionicon.setImageResource(R.drawable.level4);
                     }
                     else if(details2.getInt("aqius") >200 & details2.getInt("aqius" )<=300){
                         levelp.setText("Level: Very Unhealthy");
+                        pollutionicon.setImageResource(R.drawable.level5);
                     }
                     else {
                         levelp.setText("Level: Hazardous");
+                        pollutionicon.setImageResource(R.drawable.level6);
                     }
 
 

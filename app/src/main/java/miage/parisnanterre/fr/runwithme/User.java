@@ -1,5 +1,7 @@
 package miage.parisnanterre.fr.runwithme;
 
+import java.util.HashMap;
+
 /**
  * Created by MICHEL Fabien on 13/03/2018.
  */
@@ -9,6 +11,8 @@ public class User {
     int id;
     int level;
     double km;
+    //liste des badges de l'utilisateur
+    HashMap<Integer, Badge> hmap = new HashMap<Integer, Badge>();
 
     public User() {
 
@@ -59,5 +63,17 @@ public class User {
                 ", level=" + level +
                 ", km=" + km +
                 '}';
+    }
+
+    public HashMap<Integer, Badge> getHmap() {
+        return hmap;
+    }
+
+    public void setHmap(HashMap<Integer, Badge> hmap) {
+        this.hmap = hmap;
+    }
+
+    public void addBagde(Badge badge){
+        hmap.put(hmap.size(), badge);
     }
 }

@@ -15,17 +15,41 @@
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/workoutButton"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        android:text="launch workout"
-        android:onClick="changeWorkoutFragment"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent">
 
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ff6434"
+            app:srcCompat="@android:drawable/ic_media_pause" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#dd2c00"
+            app:srcCompat="@android:drawable/ic_media_next" />
+
+        <Button
+            android:id="@+id/workoutButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="#FFF"
+            android:layout_weight="1"
+            android:background="#a30000"
+            android:onClick="changeWorkoutFragment"
+            android:text="STOP"
+
+            app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

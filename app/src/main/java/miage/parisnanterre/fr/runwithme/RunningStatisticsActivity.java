@@ -3,24 +3,18 @@ package miage.parisnanterre.fr.runwithme;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 import static miage.parisnanterre.fr.runwithme.MainActivity.user;
 
@@ -33,6 +27,7 @@ public class RunningStatisticsActivity extends AppCompatActivity {
     static Button button_record_time;
     static Button button_record_dist;
     static Button button_record_speed;
+    static Button dernier_badge;
     final DatabaseStats db = new DatabaseStats(this);
     final DatabaseUser dbU = new DatabaseUser(this);
 
@@ -50,10 +45,13 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         button_record_dist = (Button) findViewById(R.id.button_record_dist);
         button_record_speed = (Button) findViewById(R.id.button_record_speed);
         button_record_time = (Button) findViewById(R.id.button_record_time);
+        dernier_badge = findViewById(R.id.dernier_badge);
+        dernier_badge.setVisibility(View.GONE);
 
         //PullStatsBackgroundTask load = new PullStatsBackgroundTask(this);
         //load.execute();
         User us = dbU.getUsers();
+        db.getAllBadges();
         ImageView img_level = (ImageView) findViewById(R.id.imageView10);
         switch (us.getLevel()){
             case 1:
@@ -80,6 +78,28 @@ public class RunningStatisticsActivity extends AppCompatActivity {
             default:
                 img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
         }
+
+        ImageView img_next_level = findViewById(R.id.imageView10);
+        img_next_level.setImageResource(R.mipmap.firstrun_badge);
+        img_next_level.setVisibility(View.GONE);
+
+        HashMap hmap = user.getHmap();
+        db.getAllBadges();
+        for(Badge badge : db.getAllBadges()){
+            hmap.put(hmap.size(),badge);
+            dernier_badge.setText(badge.getNom());
+            dernier_badge.setVisibility(View.VISIBLE);
+        }
+        /*
+        Set cles = hmap.keySet();
+        Iterator it = cles.iterator();
+
+        while (it.hasNext()){
+            int cle = (int) it.next();
+            Badge badge = (Badge) hmap.get(cle);
+            dernier_badge.setText(badge.getNom());
+        }*/
+
         int best_distance = 0;
         int best_rythme = 0;
         int best_temps = 0;

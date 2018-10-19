@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 public class BeforeWorkoutFragment extends Fragment {
@@ -20,6 +22,10 @@ public class BeforeWorkoutFragment extends Fragment {
 
     int[] imageArray = { R.drawable.highjumps1, R.drawable.highjumps2 };
     ImageView img;
+    private ProgressBar progressBar;
+    private int progressStatus = 0;
+    private TextView textView;
+    private Handler handler = new Handler();
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
@@ -41,5 +47,30 @@ public class BeforeWorkoutFragment extends Fragment {
             }
         };
         handler.postDelayed(runnable, 2000);
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        textView = (TextView) view.findViewById(R.id.textView);
+        // Start long running operation in a background thread
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 100) {
+                    progressStatus += 1;
+                    // Update the progress bar and display the
+                    //current value in the text view
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(progressStatus);
+                            textView.setText(progressStatus+"/"+progressBar.getMax());
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 }
