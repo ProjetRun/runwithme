@@ -5,95 +5,241 @@
     android:layout_height="match_parent"
     tools:context="miage.parisnanterre.fr.runwithme.BeforeWorkoutFragment">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#6ec6ff">
 
         <ImageView
-            android:id="@+id/imageView17"
+            android:id="@+id/game_cover_image"
+            android:src="@drawable/highjumps1"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:src="@drawable/highjumps1" />
-
+            android:layout_gravity="center" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <TextView
+                android:id="@+id/exercice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:textSize="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_gravity="center"
+                android:text="Hight Jump"
+                style="@style/GameTitleStyle"/>
 
-                <TextView
-                    android:id="@+id/exercice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:layout_marginTop="18dp"
-                    android:layout_gravity="center"
-                    android:text="Hight Jump" />
-
-                <TextView
-                    android:id="@+id/theme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:text="Streching" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <TextView
+                android:id="@+id/theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#03A9F4"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignLeft="@+id/progressBar"
-                    android:layout_below="@+id/progressBar"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="0" />
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:minHeight="50dp"
-                    android:minWidth="200dp"
-                    android:progress="1" />
-
-                <TextView
-                    android:id="@+id/textViewMax"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignLeft="@+id/progressBar"
-                    android:layout_below="@+id/progressBar"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="100" />
-
-            </LinearLayout>
+                android:textColor="#FFF"
+                android:layout_gravity="center"
+                android:text="Streching" />
         </LinearLayout>
 
+
+        <com.truizlop.fabreveallayout.FABRevealLayout
+            android:id="@+id/fab_reveal_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fab_reveal_height"
+            >
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:backgroundTint="@color/fab"
+                android:src="@drawable/ic_play_arrow_black_24dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:id="@+id/game_title_text"
+                        android:text=""
+                        style="@style/GameTitleStyle" />
+
+                    <TextView
+                        android:id="@+id/creator_name_text"
+                        android:text=""
+                        style="@style/GameCreatorStyle" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignLeft="@+id/progressBar"
+                        android:layout_below="@+id/progressBar"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:minHeight="50dp"
+                        android:minWidth="200dp"
+                        android:progress="1" />
+
+                    <TextView
+                        android:id="@+id/textViewMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignLeft="@+id/progressBar"
+                        android:layout_below="@+id/progressBar"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="100" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPause"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/fab"
+                        app:srcCompat="@android:drawable/ic_media_pause" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/fab"
+                        app:srcCompat="@android:drawable/ic_media_next" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+            <!--
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:backgroundTint="@color/fab"
+
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignLeft="@+id/progressBar"
+                        android:layout_below="@+id/progressBar"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:minHeight="50dp"
+                        android:minWidth="200dp"
+                        android:progress="1" />
+
+                    <TextView
+                        android:id="@+id/textViewMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignLeft="@+id/progressBar"
+                        android:layout_below="@+id/progressBar"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="100" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#ff6434"
+                        app:srcCompat="@android:drawable/ic_media_pause" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#dd2c00"
+                        app:srcCompat="@android:drawable/ic_media_next" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            -->
+
+        </com.truizlop.fabreveallayout.FABRevealLayout>
     </LinearLayout>
-
-
 </FrameLayout>

@@ -17,6 +17,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_world">Hello world!</string>
+    <string name="game_title">Metal Gear Solid V: The Phantom Pain</string>
+    <string name="creator_name">A Hideo Kojima Game</string>
+    <string name="add_to_shopping_cart">Added to your shopping cart</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bottom_nav">BottomNavActivity</string>
     <string name="title_activity_warm">Warm Up</string>
