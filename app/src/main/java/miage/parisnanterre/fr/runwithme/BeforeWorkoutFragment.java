@@ -15,6 +15,10 @@ import android.widget.TextView;
 import com.truizlop.fabreveallayout.FABRevealLayout;
 import com.truizlop.fabreveallayout.OnRevealChangeListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class BeforeWorkoutFragment extends Fragment {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
@@ -33,7 +37,13 @@ public class BeforeWorkoutFragment extends Fragment {
     private ImageButton pause;
     private ImageButton skip;
     private Handler handler = new Handler();
+    private Runnable runnable;
+    private TextView exo;
     Thread th;
+    int i = 0;
+    List<String> strechingTitle = new ArrayList<String>();
+    HashMap<String,Integer> strechingWorkoutList = new HashMap<String, Integer>();
+
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
@@ -43,42 +53,39 @@ public class BeforeWorkoutFragment extends Fragment {
         FABRevealLayout fabRevealLayout = (FABRevealLayout) view.findViewById(R.id.fab_reveal_layout);
         configureFABReveal(fabRevealLayout);
         img = (ImageView) view.findViewById(R.id.game_cover_image);
-        final Handler handler = new Handler();
 
-        Runnable runnable = new Runnable() {
-            int i = 0;
-
-            public void run() {
-                img.setImageResource(imageArray[i]);
-                i++;
-                if (i > imageArray.length - 1) {
-                    i = 0;
-                }
-                handler.postDelayed(this, 2000);
-            }
-        };
-        handler.postDelayed(runnable, 2000);
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        //progressBar.setSecondaryProgress(progressBar.getMax()/2);
         textView = (TextView) view.findViewById(R.id.textView);
+        exo = (TextView) view.findViewById(R.id.exercice);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         pause = (ImageButton) view.findViewById(R.id.imageButtonPause);
+        skip = (ImageButton) view.findViewById(R.id.imageButtonSkip);
+        strechingTitle.add("Hight Knees");
+        strechingTitle.add("Standing toe");
+        strechingTitle.add("Groin & back");
+        strechingTitle.add("Hight Jump");
+        strechingWorkoutList.put("Hight Knees",R.drawable.hight_knees);
+        strechingWorkoutList.put("Standing toe",R.drawable.standing_toe);
+        strechingWorkoutList.put("Groin & back",R.drawable.groin_back);
+        strechingWorkoutList.put("Hight Jump",R.drawable.hight_knees);
 
         th = new Thread(new Runnable() {
             public void run() {
-                while (progressStatus < 100) {
+                while (progressStatus < progressBar.getMax()) {
                     progressStatus += 1;
                     // Update the progress bar and display the
                     //current value in the text view
                     handler.post(new Runnable() {
                         public void run() {
                             progressBar.setProgress(progressStatus);
-                            textView.setText(progressStatus+"/"+progressBar.getMax());
+                            textView.setText(progressStatus+"");
                         }
                     });
                     try {
-                        // Sleep for 200 milliseconds.
-                        Thread.sleep(200);
+                        // Sleep for 1000 milliseconds.
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -87,83 +94,11 @@ public class BeforeWorkoutFragment extends Fragment {
 
             }
         });
-       /* fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                new Thread(new Runnable() {
-                    public void run() {
-                        while (progressStatus < 100) {
-                            progressStatus += 1;
-                            // Update the progress bar and display the
-                            //current value in the text view
-                            handler.post(new Runnable() {
-                                public void run() {
-                                    progressBar.setProgress(progressStatus);
-                                    textView.setText(progressStatus+"/"+progressBar.getMax());
-                                }
-                            });
-                            try {
-                                // Sleep for 200 milliseconds.
-                                Thread.sleep(200);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }).start();
-            }
-        });
-        /*
-        // Start long running operation in a background thread
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 100) {
-                    progressStatus += 1;
-                    // Update the progress bar and display the
-                    //current value in the text view
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(progressStatus);
-                            textView.setText(progressStatus+"/"+progressBar.getMax());
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-        */
+
+
     }
 
-    public void launchW(){
-        // Start long running operation in a background thread
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 100) {
-                    progressStatus += 1;
-                    // Update the progress bar and display the
-                    //current value in the text view
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(progressStatus);
-                            textView.setText(progressStatus);
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-    }
+
     private void configureFABReveal(FABRevealLayout fabRevealLayout) {
         fabRevealLayout.setOnRevealChangeListener(new OnRevealChangeListener() {
             @Override
@@ -176,12 +111,56 @@ public class BeforeWorkoutFragment extends Fragment {
         });
     }
 
+
+    private void changeWorkout(){
+        String title = strechingTitle.get(i);
+        int image = strechingWorkoutList.get(title);
+        img.setImageResource(Integer.parseInt(String.valueOf(image)));
+        exo.setText(title);
+        progressBar.setProgress(0);
+        textView.setText("0");
+        th = new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < progressBar.getMax()) {
+                    progressStatus += 1;
+                    // Update the progress bar and display the
+                    //current value in the text view
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(progressStatus);
+                            textView.setText(progressStatus+"");
+                        }
+                    });
+                    try {
+                        // Sleep for 1000 milliseconds.
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        });
+        i++;
+        if(i==strechingTitle.size()){
+            i = 0;//i = i== strechingTitle.size() ? i+1 : 0;
+        }
+    }
     private void prepareBackTransition(final FABRevealLayout fabRevealLayout) {
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 th.interrupt();
+                fabRevealLayout.revealMainView();
+            }
+        });
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                changeWorkout();
                 fabRevealLayout.revealMainView();
             }
         });

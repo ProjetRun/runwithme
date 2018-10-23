@@ -34,21 +34,24 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     protected void changeWorkoutFragment(View v){
+        /*
         if(isBeforeWorkout){
             b.setText("SKIP");
             /*currentFragment = new CurrentWorkoutFragment();
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, currentFragment);
-            ft.commit();*/
+            ft.commit();
             isBeforeWorkout = false;
         }else {
             b.setText("START");
             /*currentFragment = new BeforeWorkoutFragment();
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, currentFragment);
-            ft.commit();*/
+            ft.commit();
             isBeforeWorkout = true;
         }
         //isBeforeWorkout = isBeforeWorkout==true?false:true;
+        */
+        this.onBackPressed();
     }
 }
