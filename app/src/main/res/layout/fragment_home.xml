@@ -34,11 +34,11 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
-
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="35dp"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp">
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginStart="90dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#FFFFFF"
                     android:textSize="90sp" />
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/weather_icon"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="80dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
@@ -133,17 +133,17 @@
             android:background="@drawable/rounded"
             android:orientation="horizontal"
             android:layout_marginBottom="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
             android:alpha="0.4"
             >
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-
+            android:layout_marginBottom="35dp"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp">
 
@@ -200,19 +200,19 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="90dp"
                 android:layout_marginTop="37dp"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/pollutionicon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:maxWidth="100dp"
-                    android:maxHeight="100dp"
+                    android:maxWidth="80dp"
+                    android:maxHeight="80dp"
 
                     />
             </LinearLayout>
@@ -222,8 +222,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="35dp"
             android:orientation="vertical"
             >
 
