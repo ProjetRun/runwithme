@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+
+import miage.parisnanterre.fr.runwithme.R;
 
 
 public class GroupFragment extends Fragment {

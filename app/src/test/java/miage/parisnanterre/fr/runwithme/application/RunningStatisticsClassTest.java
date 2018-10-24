@@ -1,9 +1,7 @@
 package miage.parisnanterre.fr.runwithme.application;
 import org.junit.Test;
 
-import miage.parisnanterre.fr.runwithme.RunningStatistics;
-
-import static org.junit.Assert.*;
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 import static junit.framework.Assert.assertEquals;
 

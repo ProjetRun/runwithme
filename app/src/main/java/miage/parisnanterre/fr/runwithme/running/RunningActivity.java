@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.running;
 
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -30,13 +30,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.TimeZone;
 
+import miage.parisnanterre.fr.runwithme.badges.Badge;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.database.User;
+
 import static java.sql.DriverManager.println;
-import static miage.parisnanterre.fr.runwithme.MainActivity.user;
 
 public class RunningActivity extends AppCompatActivity {
 

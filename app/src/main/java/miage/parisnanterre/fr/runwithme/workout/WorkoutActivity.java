@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.workout;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.workout.BeforeWorkoutFragment;
 
 public class WorkoutActivity extends AppCompatActivity {
 

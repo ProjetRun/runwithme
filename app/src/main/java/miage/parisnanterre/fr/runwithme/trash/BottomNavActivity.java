@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.trash;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import miage.parisnanterre.fr.runwithme.R;
 
 public class BottomNavActivity extends AppCompatActivity {
 

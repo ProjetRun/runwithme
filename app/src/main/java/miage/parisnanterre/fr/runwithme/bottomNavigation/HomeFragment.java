@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +29,11 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import miage.parisnanterre.fr.runwithme.running.GPSService;
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.running.RunningActivity;
+import miage.parisnanterre.fr.runwithme.weather.Weather;
 
 
 public class HomeFragment extends Fragment {

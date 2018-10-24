@@ -2,10 +2,9 @@ package miage.parisnanterre.fr.runwithme.application;
 
 import org.junit.Test;
 
-import miage.parisnanterre.fr.runwithme.User;
+import miage.parisnanterre.fr.runwithme.database.User;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.*;
 
 /**
  * Created by nicolas on 28/03/18.

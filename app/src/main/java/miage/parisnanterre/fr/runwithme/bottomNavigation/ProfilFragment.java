@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,6 +19,8 @@ import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.RunningStatisticsActivity;
 
 
 public class ProfilFragment extends Fragment {

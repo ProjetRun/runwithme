@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.tab;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import miage.parisnanterre.fr.runwithme.R;
 
 
 public class TabActivity extends AppCompatActivity {

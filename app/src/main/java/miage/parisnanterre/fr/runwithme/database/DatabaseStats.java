@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,10 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import miage.parisnanterre.fr.runwithme.badges.Badge;
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 public class DatabaseStats extends SQLiteOpenHelper {
 

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="miage.parisnanterre.fr.runwithme.ChallengesFragment">
+    tools:context="miage.parisnanterre.fr.runwithme.bottomNavigation.ChallengesFragment">
 
     <TextView
         android:layout_width="match_parent"

@@ -2,8 +2,6 @@ package miage.parisnanterre.fr.runwithme;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Button;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
+
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.adapter;
 import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_dist;

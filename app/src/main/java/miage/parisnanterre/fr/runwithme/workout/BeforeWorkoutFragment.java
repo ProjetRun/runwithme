@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.workout;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+import miage.parisnanterre.fr.runwithme.R;
 
 public class BeforeWorkoutFragment extends Fragment {
     // The onCreateView method is called when Fragment should create its View object hierarchy,

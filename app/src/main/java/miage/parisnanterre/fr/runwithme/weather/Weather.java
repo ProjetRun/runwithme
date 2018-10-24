@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.weather;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

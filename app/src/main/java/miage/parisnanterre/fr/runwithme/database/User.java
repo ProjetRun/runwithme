@@ -1,6 +1,8 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.database;
 
 import java.util.HashMap;
+
+import miage.parisnanterre.fr.runwithme.badges.Badge;
 
 /**
  * Created by MICHEL Fabien on 13/03/2018.

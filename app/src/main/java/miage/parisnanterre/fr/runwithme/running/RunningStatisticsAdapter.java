@@ -1,23 +1,18 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.running;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_dist;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_speed;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_time;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.statistics;
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 public class RunningStatisticsAdapter extends ArrayAdapter<RunningStatistics>{
 

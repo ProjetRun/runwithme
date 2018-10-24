@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,14 +22,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
+import miage.parisnanterre.fr.runwithme.database.User;
+import miage.parisnanterre.fr.runwithme.running.RunningActivity;
+import miage.parisnanterre.fr.runwithme.trash.MapsFragment;
 
 import static miage.parisnanterre.fr.runwithme.MainActivity.user;
 

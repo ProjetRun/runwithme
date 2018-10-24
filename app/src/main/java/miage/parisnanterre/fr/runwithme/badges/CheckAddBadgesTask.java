@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.badges;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,6 +6,10 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import java.util.List;
+
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
+import miage.parisnanterre.fr.runwithme.running.RunningStatisticsAdapter;
 
 public class CheckAddBadgesTask extends AsyncTask<Void, Void, Void> {
 

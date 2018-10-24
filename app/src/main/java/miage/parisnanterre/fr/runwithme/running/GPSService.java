@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.running;
 
 import android.app.AlertDialog;
 import android.app.Service;

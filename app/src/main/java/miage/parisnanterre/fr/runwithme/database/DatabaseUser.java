@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.database;
 
 import android.content.ContentValues;
 import android.content.Context;

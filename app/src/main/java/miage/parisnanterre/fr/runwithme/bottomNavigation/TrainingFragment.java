@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.WarmActivity;
+import miage.parisnanterre.fr.runwithme.workout.WorkoutActivity;
 
 
 public class TrainingFragment extends Fragment {

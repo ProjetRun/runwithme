@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.running;
 
 import android.content.Context;
 import android.os.AsyncTask;

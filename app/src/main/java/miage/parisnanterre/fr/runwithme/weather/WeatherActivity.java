@@ -1,7 +1,6 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.weather;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -21,6 +20,8 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import miage.parisnanterre.fr.runwithme.R;
 
 /**
  * Created by Gvimra on 26/09/2018.

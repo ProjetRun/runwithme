@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.badges;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
+
+import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 
 public class ListAllBadgesActivity extends AppCompatActivity {
 

@@ -3,21 +3,20 @@ package miage.parisnanterre.fr.runwithme;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 
-import static miage.parisnanterre.fr.runwithme.MainActivity.user;
+import miage.parisnanterre.fr.runwithme.badges.Badge;
+import miage.parisnanterre.fr.runwithme.badges.ListAllBadgesActivity;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
+import miage.parisnanterre.fr.runwithme.database.User;
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
+import miage.parisnanterre.fr.runwithme.running.RunningStatisticsAdapter;
 
 public class RunningStatisticsActivity extends AppCompatActivity {
 
