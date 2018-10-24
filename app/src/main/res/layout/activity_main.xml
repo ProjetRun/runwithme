@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#B3E5FC">
+        android:background="@drawable/ic_bg2">
 
         <TextView
             android:id="@+id/textView"
@@ -21,7 +21,7 @@
             android:text="RunWithMe"
             android:textColor="@android:color/white"
             android:textSize="40dp"
-            android:shadowColor="#03A9F4"
+            android:shadowColor="#203030"
             android:shadowDx="10"
             android:shadowDy="10"
             android:shadowRadius="2"
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Se connecter"
-                android:background="#03A9F4"
+                android:background="#204040"
                 android:textColor="@android:color/white"
                 tools:layout_editor_absoluteX="105dp"
                 tools:layout_editor_absoluteY="447dp"
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:text="S'inscrire"
-                android:background="#29B6F6"
+                android:background="#203030"
                 android:textColor="@android:color/white"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="395dp"
