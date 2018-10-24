@@ -12,7 +12,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="338dp"
-        android:background="#29B6F6"
+        android:background="@drawable/ic_bg2"
         android:orientation="vertical">
 
         <LinearLayout
@@ -48,7 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#03A9F4"
+            android:background="#203030"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
+                    android:background="#203030"
                     android:text="0"
                     android:textColor="@android:color/white"
                     android:textSize="25dp" />
@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
+                    android:background="#203030"
                     android:text="Distance\n(m)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
@@ -92,7 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
+                    android:background="#203030"
                     android:text="0"
                     android:textColor="@android:color/white"
                     android:textSize="25dp" />
@@ -102,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
+                    android:background="#203030"
                     android:text="Rythme\n(km/h)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
@@ -121,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
+                    android:background="#203030"
                     android:text="0"
                     android:textColor="@android:color/white"
                     android:textSize="25dp" />
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#29B6F6"
+                    android:background="#203030"
                     android:text="Calories\n(cal)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
