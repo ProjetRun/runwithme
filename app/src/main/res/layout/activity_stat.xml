@@ -77,7 +77,7 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/see_all_badges"
                         android:layout_width="105dp"
                         android:layout_height="56dp"
                         android:background="@mipmap/ic_first_badge"

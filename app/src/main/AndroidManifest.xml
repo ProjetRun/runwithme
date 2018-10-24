@@ -65,6 +65,7 @@
             android:label="@string/title_activity_bottom_nav" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".WorkoutActivity" />
+        <activity android:name=".ListAllBadgesActivity" />
         <activity
             android:name=".WarmActivity"
             android:label="@string/title_activity_warm"
