@@ -1,6 +1,7 @@
 package miage.parisnanterre.fr.runwithme;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import com.truizlop.fabreveallayout.OnRevealChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class BeforeWorkoutFragment extends Fragment {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -30,16 +32,16 @@ public class BeforeWorkoutFragment extends Fragment {
 
     int[] imageArray = { R.drawable.highjumps1, R.drawable.highjumps2 };
     ImageView img;
-    private ProgressBar progressBar;
-    private int progressStatus = 0;
-    private TextView textView;
+    //private ProgressBar progressBar;
+    //private int progressStatus = 0;
+    //private TextView textView;
+
     FloatingActionButton fab;
     private ImageButton pause;
     private ImageButton skip;
-    private Handler handler = new Handler();
-    private Runnable runnable;
     private TextView exo;
     Thread th;
+    private boolean run = false;
     int i = 0;
     List<String> strechingTitle = new ArrayList<String>();
     HashMap<String,Integer> strechingWorkoutList = new HashMap<String, Integer>();
@@ -55,10 +57,9 @@ public class BeforeWorkoutFragment extends Fragment {
         img = (ImageView) view.findViewById(R.id.game_cover_image);
 
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        //progressBar.setSecondaryProgress(progressBar.getMax()/2);
-        textView = (TextView) view.findViewById(R.id.textView);
+
         exo = (TextView) view.findViewById(R.id.exercice);
+        mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         pause = (ImageButton) view.findViewById(R.id.imageButtonPause);
         skip = (ImageButton) view.findViewById(R.id.imageButtonSkip);
@@ -71,31 +72,7 @@ public class BeforeWorkoutFragment extends Fragment {
         strechingWorkoutList.put("Groin & back",R.drawable.groin_back);
         strechingWorkoutList.put("Hight Jump",R.drawable.hight_knees);
 
-        th = new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < progressBar.getMax()) {
-                    progressStatus += 1;
-                    // Update the progress bar and display the
-                    //current value in the text view
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(progressStatus);
-                            textView.setText(progressStatus+"");
-                        }
-                    });
-                    try {
-                        // Sleep for 1000 milliseconds.
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-            }
-        });
-
-
+        updateCountDownText();
     }
 
 
@@ -117,42 +94,28 @@ public class BeforeWorkoutFragment extends Fragment {
         int image = strechingWorkoutList.get(title);
         img.setImageResource(Integer.parseInt(String.valueOf(image)));
         exo.setText(title);
-        progressBar.setProgress(0);
-        textView.setText("0");
-        th = new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < progressBar.getMax()) {
-                    progressStatus += 1;
-                    // Update the progress bar and display the
-                    //current value in the text view
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(progressStatus);
-                            textView.setText(progressStatus+"");
-                        }
-                    });
-                    try {
-                        // Sleep for 1000 milliseconds.
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
 
-
-            }
-        });
         i++;
-        if(i==strechingTitle.size()){
-            i = 0;//i = i== strechingTitle.size() ? i+1 : 0;
+        if(i>strechingTitle.size()){
+            i = 0;
         }
     }
     private void prepareBackTransition(final FABRevealLayout fabRevealLayout) {
+        /*if (mTimerRunning) {
+            pauseTimer();
+        } else {*/
+            startTimer();
+        //}
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                th.interrupt();
+
+                //if (mTimerRunning) {
+                    pauseTimer();
+                /*} else {
+                    startTimer();
+                }*/
                 fabRevealLayout.revealMainView();
             }
         });
@@ -160,16 +123,60 @@ public class BeforeWorkoutFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                resetTimer();
                 changeWorkout();
                 fabRevealLayout.revealMainView();
             }
         });
-        new Handler().postDelayed(new Runnable() {
+
+    }
+
+    private static final long START_TIME_IN_MILLIS = 30000;
+
+    private TextView mTextViewCountDown;
+
+    private CountDownTimer mCountDownTimer;
+
+    private boolean mTimerRunning;
+
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
-            public void run() {
-                th.start();
-                //
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
             }
-        }, 2000);
+
+            @Override
+            public void onFinish() {
+                skip.performClick();
+                mTimerRunning = false;
+                resetTimer();
+            }
+        }.start();
+
+        mTimerRunning = true;
+    }
+
+    private void pauseTimer() {
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+    }
+
+    private void resetTimer() {
+        pauseTimer();
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        updateCountDownText();
+    }
+
+    private void updateCountDownText() {
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        mTextViewCountDown.setText(timeLeftFormatted);
     }
 }
