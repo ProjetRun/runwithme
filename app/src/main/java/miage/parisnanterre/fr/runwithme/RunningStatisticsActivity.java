@@ -1,5 +1,6 @@
 package miage.parisnanterre.fr.runwithme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -83,10 +84,10 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         img_next_level.setImageResource(R.mipmap.firstrun_badge);
         img_next_level.setVisibility(View.GONE);
 
-        HashMap hmap = user.getHmap();
+        //HashMap hmap = user.getHmap();
         db.getAllBadges();
         for(Badge badge : db.getAllBadges()){
-            hmap.put(hmap.size(),badge);
+            //hmap.put(hmap.size(),badge);
             dernier_badge.setText(badge.getNom());
             dernier_badge.setVisibility(View.VISIBLE);
         }
@@ -120,6 +121,17 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         button_record_time.setText(best_duree_course);
         button_record_speed.setText(best_rythme+"km/h");
         button_record_dist.setText(best_distance+" "+uniteMesure);
+        Button b = findViewById(R.id.see_all_badges);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                launchBadgesActivity(v);
+            }
+        });
+    }
+    public void launchBadgesActivity(View v){
+        Intent intent = new Intent(this, ListAllBadgesActivity.class);
+        startActivity(intent);
     }
 
 }

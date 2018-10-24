@@ -57,6 +57,7 @@ public class RunningActivity extends AppCompatActivity {
     java.text.DecimalFormat df2;
     Chronometer simpleChronometer;
     ImageView play_and_stop;
+    User user = new User();
 
     double latitude;
     double longitude;
