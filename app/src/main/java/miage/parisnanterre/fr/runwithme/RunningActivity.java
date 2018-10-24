@@ -284,7 +284,7 @@ public class RunningActivity extends AppCompatActivity {
         //boutons de la popup de fin de course
         txtv_pogress = mBottomSheetDialog.getWindow().findViewById(R.id.textView7);
         txtv_badge = mBottomSheetDialog.getWindow().findViewById(R.id.button_badge);
-        txtv_badge.setVisibility(View.GONE);//on masque le bouton "badge" par défaut si l'utilisateur n'en gagne pas pendant la course
+        //txtv_badge.setVisibility(View.GONE);//on masque le bouton "badge" par défaut si l'utilisateur n'en gagne pas pendant la course
 
         for(Badge badge : badges){
             txtv_badge.setVisibility(View.VISIBLE);

@@ -54,6 +54,7 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         User us = dbU.getUsers();
         db.getAllBadges();
         ImageView img_level = (ImageView) findViewById(R.id.imageView10);
+
         switch (us.getLevel()){
             case 1:
                 img_level.setImageResource(R.mipmap.ic_level_one_foreground);
@@ -81,8 +82,8 @@ public class RunningStatisticsActivity extends AppCompatActivity {
         }
 
         ImageView img_next_level = findViewById(R.id.imageView10);
-        img_next_level.setImageResource(R.mipmap.firstrun_badge);
-        img_next_level.setVisibility(View.GONE);
+        img_next_level.setImageResource(R.mipmap.ic_level_one_foreground);
+        //img_next_level.setVisibility(View.GONE);
 
         //HashMap hmap = user.getHmap();
         db.getAllBadges();
