@@ -80,6 +80,7 @@
                         android:id="@+id/see_all_badges"
                         android:layout_width="105dp"
                         android:layout_height="56dp"
+                        android:layout_gravity="center"
                         android:background="@mipmap/ic_first_badge"
                         android:backgroundTint="@color/colorPrimaryDark"
                         android:fontFamily="@font/arsenal_bold"
