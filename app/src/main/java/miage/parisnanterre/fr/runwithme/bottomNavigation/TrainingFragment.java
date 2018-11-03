@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import miage.parisnanterre.fr.runwithme.R;
-import miage.parisnanterre.fr.runwithme.WarmActivity;
 import miage.parisnanterre.fr.runwithme.workout.WorkoutActivity;
 
 
@@ -37,12 +35,14 @@ public class TrainingFragment extends Fragment {
         cardioLayout = (LinearLayout) view.findViewById(R.id.lay1);
         stretchingLayout = (LinearLayout) view.findViewById(R.id.lay2);
         hiitLayout = (LinearLayout) view.findViewById(R.id.lay3);
+
         cardioLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Warmup!",
-                        Toast. LENGTH_SHORT ).show();
-                Intent intent = new Intent(getActivity(), WarmActivity.class);
+                //Toast.makeText(getActivity(), "Warmup!",Toast. LENGTH_SHORT ).show();
+                //Intent intent = new Intent(getActivity(), WarmActivity.class);
+                Intent intent = new Intent(getActivity(), WorkoutActivity.class);
+                intent.putExtra("WORKOUT_SESSION", "warmup");
                 startActivity(intent);
 
             }
@@ -50,17 +50,18 @@ public class TrainingFragment extends Fragment {
         stretchingLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Stretching!",
-                        Toast. LENGTH_SHORT ).show();
+                //Toast.makeText(getActivity(), "Stretching!",Toast. LENGTH_SHORT ).show();
                 Intent intent = new Intent(getActivity(), WorkoutActivity.class);
+                intent.putExtra("WORKOUT_SESSION", "stretching");
                 startActivity(intent);
             }
         });
         hiitLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "HIIT!",
-                        Toast. LENGTH_SHORT ).show();
+                Intent intent = new Intent(getActivity(), WorkoutActivity.class);
+                intent.putExtra("WORKOUT_SESSION", "coach");
+                startActivity(intent);
             }
         });
     }

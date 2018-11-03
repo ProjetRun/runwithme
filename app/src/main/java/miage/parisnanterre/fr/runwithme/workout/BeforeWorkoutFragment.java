@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import miage.parisnanterre.fr.runwithme.R;
 
@@ -47,6 +48,11 @@ public class BeforeWorkoutFragment extends Fragment {
     int i = 0;
     List<String> strechingTitle = new ArrayList<String>();
     HashMap<String,Integer> strechingWorkoutList = new HashMap<String, Integer>();
+    Random random = new Random();
+    List<String> keys;
+
+    private String session;
+
 
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
@@ -65,14 +71,11 @@ public class BeforeWorkoutFragment extends Fragment {
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         pause = (ImageButton) view.findViewById(R.id.imageButtonPause);
         skip = (ImageButton) view.findViewById(R.id.imageButtonSkip);
-        strechingTitle.add("Hight Knees");
-        strechingTitle.add("Standing toe");
-        strechingTitle.add("Groin & back");
-        strechingTitle.add("Hight Jump");
-        strechingWorkoutList.put("Hight Knees",R.drawable.hight_knees);
-        strechingWorkoutList.put("Standing toe",R.drawable.standing_toe);
-        strechingWorkoutList.put("Groin & back",R.drawable.groin_back);
-        strechingWorkoutList.put("Hight Jump",R.drawable.hight_knees);
+
+        session = ((WorkoutActivity)getActivity()).getWORKOUT_SESSION();
+
+        insertWorkout();
+        changeWorkout();
 
         updateCountDownText();
     }
@@ -91,7 +94,61 @@ public class BeforeWorkoutFragment extends Fragment {
     }
 
 
+    private  void insertStretching(){
+        //streching
+        strechingWorkoutList.put("Hight Knees",R.drawable.hight_knees);
+        strechingWorkoutList.put("Standing toe",R.drawable.standing_toe);
+        strechingWorkoutList.put("Groin & back",R.drawable.groin_back);
+        strechingWorkoutList.put("Hight Jump",R.drawable.hight_jump);
+        strechingWorkoutList.put("Calf",R.drawable.calf);
+        strechingWorkoutList.put("Dynamic chest",R.drawable.dynamic_chest);
+        strechingWorkoutList.put("Site to side lunge",R.drawable.site_to_side_lunge);
+        strechingWorkoutList.put("Toe tap hops",R.drawable.toe_tap_hops);
+    }
+    private  void insertWarmUp(){
+        //warmup
+        strechingWorkoutList.put("Alt back expensions",R.drawable.alt_back_expensions);
+        strechingWorkoutList.put("Arm circles",R.drawable.arm_circles);
+        strechingWorkoutList.put("arm circles wide",R.drawable.arm_circles_wide);
+        strechingWorkoutList.put("Chest expensions",R.drawable.chest_expensions);
+        strechingWorkoutList.put("Hip rotation",R.drawable.hip_rotation);
+        strechingWorkoutList.put("Hop on the spot",R.drawable.hop_on_the_spot);
+        strechingWorkoutList.put("Side to side hop",R.drawable.side_to_side_hop);
+        strechingWorkoutList.put("Torso rotation",R.drawable.torso_rotation);
+    }
+    private  void insertCoach(){
+        //coach
+        strechingWorkoutList.put("Climber",R.drawable.climber);
+        strechingWorkoutList.put("Jumping jack",R.drawable.jumping_jack);
+        strechingWorkoutList.put("Lung step up",R.drawable.lunge_step_up);
+        strechingWorkoutList.put("Plank",R.drawable.plank);
+        strechingWorkoutList.put("Plank jacks",R.drawable.plank_jacks);
+        strechingWorkoutList.put("Squat",R.drawable.squat);
+    }
+    private void insertWorkout(){
+        switch (session){
+            case "stretching": insertStretching();break;
+            case "warmup": insertWarmUp();break;
+            case "coach" : insertCoach();break;
+            default:
+                insertStretching();
+                insertWarmUp();
+                insertCoach();
+        }
+        keys = new ArrayList<String>(strechingWorkoutList.keySet());
+    }
     private void changeWorkout(){
+
+        String randomKey = keys.get( random.nextInt(keys.size()) );
+        int value = strechingWorkoutList.get(randomKey);
+        if(randomKey == exo.getText()){
+            changeWorkout();
+        }else{
+            img.setImageResource(Integer.parseInt(String.valueOf(value)));
+            exo.setText(randomKey);
+        }
+    }
+    private void selectWorkout(){
         String title = strechingTitle.get(i);
         int image = strechingWorkoutList.get(title);
         img.setImageResource(Integer.parseInt(String.valueOf(image)));

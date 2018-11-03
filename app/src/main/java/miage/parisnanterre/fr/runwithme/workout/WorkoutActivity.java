@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.workout.BeforeWorkoutFragment;
@@ -17,11 +18,14 @@ public class WorkoutActivity extends AppCompatActivity {
     FragmentTransaction ft;
     Button b;
     Boolean isBeforeWorkout;
+    String WORKOUT_SESSION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+
+        setWORKOUT_SESSION(getIntent().getStringExtra("WORKOUT_SESSION"));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -34,6 +38,16 @@ public class WorkoutActivity extends AppCompatActivity {
         ft.commit();
 
         isBeforeWorkout = true;
+
+
+
+    }
+
+    public void setWORKOUT_SESSION(String session){
+        this.WORKOUT_SESSION = session;
+    }
+    public String getWORKOUT_SESSION(){
+        return this.WORKOUT_SESSION;
     }
 
     protected void changeWorkoutFragment(View v){

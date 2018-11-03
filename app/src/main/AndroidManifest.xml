@@ -66,10 +66,6 @@
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
-        <activity
-            android:name=".WarmActivity"
-            android:label="@string/title_activity_warm"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
