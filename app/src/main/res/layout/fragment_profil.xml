@@ -264,8 +264,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="241dp"
-            android:layout_gravity="bottom"
+            android:layout_height="257dp"
             android:background="@color/common_google_signin_btn_text_dark_default"
             android:orientation="vertical">
 
@@ -285,17 +284,39 @@
                 android:textSize="18sp" />
 
 
-            <lecho.lib.hellocharts.view.LineChartView
-                android:id="@+id/chart"
-                android:layout_width="397dp"
-                android:layout_height="161dp"
-                android:visibility="visible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="172dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="31dp"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:rotation="-90"
+                    android:text="m"
+                    android:textAllCaps="false" />
+
+                <lecho.lib.hellocharts.view.LineChartView
+                    android:id="@+id/chart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mes courses"
+                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/buttonLaunchRunningStat"
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
+                android:layout_height="38dp"
                 android:onClick="launchRunningStatActivity"
                 android:text="Show race"
                 tools:ignore="OnClick" />

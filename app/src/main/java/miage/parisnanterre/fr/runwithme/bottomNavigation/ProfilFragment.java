@@ -96,6 +96,7 @@ public class ProfilFragment extends Fragment {
 
         //In most cased you can call data model methods in builder-pattern-like manner.
         Line line = new Line(values).setColor(Color.DKGRAY).setCubic(true);
+
         List<Line> lines = new ArrayList<Line>();
         lines.add(line);
 
