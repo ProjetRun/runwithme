@@ -15,17 +15,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.RunningStatisticsActivity;
+import miage.parisnanterre.fr.runwithme.badges.Badge;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
+import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 
 public class ProfilFragment extends Fragment {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation.
+    // either dynamically or via XML layout inflation
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
@@ -72,19 +79,49 @@ public class ProfilFragment extends Fragment {
         LineChartView chart = (LineChartView) view.findViewById(R.id.chart);
 
         List<PointValue> values = new ArrayList<PointValue>();
-        values.add(new PointValue(0, 2));
-        values.add(new PointValue(1, 4));
-        values.add(new PointValue(2, 3));
-        values.add(new PointValue(3, 4));
+
+        PointValue PointValue;
+
+        DatabaseStats db = new DatabaseStats(getContext());
+        List<RunningStatistics> statistics;
+        statistics = db.getAllStats();
+        float distance_max=0;
+        values.add(new PointValue(0, 0));
+        for(RunningStatistics runningStatistics : statistics){
+            Float distance= Float.parseFloat(runningStatistics.getDistance());
+            if (distance_max < distance)distance_max = distance;
+            PointValue = new PointValue(runningStatistics.getId(), distance);
+            values.add(PointValue);
+        }
 
         //In most cased you can call data model methods in builder-pattern-like manner.
-        Line line = new Line(values).setColor(Color.BLUE).setCubic(true);
+        Line line = new Line(values).setColor(Color.DKGRAY).setCubic(true);
         List<Line> lines = new ArrayList<Line>();
         lines.add(line);
 
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
+        List<AxisValue> axisValuesForX = new ArrayList<>();
+        List<AxisValue> axisValuesForY = new ArrayList<>();
+        AxisValue tempAxisValue;
+
+        for (int i = 0; i <= 10; i ++){
+            tempAxisValue = new AxisValue(i);
+            tempAxisValue.setLabel(i+"");
+            axisValuesForX.add(tempAxisValue);
+        }
+
+        for (int i = 0; i <= distance_max; i += distance_max/10){
+            tempAxisValue = new AxisValue(i);
+            tempAxisValue.setLabel(""+i);
+            axisValuesForY.add(tempAxisValue);
+        }
+
+        Axis xAxis = new Axis(axisValuesForX);
+        Axis yAxis = new Axis(axisValuesForY);
+        data.setAxisXBottom(xAxis);
+        data.setAxisYLeft(yAxis);
 
         chart.setLineChartData(data);
 
