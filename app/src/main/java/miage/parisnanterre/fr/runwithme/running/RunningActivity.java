@@ -291,6 +291,7 @@ public class RunningActivity extends AppCompatActivity {
 
         for(Badge badge : badges){
             txtv_badge.setVisibility(View.VISIBLE);
+            txtv_badge.setBackgroundResource(R.mipmap.badge_orange);
             txtv_badge.setText(badge.getNom());
         }
 
