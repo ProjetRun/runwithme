@@ -12,6 +12,38 @@
         android:orientation="vertical"
         android:background="#6ec6ff">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3096cc"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#3096cc"
+                android:src="@android:drawable/ic_media_play" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#FFF"
+                android:text="NRJ Hits For Running" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#3096cc"
+                android:src="@android:drawable/ic_delete" />
+        </LinearLayout>
         <ImageView
             android:id="@+id/game_cover_image"
             android:src="@drawable/hight_jump"
@@ -35,10 +67,7 @@
                 android:text="Hight Jump"
                 style="@style/GameTitleStyle"/>
 
-
-
         </LinearLayout>
-
 
         <com.truizlop.fabreveallayout.FABRevealLayout
             android:id="@+id/fab_reveal_layout"

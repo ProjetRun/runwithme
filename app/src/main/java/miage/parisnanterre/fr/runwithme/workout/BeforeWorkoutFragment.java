@@ -1,5 +1,7 @@
 package miage.parisnanterre.fr.runwithme.workout;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -8,14 +10,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.truizlop.fabreveallayout.FABRevealLayout;
 import com.truizlop.fabreveallayout.OnRevealChangeListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +58,10 @@ public class BeforeWorkoutFragment extends Fragment {
 
     private String session;
 
-
+    //private TextView xxx;
+    //private Button xxx;
+    private ImageButton xxx;
+    MediaPlayer mPlayer;
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
@@ -71,7 +79,51 @@ public class BeforeWorkoutFragment extends Fragment {
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         pause = (ImageButton) view.findViewById(R.id.imageButtonPause);
         skip = (ImageButton) view.findViewById(R.id.imageButtonSkip);
+        //xxx = (TextView) view.findViewById(R.id.xxx);
+        xxx = (ImageButton) view.findViewById(R.id.btn_play);
+        xxx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //xxx.setEnabled(false);
+                String audioUrl = "http://185.52.127.159/fr/30007/mp3_128.mp3?origine=fluxradios";
 
+                // Initialize a new media player instance
+                mPlayer = new MediaPlayer();
+
+                // Set the media player audio stream type
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                try {
+
+                    if(mPlayer.isPlaying()){
+                        mPlayer.pause();
+                        //xxx.setText("START NRJ for fitness");
+                    } else {
+                        mPlayer.setDataSource(audioUrl);
+                        // Prepare the media player
+                        mPlayer.prepare();
+
+                        // Start playing audio from http url
+                        mPlayer.start();
+
+                        //xxx.setText("STOP NRJ for fitness");
+
+                    }
+
+
+                    // Inform user for audio streaming
+                    Toast.makeText(getContext(),"Playing",Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }catch (IllegalArgumentException e){
+                    e.printStackTrace();
+                }catch (SecurityException e){
+                    e.printStackTrace();
+                }catch (IllegalStateException e){
+                    e.printStackTrace();
+                }
+                //Toast.makeText(getContext(),"Playing",Toast.LENGTH_SHORT).show();
+            }
+        });
         session = ((WorkoutActivity)getActivity()).getWORKOUT_SESSION();
 
         insertWorkout();
