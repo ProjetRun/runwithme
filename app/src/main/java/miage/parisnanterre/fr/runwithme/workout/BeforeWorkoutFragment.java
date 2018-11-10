@@ -60,8 +60,11 @@ public class BeforeWorkoutFragment extends Fragment {
 
     //private TextView xxx;
     //private Button xxx;
+    private TextView streamTXT;
     private ImageButton xxx;
     MediaPlayer mPlayer;
+    private ImageButton btnStop;
+    final String audioUrl = "http://185.52.127.159/fr/30007/mp3_128.mp3?origine=fluxradios";
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
@@ -80,25 +83,58 @@ public class BeforeWorkoutFragment extends Fragment {
         pause = (ImageButton) view.findViewById(R.id.imageButtonPause);
         skip = (ImageButton) view.findViewById(R.id.imageButtonSkip);
         //xxx = (TextView) view.findViewById(R.id.xxx);
+        streamTXT = (TextView) view.findViewById(R.id.streamTXT);
         xxx = (ImageButton) view.findViewById(R.id.btn_play);
+        btnStop = (ImageButton) view.findViewById(R.id.btn_stop);
+
+
+        // Initialize a new media player instance
+        mPlayer = new MediaPlayer();
+
+        // Set the media player audio stream type
+        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            mPlayer.setDataSource(audioUrl);
+            mPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mPlayer.isPlaying()){
+                    mPlayer.pause();
+                    //xxx.setText("START NRJ for fitness");
+                } else {
+                    //
+                }
+            }
+        });
         xxx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Prepare the media player
+
+                    //String station = (String) streamTXT.getText();
+                    //streamTXT.setText("loading");
+
+                    // Start playing audio from http url
+                    mPlayer.start();
+                    //streamTXT.setText(station);
+
+
+
+            }
                 //xxx.setEnabled(false);
-                String audioUrl = "http://185.52.127.159/fr/30007/mp3_128.mp3?origine=fluxradios";
-
-                // Initialize a new media player instance
-                mPlayer = new MediaPlayer();
-
-                // Set the media player audio stream type
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                /*
                 try {
 
                     if(mPlayer.isPlaying()){
                         mPlayer.pause();
                         //xxx.setText("START NRJ for fitness");
                     } else {
-                        mPlayer.setDataSource(audioUrl);
+
                         // Prepare the media player
                         mPlayer.prepare();
 
@@ -122,7 +158,7 @@ public class BeforeWorkoutFragment extends Fragment {
                     e.printStackTrace();
                 }
                 //Toast.makeText(getContext(),"Playing",Toast.LENGTH_SHORT).show();
-            }
+            }*/
         });
         session = ((WorkoutActivity)getActivity()).getWORKOUT_SESSION();
 
@@ -290,4 +326,8 @@ public class BeforeWorkoutFragment extends Fragment {
 
         mTextViewCountDown.setText(timeLeftFormatted);
     }
+    public void stopStream(){
+        mPlayer.pause();
+    }
+
 }
