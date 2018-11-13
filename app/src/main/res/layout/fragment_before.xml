@@ -44,6 +44,11 @@
                 android:background="#3096cc"
                 android:src="@android:drawable/ic_delete" />
         </LinearLayout>
+        <com.badoualy.stepperindicator.StepperIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:stpi_stepCount="5"/>
         <ImageView
             android:id="@+id/game_cover_image"
             android:src="@drawable/hight_jump"

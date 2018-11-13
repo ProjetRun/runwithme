@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.badoualy.stepperindicator.StepperIndicator;
 import com.truizlop.fabreveallayout.FABRevealLayout;
 import com.truizlop.fabreveallayout.OnRevealChangeListener;
 
@@ -55,6 +56,8 @@ public class BeforeWorkoutFragment extends Fragment {
     HashMap<String,Integer> strechingWorkoutList = new HashMap<String, Integer>();
     Random random = new Random();
     List<String> keys;
+    StepperIndicator indicator;
+    int currentStep = 0;
 
     private String session;
 
@@ -76,7 +79,8 @@ public class BeforeWorkoutFragment extends Fragment {
         img = (ImageView) view.findViewById(R.id.game_cover_image);
 
 
-
+        indicator = (StepperIndicator) view.findViewById(R.id.indicator);
+        //indicator.setCurrentStep(2);
         exo = (TextView) view.findViewById(R.id.exercice);
         mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -273,6 +277,8 @@ public class BeforeWorkoutFragment extends Fragment {
                 resetTimer();
                 changeWorkout();
                 fabRevealLayout.revealMainView();
+                currentStep = indicator.getStepCount() != currentStep ? currentStep+1 : currentStep;
+                indicator.setCurrentStep(currentStep);
             }
         });
 
