@@ -33,6 +33,7 @@ public class GroupFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.loadUrl("http://www.jogging-plus.com/calendrier/courses-5-10-15-km/ile-de-france/");
+        
         //https://www.parisrunningtour.com/fr/competitions/
     }
 

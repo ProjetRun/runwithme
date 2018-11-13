@@ -4,10 +4,86 @@
     android:layout_height="match_parent"
     tools:context="miage.parisnanterre.fr.runwithme.bottomNavigation.ChallengesFragment">
 
-    <TextView
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rightLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Defis"
-        android:gravity="center_vertical|center_horizontal"/>
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/solo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/solo">
+
+            <TextView
+                android:id="@+id/textView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1"
+                android:text="Defis du courreur"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/grp"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="@drawable/grp">
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1"
+                android:text="Défis du groupe"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/event"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="@drawable/event"
+            >
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1"
+                android:text="événement"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </FrameLayout>

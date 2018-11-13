@@ -1,6 +1,7 @@
 package miage.parisnanterre.fr.runwithme.workout;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
