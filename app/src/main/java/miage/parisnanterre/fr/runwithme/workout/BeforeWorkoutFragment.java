@@ -221,7 +221,10 @@ public class BeforeWorkoutFragment extends Fragment {
         switch (session){
             case "stretching": insertStretching();break;
             case "warmup": insertWarmUp();break;
-            case "coach" : insertCoach();break;
+            case "coach" :
+                indicator.setStepCount(10);
+                insertCoach();
+                break;
             default:
                 insertStretching();
                 insertWarmUp();
@@ -279,6 +282,10 @@ public class BeforeWorkoutFragment extends Fragment {
                 fabRevealLayout.revealMainView();
                 currentStep = indicator.getStepCount() != currentStep ? currentStep+1 : currentStep;
                 indicator.setCurrentStep(currentStep);
+                if(currentStep == indicator.getStepCount()){
+                    ((WorkoutActivity)getActivity()).toggleWorkoutFinish();
+                    ((WorkoutActivity)getActivity()).closeWorkout();
+                }
             }
         });
 

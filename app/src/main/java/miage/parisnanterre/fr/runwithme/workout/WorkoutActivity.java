@@ -23,6 +23,7 @@ public class WorkoutActivity extends AppCompatActivity {
     Button b;
     Boolean isBeforeWorkout;
     String WORKOUT_SESSION;
+    Boolean workoutIsFinish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class WorkoutActivity extends AppCompatActivity {
         actionBar.hide();
 
         b = (Button) findViewById(R.id.workoutButton);
-
+        workoutIsFinish = false;
         ft = getSupportFragmentManager().beginTransaction();
         currentFragment = new BeforeWorkoutFragment();
         ft.replace(R.id.containerWorkout, currentFragment);
@@ -47,11 +48,61 @@ public class WorkoutActivity extends AppCompatActivity {
 
     }
 
+    public void toggleWorkoutFinish(){
+        this.workoutIsFinish = !workoutIsFinish;
+    }
     public void setWORKOUT_SESSION(String session){
         this.WORKOUT_SESSION = session;
     }
     public String getWORKOUT_SESSION(){
         return this.WORKOUT_SESSION;
+    }
+
+    public void closeWorkout(){
+        if(workoutIsFinish==false){
+            new BottomDialog.Builder(this)
+                    .setTitle("are you sure ?")
+                    .setContent("You have finished your training soon ...")
+                    .setPositiveText("Exit")
+                    .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                    //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                    .setPositiveTextColorResource(android.R.color.white)
+                    //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                    .onPositive(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            Log.d("BottomDialogs", "Do something!");
+                            finish();
+                        }
+                    })
+                    //.setCancelable(false)//Dismissing when touching outside
+                    .setNegativeText("Cancel")
+                    .setNegativeTextColorResource(R.color.colorAccent)
+                    .onNegative(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            Log.d("BottomDialogs", "Do something!");
+                        }
+                    }).show();
+        }else{
+            new BottomDialog.Builder(this)
+                    .setTitle("Awesome!")
+                    .setContent("The way get started is to quit talking and begin doing. – Walt Disney")
+                    .setPositiveText("continue")
+                    .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                    //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                    .setPositiveTextColorResource(android.R.color.white)
+                    //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                    .onPositive(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            Log.d("BottomDialogs", "Do something!");
+                            finish();
+                        }
+                    })
+                    .setCancelable(false)//Dismissing when touching outside
+                    .show();
+        }
     }
 
     protected void changeWorkoutFragment(View v){
@@ -73,6 +124,7 @@ public class WorkoutActivity extends AppCompatActivity {
         }
         //isBeforeWorkout = isBeforeWorkout==true?false:true;
         */
+        /*
         new BottomDialog.Builder(this)
                 .setTitle("Awesome!")
                 .setContent("What can we improve? Your feedback is always welcome.")
@@ -98,5 +150,7 @@ public class WorkoutActivity extends AppCompatActivity {
                     }
                 }).show();
         //this.onBackPressed();
+        */
+        closeWorkout();
     }
 }
