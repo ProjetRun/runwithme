@@ -6,9 +6,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.github.javiersantos.bottomdialogs.BottomDialog;
 
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.workout.BeforeWorkoutFragment;
@@ -70,6 +73,30 @@ public class WorkoutActivity extends AppCompatActivity {
         }
         //isBeforeWorkout = isBeforeWorkout==true?false:true;
         */
-        this.onBackPressed();
+        new BottomDialog.Builder(this)
+                .setTitle("Awesome!")
+                .setContent("What can we improve? Your feedback is always welcome.")
+                .setPositiveText("OK")
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                        finish();
+                    }
+                })
+                .setCancelable(false)//Dismissing when touching outside
+                .setNegativeText("Exit")
+                .setNegativeTextColorResource(R.color.colorAccent)
+                .onNegative(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                    }
+                }).show();
+        //this.onBackPressed();
     }
 }
