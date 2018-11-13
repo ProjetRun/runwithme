@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.icu.text.NumberFormat;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.SystemClock;
@@ -26,11 +27,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileOutputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import miage.parisnanterre.fr.runwithme.badges.Badge;
@@ -141,11 +144,11 @@ public class RunningActivity extends AppCompatActivity {
     public void do_click_for_play_tracking(){
 
         isLaunch = true;
-       play_and_stop.setImageResource(R.mipmap.ic_stop_foreground);
-       //play_and_stop.setBackgroundColor(Color.rgb(219, 45, 45));
+        play_and_stop.setImageResource(R.mipmap.ic_stop_foreground);
+        //play_and_stop.setBackgroundColor(Color.rgb(219, 45, 45));
 
-       simpleChronometer.setBase(SystemClock.elapsedRealtime());
-       simpleChronometer.start(); // start a chronometer
+        simpleChronometer.setBase(SystemClock.elapsedRealtime());
+        simpleChronometer.start(); // start a chronometer
         //configureLocation();
         if(broadcastReceiver == null){
             broadcastReceiver = new BroadcastReceiver() {
@@ -204,10 +207,24 @@ public class RunningActivity extends AppCompatActivity {
 
         simpleChronometer.stop();
 
-        double nbKilometre = Double.parseDouble(button_distance.getText().toString());
+        //double nbKilometre = Double.parseDouble(button_distance.getText().toString());
 
-        String nb = button_distance.getText().toString();
-        println(nb);
+        NumberFormat format = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            format = NumberFormat.getInstance(Locale.FRANCE);
+        }
+        Number number = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            try {
+                number = format.parse(button_distance.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        double nbKilometre = number.doubleValue();
+
+        //String nb = button_distance.getText().toString();
+        //println(nb);
 
         if(is_km==false){
             nbKilometre=0.0;
@@ -251,7 +268,7 @@ public class RunningActivity extends AppCompatActivity {
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);
         db.addStats(pushStats);
-        dbU.update(user);
+        //dbU.update(user);
 
         //add badges if conditions
         //CheckAddBadgesTask checkAddBadges = new CheckAddBadgesTask(this);
@@ -343,7 +360,6 @@ public class RunningActivity extends AppCompatActivity {
                 img_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
                 img_next_level.setImageResource(R.mipmap.ic_levelinfinite_foreground);
         }
-
     }
 
     public void do_click_for_share(View v){

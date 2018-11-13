@@ -2,6 +2,8 @@ package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.text.NumberFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -12,8 +14,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
@@ -87,13 +91,30 @@ public class ProfilFragment extends Fragment {
         statistics = db.getAllStats();
         float distance_max=0;
         values.add(new PointValue(0, 0));
+        //
+
         for(RunningStatistics runningStatistics : statistics){
-            Float distance= Float.parseFloat(runningStatistics.getDistance());
+            //Float distance= Float.parseFloat(runningStatistics.getDistance());
+
+            NumberFormat format = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                format = NumberFormat.getInstance(Locale.FRANCE);
+            }
+            Number number = null;
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    number = format.parse(runningStatistics.getDistance());
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            float distance = number.floatValue();
+
             if (distance_max < distance)distance_max = distance;
             PointValue = new PointValue(runningStatistics.getId(), distance);
             values.add(PointValue);
         }
-
+//
         //In most cased you can call data model methods in builder-pattern-like manner.
         Line line = new Line(values).setColor(Color.DKGRAY).setCubic(true);
 
@@ -113,17 +134,23 @@ public class ProfilFragment extends Fragment {
             axisValuesForX.add(tempAxisValue);
         }
 
-        for (int i = 0; i <= distance_max; i += distance_max/10){
-            tempAxisValue = new AxisValue(i);
-            tempAxisValue.setLabel(""+i);
+        if(distance_max == 0){
+            tempAxisValue = new AxisValue(1);
+            tempAxisValue.setLabel(""+1);
             axisValuesForY.add(tempAxisValue);
+        }
+        else{
+            for (int i = 0; i <= distance_max; i += distance_max/10){
+                tempAxisValue = new AxisValue(i);
+                tempAxisValue.setLabel(""+i);
+                axisValuesForY.add(tempAxisValue);
+            }
         }
 
         Axis xAxis = new Axis(axisValuesForX);
         Axis yAxis = new Axis(axisValuesForY);
         data.setAxisXBottom(xAxis);
         data.setAxisYLeft(yAxis);
-
         chart.setLineChartData(data);
 
         Button b = (Button) view.findViewById(R.id.buttonLaunchRunningStat);
