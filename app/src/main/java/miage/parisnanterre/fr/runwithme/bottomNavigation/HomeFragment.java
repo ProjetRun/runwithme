@@ -2,6 +2,8 @@ package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -131,6 +134,9 @@ public class HomeFragment extends Fragment {
                 launchRunningActivity(v);
             }
         });
+
+
+        notification();
     }
 
 
@@ -253,6 +259,46 @@ public class HomeFragment extends Fragment {
 
 
         }
+
+    }
+
+    private void notification() {
+
+        if(detailsField.getText() == "clear sky" || detailsField.getText()=="few clouds") {
+
+            // Builds your notification
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity())
+                    .setSmallIcon(R.mipmap.ic_launcher_round)
+                    .setContentTitle("RunWithMe vous informe :)")
+                    .setContentText("It's sunny today, go running dear");
+
+            // Creates the intent needed to show the notification
+            Intent notificationIntent = new Intent(getActivity(), HomeFragment.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(getActivity(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(contentIntent);
+
+            // Add as notification
+            NotificationManager manager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+            manager.notify(0, builder.build());
+        }
+        else {
+            // Builds your notification
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity())
+                    .setSmallIcon(R.mipmap.ic_launcher_round)
+                    .setContentTitle("RunWithMe vous informe :)")
+                    .setContentText("It's not a good weather for running now");
+
+            // Creates the intent needed to show the notification
+            Intent notificationIntent = new Intent(getActivity(), HomeFragment.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(getActivity(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(contentIntent);
+
+            // Add as notification
+            NotificationManager manager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+            manager.notify(0, builder.build());
+
+        }
+
 
     }
 
