@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
 
             // Builds your notification
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity())
-                    .setSmallIcon(R.mipmap.ic_launcher_round)
+                    .setSmallIcon(R.mipmap.ic_icon_app_round)
                     .setContentTitle("RunWithMe vous informe :)")
                     .setContentText("It's sunny today, go running dear");
 
@@ -284,7 +284,7 @@ public class HomeFragment extends Fragment {
         else {
             // Builds your notification
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity())
-                    .setSmallIcon(R.mipmap.ic_launcher_round)
+                    .setSmallIcon(R.mipmap.ic_icon_app_round)
                     .setContentTitle("RunWithMe vous informe :)")
                     .setContentText("It's not a good weather for running now");
 
