@@ -1,7 +1,6 @@
 package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.icu.text.NumberFormat;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,21 +20,22 @@ import java.util.Locale;
 
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.Column;
+import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.view.LineChartView;
+import lecho.lib.hellocharts.model.SubcolumnValue;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.ColumnChartView;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.RunningStatisticsActivity;
-import miage.parisnanterre.fr.runwithme.badges.Badge;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
-import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 
 public class ProfilFragment extends Fragment {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation
+    private ColumnChartData data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -79,23 +79,19 @@ public class ProfilFragment extends Fragment {
             }
         }).start();
 
+        //on veut un graph de type column
+        ColumnChartView chart = view.findViewById(R.id.chart);
 
-        LineChartView chart = (LineChartView) view.findViewById(R.id.chart);
-
+        //on fait la liste des valeurs, un 'point value' = (un id course + une distance)
         List<PointValue> values = new ArrayList<PointValue>();
-
         PointValue PointValue;
-
         DatabaseStats db = new DatabaseStats(getContext());
         List<RunningStatistics> statistics;
         statistics = db.getAllStats();
         float distance_max=0;
-        values.add(new PointValue(0, 0));
-        //
-
+        //values.add(new PointValue(0, 0));
         for(RunningStatistics runningStatistics : statistics){
             //Float distance= Float.parseFloat(runningStatistics.getDistance());
-
             NumberFormat format = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 format = NumberFormat.getInstance(Locale.FRANCE);
@@ -109,20 +105,49 @@ public class ProfilFragment extends Fragment {
                 e.printStackTrace();
             }
             float distance = number.floatValue();
-
             if (distance_max < distance)distance_max = distance;
             PointValue = new PointValue(runningStatistics.getId(), distance);
             values.add(PointValue);
         }
-//
-        //In most cased you can call data model methods in builder-pattern-like manner.
-        Line line = new Line(values).setColor(Color.DKGRAY).setCubic(true);
 
-        List<Line> lines = new ArrayList<Line>();
-        lines.add(line);
+        generateDefaultData(chart, values, distance_max);
 
-        LineChartData data = new LineChartData();
-        data.setLines(lines);
+        Button b = (Button) view.findViewById(R.id.buttonLaunchRunningStat);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                launchRunningStatActivity(v);
+            }
+        });
+    }
+
+    private void generateDefaultData(ColumnChartView chart, List<PointValue> pointValues, float distance_max) {
+        int numSubcolumns = 1;
+        int numColumns = pointValues.size();
+        // Column can have many subcolumns, here by default I use 1 subcolumn in each of 8 columns.
+        List<Column> columns = new ArrayList<Column>();
+
+        List<SubcolumnValue> values;
+        for (PointValue pointValue : pointValues) {//ok
+
+            values = new ArrayList<SubcolumnValue>();
+            for (int j = 0; j < numSubcolumns; ++j) {
+                values.add(new SubcolumnValue((float) pointValue.getY(), ChartUtils.pickColor()));
+            }
+
+            Column column = new Column(values);
+            //column.setHasLabels(hasLabels);
+            //column.setHasLabelsOnlyForSelected(hasLabelForSelected);
+            columns.add(column);
+        }
+
+        data = new ColumnChartData(columns);
+
+        Axis axisX = new Axis();
+        Axis axisY = new Axis().setHasLines(true);
+
+
+
 
         List<AxisValue> axisValuesForX = new ArrayList<>();
         List<AxisValue> axisValuesForY = new ArrayList<>();
@@ -149,21 +174,14 @@ public class ProfilFragment extends Fragment {
 
         Axis xAxis = new Axis(axisValuesForX);
         Axis yAxis = new Axis(axisValuesForY);
+        xAxis.setName("mes activités");
+        yAxis.setName("distance parcourue");
         data.setAxisXBottom(xAxis);
         data.setAxisYLeft(yAxis);
-        chart.setLineChartData(data);
 
-        Button b = (Button) view.findViewById(R.id.buttonLaunchRunningStat);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                launchRunningStatActivity(v);
-            }
-        });
-
+        chart.setColumnChartData(data);
 
     }
-
     public void launchRunningStatActivity(View v){
         Intent intent = new Intent(getActivity(), RunningStatisticsActivity.class);
         startActivity(intent);

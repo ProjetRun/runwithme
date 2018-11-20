@@ -289,29 +289,13 @@
                 android:layout_height="172dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="31dp"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:rotation="-90"
-                    android:text="m"
-                    android:textAllCaps="false" />
-
-                <lecho.lib.hellocharts.view.LineChartView
+                <lecho.lib.hellocharts.view.ColumnChartView
                     android:id="@+id/chart"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:visibility="visible" />
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="mes courses"
-                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/buttonLaunchRunningStat"
