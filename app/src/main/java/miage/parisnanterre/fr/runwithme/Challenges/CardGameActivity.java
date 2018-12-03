@@ -49,6 +49,21 @@ public class CardGameActivity extends AppCompatActivity {
         }
 
 
+        /*
+        findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSwipeView.doSwipe(false);
+            }
+        });
+
+        findViewById(R.id.acceptBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSwipeView.doSwipe(true);
+            }
+        });
+         */
 
 
 
