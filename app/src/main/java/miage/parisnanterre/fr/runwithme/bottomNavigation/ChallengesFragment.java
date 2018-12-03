@@ -1,5 +1,6 @@
 package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Pair;
@@ -23,6 +24,7 @@ import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import java.util.ArrayList;
 import java.util.List;
 
+import miage.parisnanterre.fr.runwithme.Challenges.CardGameActivity;
 import miage.parisnanterre.fr.runwithme.R;
 
 
@@ -78,7 +80,8 @@ public class ChallengesFragment extends Fragment {
         eventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bmb.performClick();
+                Intent intent = new Intent(getActivity(), CardGameActivity.class);
+                startActivity(intent);
             }
         });
     }

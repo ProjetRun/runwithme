@@ -66,6 +66,7 @@
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
+        <activity android:name=".Challenges.CardGameActivity"></activity>
     </application>
 
 </manifest>
