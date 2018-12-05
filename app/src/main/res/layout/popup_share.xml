@@ -12,7 +12,8 @@
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textView3"
@@ -41,6 +42,7 @@
                     android:id="@+id/imageView_FACEBOOK"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="share_on_facebook"
                     app:srcCompat="@mipmap/ic_facebook_foreground" />
 
                 <TextView
@@ -57,25 +59,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="154dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical"
                 android:padding="10sp">
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="106dp"
+                    android:layout_height="112dp"
                     android:layout_weight="1"
-                    app:srcCompat="@mipmap/ic_twitter_foreground" />
+                    android:onClick="share_on_twitter"
+                    app:srcCompat="@drawable/ic_menu_share" />
 
                 <TextView
                     android:id="@+id/textView8"
-                    android:layout_width="match_parent"
+                    android:layout_width="106dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Twitter"
+                    android:text="Avec les autres app"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black" />
 
             </LinearLayout>
 

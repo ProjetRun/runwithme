@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.icu.text.NumberFormat;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.NotificationCompat;
@@ -26,7 +27,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
+
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -364,15 +370,39 @@ public class RunningActivity extends AppCompatActivity {
 
     public void do_click_for_share(View v){
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
-
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_share, null);
-
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
+    }
 
+    public void share_on_facebook(View v){
+        //partage avec Facebook
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        String uniteMesure;
+        if(button_distance_titre.getText().toString().equals("Distance(km)"))
+            uniteMesure = "km";
+        else
+            uniteMesure = "m";
+        ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
+                .setQuote("J'ai couru "+distancee+" "+uniteMesure+" en "+getDureeHeuresMinutesSecondes(duree)+" minutes avec RunWithMe")
+                .setContentUrl(Uri.parse("https://drive.google.com/file/d/1JEbLvL43ErdNKTGSoEs-6Sof3TUBQ_56/view?usp=sharing"))
+                .build();
+        ShareDialog.show(this,shareLinkContent);
+    }
 
-
-
+    public void share_on_twitter(View v){
+        //patage avec toutes les apps du téléphone
+        Intent sendIntent = new Intent();
+        String uniteMesure;
+        if(button_distance_titre.getText().toString().equals("Distance(km)"))
+            uniteMesure = "km";
+        else
+            uniteMesure = "m";
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "J'ai couru "+distancee+" "+uniteMesure+" en "+getDureeHeuresMinutesSecondes(duree)+" minutes avec l'application RunWithMe !");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "I just read ");
+        sendIntent.setType("*/*");
+        startActivity(Intent.createChooser(sendIntent, "Share Your Favorite Article"));
     }
 
     @Override
@@ -466,6 +496,14 @@ public class RunningActivity extends AppCompatActivity {
     public static Context currentContext;
     NotificationManager mNotificationManager;
 
+    public String getDureeHeuresMinutesSecondes(String duree){
+        int milliseconds = Integer.parseInt(duree);
+        int seconds = (milliseconds / 1000) % 60 ;
+        int minutes = ((milliseconds / (1000*60)) % 60);
+        int hours   = ((milliseconds / (1000*60*60)) % 24);
+        String result = String.valueOf(hours) + ':' + String.valueOf(minutes) + ':' + String.valueOf(seconds);
+        return result;
+    }
 
     @Override
     public void onPause() {
