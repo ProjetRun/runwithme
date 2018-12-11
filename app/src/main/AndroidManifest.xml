@@ -40,9 +40,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
 
         <activity
             android:name=".HomeActivity"
@@ -69,11 +69,14 @@
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
-        <activity android:name=".Challenges.CardGameActivity"></activity>
-        <provider android:authorities="com.facebook.app.FacebookContentProvider261810111168516"
-            android:name="com.facebook.FacebookContentProvider"
-            android:exported="true" />
-    </application>
+        <activity android:name=".Challenges.CardGameActivity" />
 
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider261810111168516"
+            android:exported="true" />
+
+        <activity android:name=".Challenges.VraiFaux"></activity>
+    </application>
 
 </manifest>

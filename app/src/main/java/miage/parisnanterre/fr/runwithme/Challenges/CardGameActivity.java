@@ -46,7 +46,10 @@ public class CardGameActivity extends AppCompatActivity {
 
         for(Profile profile : Utils.loadProfiles(this.getApplicationContext())){
             mSwipeView.addView(new TinderCard(mContext, profile, mSwipeView));
+            System.out.println(mSwipeView.getRootView());
         }
+
+
 
 
         /*

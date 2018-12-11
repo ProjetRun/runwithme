@@ -60,6 +60,7 @@ public class TinderCard {
 
 
 
+
     @Click(R.id.profileImageView)
     private void onClick(){
         Log.d("EVENT", "profileImageView click");

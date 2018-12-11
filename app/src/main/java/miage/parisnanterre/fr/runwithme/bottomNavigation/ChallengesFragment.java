@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import miage.parisnanterre.fr.runwithme.Challenges.CardGameActivity;
+import miage.parisnanterre.fr.runwithme.Challenges.VraiFaux;
 import miage.parisnanterre.fr.runwithme.R;
 
 
@@ -80,7 +81,7 @@ public class ChallengesFragment extends Fragment {
         eventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CardGameActivity.class);
+                Intent intent = new Intent(getActivity(), VraiFaux.class);
                 startActivity(intent);
             }
         });
