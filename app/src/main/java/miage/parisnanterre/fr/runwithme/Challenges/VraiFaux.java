@@ -50,12 +50,12 @@ public class VraiFaux extends AppCompatActivity {
     }
 
     private void insertQuestions(){
-        catalogue.add(new Questions("Tout le monde peut pratiquer le running",true));
-        catalogue.add(new Questions("Courir permet de travailler tous les muscles du corps",false));
-        catalogue.add(new Questions("Il faut courir au minimum trois fois par semaine",false));
-        catalogue.add(new Questions("Courir trente minutes est suffisant",false));
-        catalogue.add(new Questions("Pour maigrir, il faut courir le matin à jeun",true));
-        catalogue.add(new Questions("La course peut être nocive pour les articulations",true));
+        catalogue.add(new Questions("Tout le monde peut pratiquer le running",true, "https://media.giphy.com/media/krM6ANSNvFg52/giphy.gif"));
+        catalogue.add(new Questions("Courir permet de travailler tous les muscles du corps",false, "https://media.giphy.com/media/yHkyIAfczco6s/giphy.gif"));
+        catalogue.add(new Questions("Il faut courir au minimum trois fois par semaine",false, "https://media.giphy.com/media/O5ibw2aqNIfAs/giphy.gif"));
+        catalogue.add(new Questions("Courir trente minutes est suffisant",false,"https://media.giphy.com/media/TtAo9puKRyBVu/giphy.gif"));
+        catalogue.add(new Questions("Pour maigrir, il faut courir le matin à jeun",true, "https://media.giphy.com/media/QTvYcj77RjkQ/giphy.gif"));
+        catalogue.add(new Questions("La course peut être nocive pour les articulations",true, "https://media.giphy.com/media/rsZXfWjafmRa0/giphy.gif"));
     }
 
     public Questions anyItem()
@@ -77,11 +77,12 @@ public class VraiFaux extends AppCompatActivity {
                         imGIF.setImageDrawable(resource);
                     }
                 });*/
+
+        item = anyItem();
         Glide.with(this)
                 .asGif()
-                .load("https://media.giphy.com/media/O5ibw2aqNIfAs/giphy.gif")
+                .load(item.getUrl())
                 .into(imGIF);
-        item = anyItem();
         t_question.setText(item.getQuestion());
     }
 
