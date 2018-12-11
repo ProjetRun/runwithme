@@ -12,7 +12,7 @@ import java.util.List;
 
 import miage.parisnanterre.fr.runwithme.badges.Badge;
 import miage.parisnanterre.fr.runwithme.badges.ListAllBadgesActivity;
-import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.database.User;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
@@ -28,7 +28,7 @@ public class RunningStatisticsActivity extends AppCompatActivity {
     static Button button_record_dist;
     static Button button_record_speed;
     static Button dernier_badge;
-    final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseSQLite db = new DatabaseSQLite(this);
     final DatabaseUser dbU = new DatabaseUser(this);
 
     @Override

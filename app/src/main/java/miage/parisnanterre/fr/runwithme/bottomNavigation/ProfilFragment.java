@@ -28,7 +28,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.RunningStatisticsActivity;
-import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
 
@@ -85,7 +85,7 @@ public class ProfilFragment extends Fragment {
         //on fait la liste des valeurs, un 'point value' = (un id course + une distance)
         List<PointValue> values = new ArrayList<PointValue>();
         PointValue PointValue;
-        DatabaseStats db = new DatabaseStats(getContext());
+        DatabaseSQLite db = new DatabaseSQLite(getContext());
         List<RunningStatistics> statistics;
         statistics = db.getAllStats();
         float distance_max=0;

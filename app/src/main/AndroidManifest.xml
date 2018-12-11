@@ -69,7 +69,9 @@
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
-        <activity android:name=".Challenges.CardGameActivity"></activity>
+        <activity android:name=".Challenges.CardGameActivity">
+        </activity>
+        <activity android:name=".MarathonTraining.MarathonTrainingActivity" />
         <provider android:authorities="com.facebook.app.FacebookContentProvider261810111168516"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />

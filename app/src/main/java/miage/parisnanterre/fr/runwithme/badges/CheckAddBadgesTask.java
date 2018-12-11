@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 import miage.parisnanterre.fr.runwithme.running.RunningStatisticsAdapter;
 
@@ -24,14 +24,14 @@ public class CheckAddBadgesTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        DatabaseStats db = new DatabaseStats(mContext);
+        DatabaseSQLite db = new DatabaseSQLite(mContext);
         List<RunningStatistics> statistics = db.getAllStats();
         adapter = new RunningStatisticsAdapter(mContext,statistics);
 
         if(adapter.getCount() == 1){
             //user.addBagde(new Badge(1,"Badge premiere course"));
 
-            DatabaseStats dbBadge = new DatabaseStats(mContext);
+            DatabaseSQLite dbBadge = new DatabaseSQLite(mContext);
             dbBadge.addBadge(new Badge(1,"Badge premiere course"));
         }
         //for(RunningStatistics rs : statistics){

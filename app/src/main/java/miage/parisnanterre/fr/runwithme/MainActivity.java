@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import miage.parisnanterre.fr.runwithme.bottomNavigation.HomeFragment;
-import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.database.User;
 import miage.parisnanterre.fr.runwithme.tab.DashboardActivity;
@@ -14,7 +14,7 @@ import miage.parisnanterre.fr.runwithme.tab.DashboardActivity;
 public class MainActivity extends AppCompatActivity {
 
     static User user;
-    final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseSQLite db = new DatabaseSQLite(this);
     final DatabaseUser dbU = new DatabaseUser(this);
 
     @Override

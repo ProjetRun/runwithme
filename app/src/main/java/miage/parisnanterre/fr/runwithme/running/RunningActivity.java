@@ -32,7 +32,6 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,12 +42,10 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import miage.parisnanterre.fr.runwithme.badges.Badge;
-import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
+import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.database.User;
-
-import static java.sql.DriverManager.println;
 
 public class RunningActivity extends AppCompatActivity {
 
@@ -77,7 +74,7 @@ public class RunningActivity extends AppCompatActivity {
     String date, heure, distancee,duree,rythme, calories;
     private BroadcastReceiver broadcastReceiver;
 
-    final DatabaseStats db = new DatabaseStats(this);
+    final DatabaseSQLite db = new DatabaseSQLite(this);
     //ca peut pas fonctionner ça, on peut invoquer que une seule classe qui etend openclasshelper
     //ca peut pas fonctionner ça, on peut invoquer que une seule classe qui etend openclasshelper
     final DatabaseUser dbU = new DatabaseUser(this);
@@ -284,7 +281,7 @@ public class RunningActivity extends AppCompatActivity {
         List<RunningStatistics> statistics = db.getAllStats();
         List<Badge> badges = new ArrayList<>();//liste destiné à contenir les nouveaux badges
         adapter = new RunningStatisticsAdapter(this,statistics);
-        DatabaseStats db = new DatabaseStats(this);
+        DatabaseSQLite db = new DatabaseSQLite(this);
 
         //on stock les badges uniquement gagnés dans hmap
         HashMap hmap = user.getHmap();
