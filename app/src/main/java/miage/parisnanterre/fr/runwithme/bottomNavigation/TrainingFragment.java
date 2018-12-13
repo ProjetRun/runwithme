@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import miage.parisnanterre.fr.runwithme.MarathonTraining.MarathonTrainingActivity;
+import miage.parisnanterre.fr.runwithme.MarathonTraining.TrainingChoiceActivity;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.workout.WorkoutActivity;
 
@@ -63,7 +64,7 @@ public class TrainingFragment extends Fragment {
                 //Intent intent = new Intent(getActivity(), WorkoutActivity.class);
                 //intent.putExtra("WORKOUT_SESSION", "coach");
                 //startActivity(intent);
-                Intent intent = new Intent(getActivity(), MarathonTrainingActivity.class);
+                Intent intent = new Intent(getActivity(), TrainingChoiceActivity.class);
                 startActivity(intent);
             }
         });
