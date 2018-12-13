@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="miage.parisnanterre.fr.runwithme.Challenges.VraiFaux">
+    tools:context="miage.parisnanterre.fr.runwithme.Challenges.VraiFaux"
+    android:background="@drawable/vraifaux">
 
     <LinearLayout
         android:layout_width="368dp"
@@ -14,6 +15,17 @@
         tools:layout_editor_absoluteY="8dp"
         tools:ignore="MissingConstraints">
 
+        <TextView
+            android:id="@+id/text_view_countdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="#FFF"
+            android:textSize="60sp" />
+
         <ImageView
             android:id="@+id/loadingImageView"
             android:layout_width="match_parent"
@@ -21,38 +33,40 @@
             android:layout_centerInParent="true" />
 
 
-        <android.support.v7.widget.CardView
+        <TextView
+            android:id="@+id/text_question"
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:text="question"
+            android:textColor="#FFF"
+            android:textSize="30sp"/>
 
-            <TextView
-                android:id="@+id/text_question"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/b_faux"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="question" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#d32f2f"
+                android:onClick="click_false"
+                android:text="FAUX"
+                android:textColor="@android:color/white" />
 
-
-        </android.support.v7.widget.CardView>
-
-        <Button
-            android:id="@+id/b_vrai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="VRAI"
-            android:textColor="@android:color/white"
-            android:background="#00e600"
-            android:onClick="click_true"/>
-
-        <Button
-            android:id="@+id/b_faux"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FAUX"
-            android:textColor="@android:color/white"
-            android:background="#d32f2f"
-            android:onClick="click_false"/>
-
+            <Button
+                android:id="@+id/b_vrai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00cc44"
+                android:onClick="click_true"
+                android:text="VRAI"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
 
 
     </LinearLayout>

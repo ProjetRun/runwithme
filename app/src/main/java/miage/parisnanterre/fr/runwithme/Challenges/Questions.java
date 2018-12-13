@@ -6,11 +6,13 @@ public class Questions {
     private String question;
     private Boolean reponse;
     private String url;
+    private boolean appeared;
 
     public Questions(String question, Boolean reponse, String url) {
         this.question = question;
         this.reponse = reponse;
         this.url = url;
+        this.appeared = false;
     }
 
     public String getQuestion() {
@@ -35,5 +37,13 @@ public class Questions {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public boolean getAppeared() {
+        return appeared;
+    }
+
+    public void setAppeared(boolean appeared) {
+        this.appeared = appeared;
     }
 }
