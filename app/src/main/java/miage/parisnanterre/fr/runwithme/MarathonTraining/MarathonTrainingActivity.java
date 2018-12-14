@@ -14,18 +14,18 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import miage.parisnanterre.fr.runwithme.R;
-import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 
 public class MarathonTrainingActivity extends AppCompatActivity {
 
-    DatabaseSQLite db;
+    DatabaseStats db;
     ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        db = new DatabaseSQLite(this);
+        db = new DatabaseStats(this);
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
         ArrayList<Seance> seances = db.getTaskList();

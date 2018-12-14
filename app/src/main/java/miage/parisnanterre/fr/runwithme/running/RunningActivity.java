@@ -42,7 +42,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import miage.parisnanterre.fr.runwithme.badges.Badge;
-import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.database.User;
@@ -74,7 +74,7 @@ public class RunningActivity extends AppCompatActivity {
     String date, heure, distancee,duree,rythme, calories;
     private BroadcastReceiver broadcastReceiver;
 
-    final DatabaseSQLite db = new DatabaseSQLite(this);
+    final DatabaseStats db = new DatabaseStats(this);
     //ca peut pas fonctionner ça, on peut invoquer que une seule classe qui etend openclasshelper
     //ca peut pas fonctionner ça, on peut invoquer que une seule classe qui etend openclasshelper
     final DatabaseUser dbU = new DatabaseUser(this);
@@ -281,7 +281,7 @@ public class RunningActivity extends AppCompatActivity {
         List<RunningStatistics> statistics = db.getAllStats();
         List<Badge> badges = new ArrayList<>();//liste destiné à contenir les nouveaux badges
         adapter = new RunningStatisticsAdapter(this,statistics);
-        DatabaseSQLite db = new DatabaseSQLite(this);
+        DatabaseStats db = new DatabaseStats(this);
 
         //on stock les badges uniquement gagnés dans hmap
         HashMap hmap = user.getHmap();

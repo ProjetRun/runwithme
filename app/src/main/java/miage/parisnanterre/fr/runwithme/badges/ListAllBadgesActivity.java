@@ -9,7 +9,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import miage.parisnanterre.fr.runwithme.R;
-import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 
 public class ListAllBadgesActivity extends AppCompatActivity {
 
@@ -17,7 +17,7 @@ public class ListAllBadgesActivity extends AppCompatActivity {
 
     static Button button_record_time;
 
-    final DatabaseSQLite db = new DatabaseSQLite(this);
+    final DatabaseStats db = new DatabaseStats(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

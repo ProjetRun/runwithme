@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import miage.parisnanterre.fr.runwithme.R;
-import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 
 public class SeanceAdapter extends ArrayAdapter<Seance> {
     public SeanceAdapter(Context context, ArrayList<Seance> seances) {
@@ -22,8 +22,8 @@ public class SeanceAdapter extends ArrayAdapter<Seance> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        final DatabaseSQLite dbHelper;
-        dbHelper = new DatabaseSQLite(getContext());
+        final DatabaseStats dbHelper;
+        dbHelper = new DatabaseStats(getContext());
         // Get the data item for this position
         Seance seance = getItem(position);
 

@@ -14,7 +14,7 @@ import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
 import miage.parisnanterre.fr.runwithme.badges.Badge;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
-public class DatabaseSQLite extends SQLiteOpenHelper {
+public class DatabaseStats extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
@@ -50,7 +50,7 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
     public static final String CHECKED_SEANCE = "checkedSeance";
 
 
-    public DatabaseSQLite(Context context) {
+    public DatabaseStats(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

@@ -23,7 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import miage.parisnanterre.fr.runwithme.database.DatabaseSQLite;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.database.User;
 import miage.parisnanterre.fr.runwithme.running.RunningActivity;
@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-    final DatabaseSQLite db = new DatabaseSQLite(this);
+    final DatabaseStats db = new DatabaseStats(this);
     final DatabaseUser dbU = new DatabaseUser(this);
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
