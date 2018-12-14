@@ -40,9 +40,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/app_id" />
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id"/>
 
         <activity
             android:name=".HomeActivity"
@@ -69,7 +69,8 @@
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
-        <activity android:name=".Challenges.CardGameActivity" />
+        <activity android:name=".Challenges.CardGameActivity"></activity>
+        <activity android:name=".MarathonTraining.MarathonTrainingActivity" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
@@ -77,6 +78,12 @@
             android:exported="true" />
 
         <activity android:name=".Challenges.VraiFaux"></activity>
+
+        <activity
+            android:name=".MarathonTraining.TrainingChoiceActivity"
+            android:label="@string/title_activity_training_choice"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 
 </manifest>

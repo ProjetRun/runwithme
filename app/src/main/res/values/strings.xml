@@ -169,4 +169,5 @@
 
         "Warm Up Exercises\n\n"
     </string>
+    <string name="title_activity_training_choice">TrainingChoiceActivity</string>
 </resources>

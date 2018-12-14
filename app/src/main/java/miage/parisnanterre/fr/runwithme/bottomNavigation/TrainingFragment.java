@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.MarathonTrainingActivity;
+import miage.parisnanterre.fr.runwithme.MarathonTraining.TrainingChoiceActivity;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.workout.WorkoutActivity;
 
@@ -24,6 +26,7 @@ public class TrainingFragment extends Fragment {
     LinearLayout cardioLayout;
     LinearLayout stretchingLayout;
     LinearLayout hiitLayout;
+    LinearLayout marathonLayout;
 
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
@@ -35,6 +38,7 @@ public class TrainingFragment extends Fragment {
         cardioLayout = (LinearLayout) view.findViewById(R.id.lay1);
         stretchingLayout = (LinearLayout) view.findViewById(R.id.lay2);
         hiitLayout = (LinearLayout) view.findViewById(R.id.lay3);
+        marathonLayout = view.findViewById(R.id.lay4);
 
         cardioLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +65,13 @@ public class TrainingFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WorkoutActivity.class);
                 intent.putExtra("WORKOUT_SESSION", "coach");
+                startActivity(intent);
+            }
+        });
+        marathonLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TrainingChoiceActivity.class);
                 startActivity(intent);
             }
         });
