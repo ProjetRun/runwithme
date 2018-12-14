@@ -28,7 +28,9 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db = new DatabaseSQLite(this);
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
-        //loadBDexercices();
+        ArrayList<Seance> seances = db.getTaskList();
+        if (seances.isEmpty())
+            loadBDexercices();
         loadTaskList();
     }
 

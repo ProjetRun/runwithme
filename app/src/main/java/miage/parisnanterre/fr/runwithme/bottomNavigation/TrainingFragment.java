@@ -26,6 +26,7 @@ public class TrainingFragment extends Fragment {
     LinearLayout cardioLayout;
     LinearLayout stretchingLayout;
     LinearLayout hiitLayout;
+    LinearLayout marathonLayout;
 
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
@@ -37,6 +38,7 @@ public class TrainingFragment extends Fragment {
         cardioLayout = (LinearLayout) view.findViewById(R.id.lay1);
         stretchingLayout = (LinearLayout) view.findViewById(R.id.lay2);
         hiitLayout = (LinearLayout) view.findViewById(R.id.lay3);
+        marathonLayout = view.findViewById(R.id.lay4);
 
         cardioLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +63,14 @@ public class TrainingFragment extends Fragment {
         hiitLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getActivity(), WorkoutActivity.class);
-                //intent.putExtra("WORKOUT_SESSION", "coach");
-                //startActivity(intent);
+                Intent intent = new Intent(getActivity(), WorkoutActivity.class);
+                intent.putExtra("WORKOUT_SESSION", "coach");
+                startActivity(intent);
+            }
+        });
+        marathonLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TrainingChoiceActivity.class);
                 startActivity(intent);
             }
