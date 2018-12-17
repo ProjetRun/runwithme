@@ -133,7 +133,7 @@ public class VraiFaux extends AppCompatActivity {
         }else{
             item.setAppeared(true);
             this.countdown--;
-            
+
             return item;
         }
     }
