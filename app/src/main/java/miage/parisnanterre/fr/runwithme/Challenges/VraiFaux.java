@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -17,6 +18,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.shashank.sony.fancytoastlib.FancyToast;
+import com.yarolegovich.lovelydialog.LovelyInfoDialog;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,7 @@ public class VraiFaux extends AppCompatActivity {
     private Questions item;
     private Random randomGenerator;
     private int countdown;
+    private int score;
 
     private TextView t_question;
     private ImageView imGIF;
@@ -53,8 +57,11 @@ public class VraiFaux extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vrai_faux);
 
+        getSupportActionBar().hide();
+
 
         this.countdown = 10;
+        this.score = 0;
         catalogue = new ArrayList<Questions>();
         randomGenerator = new Random();
         t_question = (TextView) findViewById(R.id.text_question);
@@ -98,14 +105,35 @@ public class VraiFaux extends AppCompatActivity {
 
     }
 
-    public Questions anyItem()
-    {
+    public Questions anyItem() {
+        if(0>this.countdown){
+
+            pauseTimer();
+
+            new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
+                    .setTopColorRes(R.color.colorPrimaryDark)
+                    .setButtonsColorRes(R.color.colorPrimaryDark)
+                    .setIcon(R.drawable.ic_menu_camera)
+                    .setTitle("Score")
+                    .setMessage(score+"/10")
+                    .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    })
+                    .show();
+
+
+        }
         int index = randomGenerator.nextInt(catalogue.size());
         item = catalogue.get(index);
         if(item.getAppeared()){
             return anyItem();
         }else{
             item.setAppeared(true);
+            this.countdown--;
+            
             return item;
         }
     }
@@ -123,9 +151,10 @@ public class VraiFaux extends AppCompatActivity {
     public void checkresult(boolean x){
         String y = x==true ? "vrai" : "faux";
         if(x == item.getReponse()){
-            FancyToast.makeText(this,"true !",FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();;
+            FancyToast.makeText(this,"true !",FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+            score++;
         }else{
-            FancyToast.makeText(this,"false !",FancyToast.LENGTH_SHORT, FancyToast.ERROR,false).show();;
+            FancyToast.makeText(this,"false !",FancyToast.LENGTH_SHORT, FancyToast.ERROR,false).show();
         }
     }
     public void click_true(View view) {
