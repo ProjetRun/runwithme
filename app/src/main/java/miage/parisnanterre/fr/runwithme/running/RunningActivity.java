@@ -32,7 +32,6 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,8 +46,6 @@ import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.database.User;
-
-import static java.sql.DriverManager.println;
 
 public class RunningActivity extends AppCompatActivity {
 

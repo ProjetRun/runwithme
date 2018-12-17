@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
 import miage.parisnanterre.fr.runwithme.badges.Badge;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
@@ -17,7 +18,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     // Database Name
     private static final String DATABASE_NAME = "userManager";
@@ -26,6 +27,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
     private static final String TABLE_STATS = "stats";
     // Badges table name
     private static final String TABLE_BADGES = "badges";
+    public static final String DB_TABLE="Seance";
 
     // Stats Table Columns names
     private static final String KEY_ID = "id";
@@ -40,6 +42,12 @@ public class DatabaseStats extends SQLiteOpenHelper {
     // Badges Table Columns names
     public static final String NUMERO_ID = "numero";
     public static final String NOM = "nom";
+
+    public static final String NUM_SEMAINE_COLUMN = "numSemaine";
+    public static final String NUM_SEANCE_COLUMN = "NumSeance";
+    public static final String TYPE_SEANCE_COLUMN = "typeSeance";
+    public static final String CONTENU_COLUMN = "contenuSeance";
+    public static final String CHECKED_SEANCE = "checkedSeance";
 
 
     public DatabaseStats(Context context) {
@@ -64,7 +72,20 @@ public class DatabaseStats extends SQLiteOpenHelper {
         String CREATE_BADGES_TABLE = "CREATE TABLE " + TABLE_BADGES + "(" +
                 NUMERO_ID+ " INTEGER PRIMARY KEY," +
                 NOM+ " TEXT);";
-
+        String query = String.format("CREATE TABLE %s " +
+                        "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "%s INTEGER NOT NULL, " +
+                        "%s INTEGER NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s TEXT NOT NULL, " +
+                        "%s INTEGER);",
+                DB_TABLE,
+                NUM_SEMAINE_COLUMN,
+                NUM_SEANCE_COLUMN,
+                TYPE_SEANCE_COLUMN,
+                CONTENU_COLUMN,
+                CHECKED_SEANCE);
+        db.execSQL(query);
         db.execSQL(CREATE_STATS_TABLE);
         db.execSQL(CREATE_BADGES_TABLE);
 
@@ -86,6 +107,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BADGES);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE);
         // Create tables again
         onCreate(db);
         Log.i("DATABASE","onUpgrade invoked");
@@ -122,6 +144,33 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.insert(TABLE_BADGES, null, values);
         db.close(); // Closing database connection
         Log.i("DATABASE","addBadge invoked");
+    }
+
+    public void insertNewSeance(Seance seance){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NUM_SEANCE_COLUMN,seance.getNumSeance());
+        values.put(NUM_SEMAINE_COLUMN,seance.getNumSemaine());
+        values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
+        values.put(CONTENU_COLUMN,seance.getContenuSeance());
+        //values.put(CHECKED_SEANCE,seance.checked);
+
+        db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
+        db.close();
+    }
+
+    public void insertSeanceChecked(Seance seance){
+        Log.e("DBHelper_Checked", "insertSeanceChecked  :  " + seance.isChecked());
+        SQLiteDatabase db= this.getWritableDatabase();
+        int isChecked;
+        if(seance.isChecked() == true)
+            isChecked = 1;
+        else
+            isChecked = 0;
+        String sql = "UPDATE "+DB_TABLE +" SET " + CHECKED_SEANCE+"="+isChecked+" WHERE id="+seance.getId();
+        Log.e("DBHelper_request", "insertSeanceChecked  :  " + sql);
+        db.execSQL(sql);
+        db.close();
     }
 
     public List<Badge> getAllBadges() {
@@ -194,4 +243,25 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
     }
 
+    public ArrayList<Seance> getTaskList(){
+        ArrayList<Seance> seances = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query= "SELECT * FROM "+ DB_TABLE +";";
+        Cursor cursor = db.rawQuery(query,null);
+        while(cursor.moveToNext()){
+            Seance seance = new Seance();
+            //String data = cursor.getString(cursor.getColumnIndex("data"));//
+            seance.setContenuSeance(cursor.getString(cursor.getColumnIndex(CONTENU_COLUMN)));
+            seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
+            seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
+            seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
+            seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))>0);
+            seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            //boolean value = cursor.getInt(boolean_column_index) > 0;
+            seances.add(seance);
+        }
+        cursor.close();
+        db.close();
+        return seances;
+    }
 }
