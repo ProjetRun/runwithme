@@ -271,7 +271,7 @@ public class HomeFragment extends Fragment {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
             alertDialog.setTitle("TIP OF THE DAY");
             alertDialog.setMessage(tip.getTip());
-            alertDialog.setNegativeButton("I GOT IT",
+            alertDialog.setNegativeButton("Thanks for the tip",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
