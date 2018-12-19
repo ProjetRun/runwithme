@@ -266,11 +266,11 @@ public class HomeFragment extends Fragment {
 
 
     public void tipOfTheDay(){
-
-        if(ToastCompteur.compteur==0){
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        Tips tip= new Tips();
+        if(TipsAlertDialogCompteur.compteur==0){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
             alertDialog.setTitle("TIP OF THE DAY");
-            alertDialog.setMessage("Manger 3 kebabs par jour, est nécéssaire au bon fonctionnement du corps");
+            alertDialog.setMessage(tip.getTip());
             alertDialog.setNegativeButton("I GOT IT",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -278,7 +278,7 @@ public class HomeFragment extends Fragment {
                         }
                     });
             alertDialog.show();
-            ToastCompteur.compteur++;
+            TipsAlertDialogCompteur.compteur++;
         }
     }
 
