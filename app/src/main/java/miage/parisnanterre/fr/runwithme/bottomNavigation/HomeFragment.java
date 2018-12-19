@@ -136,6 +136,8 @@ public class HomeFragment extends Fragment {
         });
 
 
+        tipOfTheDay();
+
         notification();
     }
 
@@ -261,6 +263,25 @@ public class HomeFragment extends Fragment {
         }
 
     }
+
+
+    public void tipOfTheDay(){
+
+        if(ToastCompteur.compteur==0){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+            alertDialog.setTitle("TIP OF THE DAY");
+            alertDialog.setMessage("Manger 3 kebabs par jour, est nécéssaire au bon fonctionnement du corps");
+            alertDialog.setNegativeButton("I GOT IT",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            alertDialog.show();
+            ToastCompteur.compteur++;
+        }
+    }
+
 
     private void notification() {
 
