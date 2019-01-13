@@ -50,4 +50,10 @@ public class RunningStatisticsClassTest {
         rs.setUniteMesure("km");
         assertEquals(rs.getUniteMesure(), "km");
     }
+    @Test
+    public void RS_id_isCorrect() throws Exception {
+        RunningStatistics rs = new RunningStatistics();
+        rs.setId(2);
+        assertEquals(rs.getId(), 2);
+    }
 }
