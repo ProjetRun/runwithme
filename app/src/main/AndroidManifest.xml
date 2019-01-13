@@ -69,7 +69,6 @@
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
-        <activity android:name=".Challenges.CardGameActivity"></activity>
         <activity android:name=".MarathonTraining.MarathonTrainingActivity" />
 
         <provider

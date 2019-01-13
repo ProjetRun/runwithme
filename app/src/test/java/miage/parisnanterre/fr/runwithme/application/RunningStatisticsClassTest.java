@@ -43,4 +43,11 @@ public class RunningStatisticsClassTest {
         rs.setCalories("20");
         assertEquals(rs.getCalories(), "20");
     }
+
+    @Test
+    public void RS_uniteMesure_isCorrect() throws Exception {
+        RunningStatistics rs = new RunningStatistics("01/01/01","15H02","3","45minutes","8km/h","18");
+        rs.setUniteMesure("km");
+        assertEquals(rs.getUniteMesure(), "km");
+    }
 }
