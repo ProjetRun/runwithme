@@ -267,7 +267,7 @@ public class HomeFragment extends Fragment {
 
     public void tipOfTheDay(){
         Tips tip= new Tips();
-        if(TipsAlertDialogCompteur.compteur==0){
+        if(tip.compteur==0){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
             alertDialog.setTitle("TIP OF THE DAY");
             alertDialog.setMessage(tip.getTip());
@@ -278,7 +278,7 @@ public class HomeFragment extends Fragment {
                         }
                     });
             alertDialog.show();
-            TipsAlertDialogCompteur.compteur++;
+            tip.compteur++;
         }
     }
 

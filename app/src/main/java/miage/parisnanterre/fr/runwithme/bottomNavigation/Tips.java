@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Tips {
 
+    public static int compteur = 0;
     private ArrayList<String> tips = new ArrayList<>();
 
     public Tips(){
@@ -22,6 +23,12 @@ public class Tips {
 
     }
 
+    public void setCompteur(int c){
+        compteur = c;
+    }
+    public int getCompteur(){
+        return compteur;
+    }
     public String getTip(){
         int  min=0;
         int  max = tips.size()-1;
