@@ -44,10 +44,6 @@
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id"/>
 
-        <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
         <!-- <activity android:name=".RunningActivity" /> -->
         <service
             android:name=".running.GPSService"
