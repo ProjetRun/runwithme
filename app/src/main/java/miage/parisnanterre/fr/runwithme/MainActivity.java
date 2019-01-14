@@ -13,10 +13,6 @@ import miage.parisnanterre.fr.runwithme.tab.DashboardActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    static User user;
-    final DatabaseStats db = new DatabaseStats(this);
-    final DatabaseUser dbU = new DatabaseUser(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,10 +18,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
 import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 
 /**
  * Created by Gvimra on 26/09/2018.
@@ -33,6 +37,7 @@ public class WeatherActivity extends AppCompatActivity{
     ProgressBar loader;
     Typeface weatherFont;
     String city = "Paris, FR";
+    DatabaseStats db;
 
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
@@ -58,6 +63,9 @@ public class WeatherActivity extends AppCompatActivity{
         weatherIcon.setTypeface(weatherFont);
 
         taskLoadUp(city);
+
+        //seance suivante
+        ArrayList<Seance> seances = db.getTaskList();
 
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +96,21 @@ public class WeatherActivity extends AppCompatActivity{
                 alertDialog.show();
             }
         });
-
+        
     }
 
+    public int nextSeance(ArrayList<Seance> seances){
+        Iterator<Seance> it = seances.iterator();
+        int id_seance = 0;
+        while (it.hasNext()) {
+            Seance seance = it.next();
+            if(seance.isChecked()){
+                id_seance = seance.getId();
+                break;
+            }
+        }
+        return id_seance;
+    }
 
     public void taskLoadUp(String query) {
         if (Weather.isNetworkAvailable(getApplicationContext())) {

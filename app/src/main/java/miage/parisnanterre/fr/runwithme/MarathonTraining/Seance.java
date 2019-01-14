@@ -7,6 +7,11 @@ public class Seance {
     String typeSeance;
     String contenuSeance;
     boolean checked;
+    int echauffement;
+    int etiremement;
+    boolean echauffement_done;
+    boolean etirement_done;
+    boolean running_done;
 
     public int getId() {
         return id;
@@ -54,5 +59,45 @@ public class Seance {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public int getEchauffement() {
+        return echauffement;
+    }
+
+    public void setEchauffement(int echauffement) {
+        this.echauffement = echauffement;
+    }
+
+    public int getEtiremement() {
+        return etiremement;
+    }
+
+    public void setEtiremement(int etiremement) {
+        this.etiremement = etiremement;
+    }
+
+    public boolean isEchauffement_done() {
+        return echauffement_done;
+    }
+
+    public void setEchauffement_done(boolean echauffement_done) {
+        this.echauffement_done = echauffement_done;
+    }
+
+    public boolean isEtirement_done() {
+        return etirement_done;
+    }
+
+    public void setEtirement_done(boolean etirement_done) {
+        this.etirement_done = etirement_done;
+    }
+
+    public boolean isRunning_done() {
+        return running_done;
+    }
+
+    public void setRunning_done(boolean running_done) {
+        this.running_done = running_done;
     }
 }
