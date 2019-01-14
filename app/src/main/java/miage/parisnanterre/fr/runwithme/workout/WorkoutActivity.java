@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
@@ -72,6 +73,8 @@ public class WorkoutActivity extends AppCompatActivity {
                         @Override
                         public void onClick(BottomDialog dialog) {
                             Log.d("BottomDialogs", "Do something!");
+                            ImageButton btnStop = (ImageButton) findViewById(R.id.btn_stop);
+                            btnStop.performClick();
                             finish();
                         }
                     })
@@ -106,51 +109,12 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     protected void changeWorkoutFragment(View v){
-        /*
-        if(isBeforeWorkout){
-            b.setText("SKIP");
-            /*currentFragment = new CurrentWorkoutFragment();
-            ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, currentFragment);
-            ft.commit();
-            isBeforeWorkout = false;
-        }else {
-            b.setText("START");
-            /*currentFragment = new BeforeWorkoutFragment();
-            ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, currentFragment);
-            ft.commit();
-            isBeforeWorkout = true;
-        }
-        //isBeforeWorkout = isBeforeWorkout==true?false:true;
-        */
-        /*
-        new BottomDialog.Builder(this)
-                .setTitle("Awesome!")
-                .setContent("What can we improve? Your feedback is always welcome.")
-                .setPositiveText("OK")
-                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-                .setPositiveTextColorResource(android.R.color.white)
-                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(BottomDialog dialog) {
-                        Log.d("BottomDialogs", "Do something!");
-                        finish();
-                    }
-                })
-                .setCancelable(false)//Dismissing when touching outside
-                .setNegativeText("Exit")
-                .setNegativeTextColorResource(R.color.colorAccent)
-                .onNegative(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(BottomDialog dialog) {
-                        Log.d("BottomDialogs", "Do something!");
-                    }
-                }).show();
-        //this.onBackPressed();
-        */
         closeWorkout();
+    }
+    @Override
+    public void onBackPressed() {
+        ImageButton btnStop = (ImageButton) findViewById(R.id.btn_stop);
+        btnStop.performClick();
+        finish();
     }
 }

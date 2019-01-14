@@ -2,11 +2,13 @@ package miage.parisnanterre.fr.runwithme.workout;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badoualy.stepperindicator.StepperIndicator;
+import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.truizlop.fabreveallayout.FABRevealLayout;
 import com.truizlop.fabreveallayout.OnRevealChangeListener;
 
@@ -65,7 +78,9 @@ public class BeforeWorkoutFragment extends Fragment {
     //private Button xxx;
     private TextView streamTXT;
     private ImageButton xxx;
-    MediaPlayer mPlayer;
+
+    PlayerView playerView;
+    static SimpleExoPlayer player;
     private ImageButton btnStop;
     final String audioUrl = "http://185.52.127.159/fr/30007/mp3_128.mp3?origine=fluxradios";
     // This event is triggered soon after onCreateView().
@@ -77,6 +92,8 @@ public class BeforeWorkoutFragment extends Fragment {
         FABRevealLayout fabRevealLayout = (FABRevealLayout) view.findViewById(R.id.fab_reveal_layout);
         configureFABReveal(fabRevealLayout);
         img = (ImageView) view.findViewById(R.id.game_cover_image);
+
+        playerView = (PlayerView) view.findViewById(R.id.video_view);
 
 
         indicator = (StepperIndicator) view.findViewById(R.id.indicator);
@@ -92,78 +109,7 @@ public class BeforeWorkoutFragment extends Fragment {
         btnStop = (ImageButton) view.findViewById(R.id.btn_stop);
 
 
-        // Initialize a new media player instance
-        mPlayer = new MediaPlayer();
 
-        // Set the media player audio stream type
-        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mPlayer.setDataSource(audioUrl);
-            mPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        btnStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mPlayer.isPlaying()){
-                    mPlayer.pause();
-                    //xxx.setText("START NRJ for fitness");
-                } else {
-                    //
-                }
-            }
-        });
-        xxx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Prepare the media player
-
-                    //String station = (String) streamTXT.getText();
-                    //streamTXT.setText("loading");
-
-                    // Start playing audio from http url
-                    mPlayer.start();
-                    //streamTXT.setText(station);
-
-
-
-            }
-                //xxx.setEnabled(false);
-                /*
-                try {
-
-                    if(mPlayer.isPlaying()){
-                        mPlayer.pause();
-                        //xxx.setText("START NRJ for fitness");
-                    } else {
-
-                        // Prepare the media player
-                        mPlayer.prepare();
-
-                        // Start playing audio from http url
-                        mPlayer.start();
-
-                        //xxx.setText("STOP NRJ for fitness");
-
-                    }
-
-
-                    // Inform user for audio streaming
-                    Toast.makeText(getContext(),"Playing",Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }catch (IllegalArgumentException e){
-                    e.printStackTrace();
-                }catch (SecurityException e){
-                    e.printStackTrace();
-                }catch (IllegalStateException e){
-                    e.printStackTrace();
-                }
-                //Toast.makeText(getContext(),"Playing",Toast.LENGTH_SHORT).show();
-            }*/
-        });
         session = ((WorkoutActivity)getActivity()).getWORKOUT_SESSION();
 
         insertWorkout();
@@ -172,6 +118,47 @@ public class BeforeWorkoutFragment extends Fragment {
         updateCountDownText();
     }
 
+
+    private void initializePlayer() {
+        player = ExoPlayerFactory.newSimpleInstance(
+                new DefaultRenderersFactory(getActivity()),
+                new DefaultTrackSelector(), new DefaultLoadControl());
+
+        playerView.setPlayer(player);
+
+        Uri uri = Uri.parse(audioUrl);
+        MediaSource mediaSource = buildMediaSource(uri);
+        player.prepare(mediaSource, true, false);
+    }
+
+    private MediaSource buildMediaSource(Uri uri) {
+        return new ExtractorMediaSource.Factory(
+                new DefaultHttpDataSourceFactory("exoplayer-codelab")).
+                createMediaSource(uri);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        initializePlayer();
+
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.setPlayWhenReady(false);
+                initializePlayer();
+            }
+        });
+        xxx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.setPlayWhenReady(true);
+                xxx.setEnabled(false);
+            }
+        });
+    }
 
     private void configureFABReveal(FABRevealLayout fabRevealLayout) {
         fabRevealLayout.setOnRevealChangeListener(new OnRevealChangeListener() {
@@ -338,9 +325,6 @@ public class BeforeWorkoutFragment extends Fragment {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
         mTextViewCountDown.setText(timeLeftFormatted);
-    }
-    public void stopStream(){
-        mPlayer.pause();
     }
 
 }
