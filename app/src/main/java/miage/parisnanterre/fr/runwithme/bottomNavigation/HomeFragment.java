@@ -30,9 +30,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
+import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.running.GPSService;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.running.RunningActivity;
@@ -42,7 +46,7 @@ import miage.parisnanterre.fr.runwithme.weather.Weather;
 public class HomeFragment extends Fragment {
 
     TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, pressure_field,
-            weatherIcon, updatedField, aqius, aqicn, levelp;
+            weatherIcon, updatedField, aqius, aqicn, levelp, contenuSeance, titreSeance;
     ProgressBar loader;
     Typeface weatherFont;
     ImageView pollutionicon;
@@ -53,6 +57,8 @@ public class HomeFragment extends Fragment {
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
 
     String POLLUTION_API = "BfsDNLRQan6JbNrts";
+    //seance suivante
+    DatabaseStats db;
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
@@ -96,6 +102,10 @@ public class HomeFragment extends Fragment {
         weatherIcon.setTypeface(weatherFont);
 
         taskLoadUp(city);
+
+        // infos seance du jour
+        contenuSeance = view.findViewById(R.id.textViewContenu);
+        titreSeance = view.findViewById(R.id.textViewSeance);
 
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,6 +206,13 @@ public class HomeFragment extends Fragment {
 
                     loader.setVisibility(View.GONE);
 
+                    //chargement des infos sur la séance du jour
+                    db = new DatabaseStats(getActivity());
+                    ArrayList<Seance> seances = db.getTaskList();
+                    Seance seance = new Seance();
+                    seance = nextSeance(seances);
+                    contenuSeance.setText(seance.getContenuSeance());
+                    titreSeance.setText("--- Semaine " + seance.getNumSemaine() + " -  Seance " + seance.getNumSeance() +" ---");
 
                 }
             } catch (JSONException e) {
@@ -263,7 +280,18 @@ public class HomeFragment extends Fragment {
         }
 
     }
-
+    public Seance nextSeance(ArrayList<Seance> seances){
+        Iterator<Seance> it = seances.iterator();
+        Seance seance2 = new Seance();
+        while (it.hasNext()) {
+            Seance seance = it.next();
+            if(seance.isChecked() == false){
+                seance2 = seance;
+                break;
+            }
+        }
+        return seance2;
+    }
 
     public void tipOfTheDay(){
         Tips tip= new Tips();

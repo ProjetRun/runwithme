@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="4dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -51,8 +52,8 @@
 
             <TextView
                 android:id="@+id/num_seance"
-                android:layout_width="46dp"
-                android:layout_height="match_parent"
+                android:layout_width="43dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:text="3"
                 android:textAppearance="@style/TextAppearance.AppCompat"
@@ -62,15 +63,38 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Echauffement"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="6dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choisir" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="355dp"
-            android:layout_height="54dp"
+            android:layout_height="13dp"
             android:layout_weight="1"
             android:baselineAligned="true"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/contenu"
-                android:layout_width="314dp"
+                android:layout_width="284dp"
                 android:layout_height="match_parent"
                 android:text="Contenu"
                 android:textSize="18sp"
@@ -78,11 +102,33 @@
 
             <CheckBox
                 android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="269dp"
+            android:layout_height="39dp"
+            android:layout_weight="1"
+            android:text="Etirements"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Choisir" />
     </LinearLayout>
 
 </LinearLayout>
