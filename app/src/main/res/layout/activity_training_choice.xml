@@ -34,6 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView18"
         android:layout_alignStart="@+id/textView18"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/com_facebook_button_background_color_focused_disabled"
         android:text="Débuter - courir 30mns - 1 séance / semaine - 12 semaines" />
 
     <Button
@@ -42,5 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/deb_30min_12"
         android:layout_alignStart="@+id/textView18"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/com_facebook_button_background_color_focused_disabled"
         android:text="Débuter - courir 30mns - 2 séances / semaine - 6 semaines " />
 </RelativeLayout>

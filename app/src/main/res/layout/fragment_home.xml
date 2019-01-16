@@ -263,7 +263,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/buttonLaunchEchauffement"
+                    android:id="@+id/buttonGoWarmUp"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:layout_marginLeft="10dp"
@@ -278,7 +278,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/buttonLaunchEtirement"
+                    android:id="@+id/buttonGoStretching"
                     android:layout_width="147dp"
                     android:layout_height="34dp"
                     android:layout_alignParentBottom="true"

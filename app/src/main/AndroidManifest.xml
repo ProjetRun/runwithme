@@ -49,19 +49,17 @@
             android:name=".running.GPSService"
             android:process=":my_service" />
 
-        <activity android:name=".running.RunningActivity">
-            android:launchMode="singleInstance"
-            android:launchMode="singleTask"
-        </activity>
+        <activity android:name=".running.RunningActivity"
+            android:launchMode="singleInstance"/>
+        <!-- android:launchMode="singleTask" -->
         <activity android:name=".RunningStatisticsActivity" />
         <activity android:name=".weather.WeatherActivity" />
         <activity
             android:name=".tab.TabActivity"
             android:label="@string/title_activity_tab"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".trash.BottomNavActivity"
-            android:label="@string/title_activity_bottom_nav" />
+        <!--android:name=".trash.BottomNavActivity"
+         android:label="@string/title_activity_bottom_nav" /> -->
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />

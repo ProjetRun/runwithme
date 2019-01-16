@@ -2,133 +2,179 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false"
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="--- "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="semaine "
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/num_semaine"
+            android:layout_width="31dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="12"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="séance"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/num_seance"
+            android:layout_width="29dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="3"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="--- "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toto"
         android:layout_width="match_parent"
-        android:layout_height="133dp"
+        android:layout_height="26dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="207dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Echauffement"
+            android:textAllCaps="true"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:background="@drawable/rounded_button"
+            android:baselineAligned="false"
+            android:text="Modifier"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="4dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="87dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="semaine "
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/num_semaine"
-                android:layout_width="39dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:text="12"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="séance"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/num_seance"
-                android:layout_width="43dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:text="3"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="14dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="187dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Echauffement"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="6dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Choisir" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="355dp"
-            android:layout_height="13dp"
+            android:layout_height="15dp"
             android:layout_weight="1"
             android:baselineAligned="true"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/contenu"
-                android:layout_width="284dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Contenu"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="détail de la course avec durée et repos"
+                    android:textColor="@color/botNav"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
             <CheckBox
                 android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_width="222dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Réalisée"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="27dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView20"
-            android:layout_width="269dp"
+            android:layout_width="302dp"
             android:layout_height="39dp"
             android:layout_weight="1"
-            android:text="Etirements"
+            android:text="ETIREMENTS"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="159dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Choisir" />
+            android:alpha="0.8"
+            android:background="@drawable/rounded_button"
+            android:text="Modifier"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
 </LinearLayout>

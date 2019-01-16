@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,6 +42,7 @@ import miage.parisnanterre.fr.runwithme.running.GPSService;
 import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.running.RunningActivity;
 import miage.parisnanterre.fr.runwithme.weather.Weather;
+import miage.parisnanterre.fr.runwithme.workout.WorkoutActivity;
 
 
 public class HomeFragment extends Fragment {
@@ -52,6 +54,7 @@ public class HomeFragment extends Fragment {
     ImageView pollutionicon;
     String city = "Nanterre, FR";
     String cityloc = "48.8566,2.3522";
+    Button goWarmUp, goStretching;
     private static final int PERMS_CALL_ID = 1234;
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
@@ -106,6 +109,8 @@ public class HomeFragment extends Fragment {
         // infos seance du jour
         contenuSeance = view.findViewById(R.id.textViewContenu);
         titreSeance = view.findViewById(R.id.textViewSeance);
+        goWarmUp = view.findViewById(R.id.buttonGoWarmUp);
+        goStretching = view.findViewById(R.id.buttonGoStretching);
 
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +142,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        goWarmUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),WorkoutActivity.class);
+                intent.putExtra("WORKOUT_SESSION", "warmup");
+                startActivity(intent);
+            }
+        });
+
+        goStretching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),WorkoutActivity.class);
+                intent.putExtra("WORKOUT_SESSION", "stretching");
+                startActivity(intent);
+            }
+        });
+
         Button b = (Button) view.findViewById(R.id.buttonLaunchRunning);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +167,6 @@ public class HomeFragment extends Fragment {
                 launchRunningActivity(v);
             }
         });
-
 
         tipOfTheDay();
 
