@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import miage.parisnanterre.fr.runwithme.Challenges.VraiFaux;
 import miage.parisnanterre.fr.runwithme.R;
+import miage.parisnanterre.fr.runwithme.sandwich.SandwichActivity;
 
 
 public class ChallengesFragment extends Fragment {
@@ -68,6 +69,13 @@ public class ChallengesFragment extends Fragment {
             public void onClick(View v) {
                 bmb.performClick();
                 bmb.boom();
+            }
+        });
+        soloLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SandwichActivity.class);
+                startActivity(intent);
             }
         });
         eventLayout.setOnClickListener(new View.OnClickListener() {

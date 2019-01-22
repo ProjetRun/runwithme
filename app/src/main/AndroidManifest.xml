@@ -40,17 +40,18 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
 
         <!-- <activity android:name=".RunningActivity" /> -->
         <service
             android:name=".running.GPSService"
             android:process=":my_service" />
 
-        <activity android:name=".running.RunningActivity"
-            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".running.RunningActivity"
+            android:launchMode="singleInstance" />
         <!-- android:launchMode="singleTask" -->
         <activity android:name=".RunningStatisticsActivity" />
         <activity android:name=".weather.WeatherActivity" />
@@ -58,8 +59,10 @@
             android:name=".tab.TabActivity"
             android:label="@string/title_activity_tab"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--android:name=".trash.BottomNavActivity"
-         android:label="@string/title_activity_bottom_nav" /> -->
+        <!--
+         android:name=".trash.BottomNavActivity"
+         android:label="@string/title_activity_bottom_nav" />
+        -->
         <activity android:name=".tab.DashboardActivity" />
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
@@ -70,13 +73,16 @@
             android:authorities="com.facebook.app.FacebookContentProvider261810111168516"
             android:exported="true" />
 
-        <activity android:name=".Challenges.VraiFaux"></activity>
-
+        <activity android:name=".Challenges.VraiFaux" />
         <activity
             android:name=".MarathonTraining.TrainingChoiceActivity"
             android:label="@string/title_activity_training_choice"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".sandwich.SandwichActivity" />
+        <activity
+            android:name=".sandwich.SandwichDetail"
+            android:label="@string/title_activity_sandwich_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
 
 </manifest>

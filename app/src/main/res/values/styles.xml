@@ -46,4 +46,66 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!--Toolbar-->
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Commune -->
+    <style name="MetaDataText">
+        <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontWeight">400</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--Card Styles -->
+    <style name="CardArticleItemText" parent="MetaDataText">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="CardArticleItemText.Headline" parent="TextAppearance.AppCompat.Title">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="CardArticleItemText.Time" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">@color/text_black_60</item>
+    </style>
+
+    <!--Details page-->
+    <style name="DetailTitle" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">@color/text_black_87</item>
+        <item name="android:fontFamily">@font/raleway</item>
+    </style>
+
+    <style name="DetailSubHeader" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/text_black_87</item>
+        <item name="android:fontFamily">@font/raleway</item>
+    </style>
+
+    <style name="TextBody2" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/text_black_60</item>
+    </style>
+
+    <style name="Chips">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:capitalize">words</item>
+        <item name="android:textColor">#ff232F34</item>
+        <item name="android:background">@drawable/chip_shape</item>
+    </style>
+
+    <style name="DividerHorizontal">
+        <item name="android:background">?android:attr/listDivider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+
 </resources>
