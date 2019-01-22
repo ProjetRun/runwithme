@@ -219,7 +219,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="236dp"
+            android:layout_height="290dp"
             android:layout_marginTop="27dp"
             android:adjustViewBounds="true"
             android:orientation="vertical">
@@ -243,7 +243,18 @@
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="24sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:progress="25" />
 
             <TextView
                 android:id="@+id/textViewSeance"
