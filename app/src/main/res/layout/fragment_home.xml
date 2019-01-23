@@ -36,8 +36,8 @@
             android:layout_width="312dp"
             android:layout_height="100dp"
             android:layout_marginLeft="35dp"
-            android:alpha="0.7"
             android:layout_marginRight="35dp"
+            android:alpha="0.7"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -142,8 +142,8 @@
             android:layout_width="337dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
-            android:alpha="0.7"
             android:layout_marginRight="35dp"
+            android:alpha="0.7"
             android:orientation="horizontal">
 
             <ProgressBar
@@ -237,7 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="OBJECTIF MARATHON"
+                    android:text="marathon goal"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -249,7 +249,7 @@
             <ProgressBar
                 android:id="@+id/progressBar4"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="356dp"
+                android:layout_width="342dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
@@ -275,22 +275,22 @@
 
                 <Button
                     android:id="@+id/buttonGoWarmUp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="142dp"
                     android:layout_height="34dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="25dp"
                     android:layout_marginBottom="5dp"
                     android:alpha="0.8"
                     android:background="@drawable/rounded_button"
                     android:onClick="launchRunningActivity"
-                    android:text="Echauffement"
+                    android:text="Warm Up"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/buttonGoStretching"
-                    android:layout_width="147dp"
+                    android:layout_width="153dp"
                     android:layout_height="34dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="10dp"
@@ -299,7 +299,7 @@
                     android:alpha="0.8"
                     android:background="@drawable/rounded_button"
                     android:onClick="launchRunningActivity"
-                    android:text="Etirements"
+                    android:text="Stretching"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
