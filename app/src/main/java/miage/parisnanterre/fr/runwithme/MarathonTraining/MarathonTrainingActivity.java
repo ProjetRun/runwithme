@@ -21,7 +21,7 @@ import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 
 import static miage.parisnanterre.fr.runwithme.database.DatabaseStats.DB_TABLE;
-import static miage.parisnanterre.fr.runwithme.database.DatabaseStats.ID;
+//import static miage.parisnanterre.fr.runwithme.database.DatabaseStats.ID;
 
 
 public class MarathonTrainingActivity extends AppCompatActivity {

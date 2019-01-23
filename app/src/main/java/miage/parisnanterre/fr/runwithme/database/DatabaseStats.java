@@ -45,7 +45,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String NUMERO_ID = "numero";
     public static final String NOM = "nom";
 
-    public static final int ID = 0;
+    //public static final int ID = 0;
     public static final String NUM_SEMAINE_COLUMN = "numSemaine";
     public static final String NUM_SEANCE_COLUMN = "NumSeance";
     public static final String TYPE_SEANCE_COLUMN = "typeSeance";
@@ -73,7 +73,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 UNITEMESURE + " INTEGER)";
 
         String CREATE_BADGES_TABLE = "CREATE TABLE " + TABLE_BADGES + "(" +
-                NUMERO_ID+ " INTEGER PRIMARY KEY," +
+                NUMERO_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 NOM+ " TEXT);";
         String query = String.format("CREATE TABLE %s " +
                         "(ID INTEGER PRIMARY KEY," +
@@ -83,7 +83,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
                         "%s TEXT NOT NULL, " +
                         "%s INTEGER);",
                 DB_TABLE,
-                ID,
+                //ID,
                 NUM_SEMAINE_COLUMN,
                 NUM_SEANCE_COLUMN,
                 TYPE_SEANCE_COLUMN,
