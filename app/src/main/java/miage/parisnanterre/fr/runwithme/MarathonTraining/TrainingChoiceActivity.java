@@ -1,7 +1,10 @@
 package miage.parisnanterre.fr.runwithme.MarathonTraining;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,13 +27,21 @@ public class TrainingChoiceActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getActivity(), WorkoutActivity.class);
-                //intent.putExtra("WORKOUT_SESSION", "coach");
-                //startActivity(intent);
+                setDefaults("choiceKey", 1, getApplicationContext());
                 Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
                 startActivity(intent);
             }
         });
     }
+    public static void setDefaults(String key, int value, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
 
+    public static int getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt(key, 0);
+    }
 }

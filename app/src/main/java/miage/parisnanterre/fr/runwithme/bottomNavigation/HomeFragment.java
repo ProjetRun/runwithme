@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.data.DataBufferObserver;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,6 +38,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
@@ -55,6 +60,8 @@ public class HomeFragment extends Fragment {
     String city = "Nanterre, FR";
     String cityloc = "48.8566,2.3522";
     Button goWarmUp, goStretching;
+
+
     private static final int PERMS_CALL_ID = 1234;
     /*  API Key à partir du siteweb https://openweathermap.org*/
     String OPEN_WEATHER_MAP_API = "92a0cb640cc371cd8be907cb79ae4194";
@@ -68,24 +75,56 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
-
-
-
         return inflater.inflate(R.layout.fragment_home, parent, false);
     }
-
+    private TextView txtProgress;
+    private ProgressBar progressBar;
+    private int pStatus = 0;
+    private Handler handler = new Handler();
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+
+        txtProgress = (TextView) view.findViewById(R.id.txtProgress);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar4);
+
+        db = new DatabaseStats(getActivity());
+        ArrayList<Seance> seances = db.getTaskList();
+        Seance seance = nextSeance(seances);
+        int numSeance = seance.getNumSemaine();
+        int totalSeance = 20;
+        final int valProgBar = 100*numSeance /20;
+        db.close();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (pStatus <= valProgBar) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setProgress(pStatus);
+                            //txtProgress.setText(pStatus + " %");
+                        }
+                    });
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    pStatus++;
+                }
+            }
+        }).start();
         checkPermissions();
 
         Intent i =new Intent(getActivity().getApplicationContext(),GPSService.class);
         getActivity().startService(i);
 
-        loader = (ProgressBar) view.findViewById(R.id.loader);
+        loader = view.findViewById(R.id.loader);
         selectCity = (TextView) view.findViewById(R.id.selectCity);
         cityField = (TextView) view.findViewById(R.id.city_field);
         updatedField = (TextView) view.findViewById(R.id.updated_field);
@@ -93,7 +132,6 @@ public class HomeFragment extends Fragment {
         currentTemperatureField = (TextView) view.findViewById(R.id.current_temperature_field);
         humidity_field = (TextView) view.findViewById(R.id.humidity_field);
         pressure_field = (TextView) view.findViewById(R.id.pressure_field);
-
         aqius = view.findViewById(R.id.aqius);
         aqicn = view.findViewById(R.id.aqicn);
         levelp = view.findViewById(R.id.levelp);
@@ -111,6 +149,12 @@ public class HomeFragment extends Fragment {
         titreSeance = view.findViewById(R.id.textViewSeance);
         goWarmUp = view.findViewById(R.id.buttonGoWarmUp);
         goStretching = view.findViewById(R.id.buttonGoStretching);
+
+        //txtProgress = (TextView) view.findViewById(R.id.txtProgress);
+        //progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+
+
 
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +215,9 @@ public class HomeFragment extends Fragment {
         tipOfTheDay();
 
         notification();
+
+
+
     }
 
 
@@ -237,6 +284,9 @@ public class HomeFragment extends Fragment {
                     titreSeance.setText("--- Semaine " + seance.getNumSemaine() + " -  Seance " + seance.getNumSeance() +" ---");
 
                 }
+
+
+
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "Error, Check City", Toast.LENGTH_SHORT).show();
             }
