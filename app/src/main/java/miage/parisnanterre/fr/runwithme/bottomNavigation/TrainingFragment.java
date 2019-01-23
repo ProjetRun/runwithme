@@ -1,7 +1,10 @@
 package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,11 +72,30 @@ public class TrainingFragment extends Fragment {
             }
         });
         marathonLayout.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TrainingChoiceActivity.class);
-                startActivity(intent);
+                int choice = getDefaults("choiceKey",getContext());
+                if (choice == 0){//on lance trainning choice
+                    Intent intent = new Intent(getActivity(), TrainingChoiceActivity.class);
+                    startActivity(intent);
+                }
+                if(choice == 1){//on lance l'entrainement 1
+                    Intent intent = new Intent(getActivity(), MarathonTrainingActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+    public static void setDefaults(String key, int value, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
+
+    public static int getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt(key, 0);
     }
 }

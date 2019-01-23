@@ -1,9 +1,13 @@
 package miage.parisnanterre.fr.runwithme.MarathonTraining;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -148,10 +152,24 @@ public class MarathonTrainingActivity extends AppCompatActivity {
                         .create();
                 dialog.show();
                 return true;
+            case R.id.action_choice:
+                    Intent intent = new Intent(this, TrainingChoiceActivity.class);
+                    startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
+    public static void setDefaults(String key, int value, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
 
+    public static int getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt(key, 0);
+    }
     /*public void deleteTask(View view){
         View parent = (View)view.getParent();
         TextView taskTextView = (TextView)parent.findViewById(R.id.task_title);

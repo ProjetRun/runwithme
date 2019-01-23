@@ -9,4 +9,10 @@
         android:title="Add New Task"
         app:showAsAction="always"
         />
+    <item
+        android:id="@+id/action_choice"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="Add New Task"
+        app:showAsAction="always"
+        />
 </menu>
