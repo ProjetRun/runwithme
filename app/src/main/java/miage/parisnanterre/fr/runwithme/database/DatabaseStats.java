@@ -7,9 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.net.IDN;
 import java.util.ArrayList;
 import java.util.List;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.MarathonTrainingActivity;
 import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
 import miage.parisnanterre.fr.runwithme.badges.Badge;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
@@ -43,6 +45,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String NUMERO_ID = "numero";
     public static final String NOM = "nom";
 
+    public static final int ID = 0;
     public static final String NUM_SEMAINE_COLUMN = "numSemaine";
     public static final String NUM_SEANCE_COLUMN = "NumSeance";
     public static final String TYPE_SEANCE_COLUMN = "typeSeance";
@@ -73,13 +76,14 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 NUMERO_ID+ " INTEGER PRIMARY KEY," +
                 NOM+ " TEXT);";
         String query = String.format("CREATE TABLE %s " +
-                        "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "(ID INTEGER PRIMARY KEY," +
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s INTEGER);",
                 DB_TABLE,
+                ID,
                 NUM_SEMAINE_COLUMN,
                 NUM_SEANCE_COLUMN,
                 TYPE_SEANCE_COLUMN,
@@ -146,9 +150,17 @@ public class DatabaseStats extends SQLiteOpenHelper {
         Log.i("DATABASE","addBadge invoked");
     }
 
+
+    public void deleteallseances(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("delete from "+ DB_TABLE);
+        db.close();
+    }
+
     public void insertNewSeance(Seance seance){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(NUM_SEANCE_COLUMN,seance.getNumSeance());
         values.put(NUM_SEMAINE_COLUMN,seance.getNumSemaine());
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
@@ -251,6 +263,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         while(cursor.moveToNext()){
             Seance seance = new Seance();
             //String data = cursor.getString(cursor.getColumnIndex("data"));//
+     //       seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             seance.setContenuSeance(cursor.getString(cursor.getColumnIndex(CONTENU_COLUMN)));
             seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
             seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
