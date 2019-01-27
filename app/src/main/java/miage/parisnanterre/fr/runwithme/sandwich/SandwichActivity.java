@@ -28,7 +28,6 @@ public class SandwichActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         setupListAdapter(setupListSandwich());
-
     }
 
     private List<Sandwich> setupListSandwich(){
