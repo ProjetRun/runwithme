@@ -10,8 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -47,6 +50,10 @@ public class SandwichDetail extends AppCompatActivity {
 
     private void setUpUI(Sandwich sandwich) {
         // Sandwich image
+        ImageView imageRecipe = (ImageView) findViewById(R.id.image_recipe);
+        Glide.with(this)
+                .load(sandwich.getImage())
+                .into(imageRecipe);
 
         // Sandwich main name
         TextView sandwichName = (TextView)findViewById(R.id.text_sandwich_name);

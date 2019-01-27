@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URI;
@@ -31,11 +33,13 @@ public class SandwichAdapter extends RecyclerView.Adapter<SandwichAdapter.ViewHo
     private List<Sandwich> mSandwichList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
     SandwichAdapter(Context context, List<Sandwich> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mSandwichList = data;
+        this.context = context;
 
     }
 
@@ -59,6 +63,9 @@ public class SandwichAdapter extends RecyclerView.Adapter<SandwichAdapter.ViewHo
             e.printStackTrace();
         }*/
 
+        Glide.with(context)
+                .load(sandwich.getImage())
+                .into(holder.imageSandwich);
         //holder.imageSandwich.setImageURI(Uri.parse(sandwich.getImage()));
         holder.textName.setText(sandwich.getMainName());
         holder.textDescription.setText(sandwich.getDescription());

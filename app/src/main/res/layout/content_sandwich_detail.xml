@@ -83,17 +83,36 @@ xmlns:tools="http://schemas.android.com/tools">
                         android:gravity="center"
                         tools:text="Sandwich name title" />
 
-                    <TextView
-                        android:id="@+id/text_origin"
-                        style="@style/TextBody2"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_text_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="16dp"
-                        android:drawablePadding="8dp"
-                        android:drawableStart="@drawable/ic_dashboard_black_24dp"
-                        android:gravity="center"
-                        tools:text="@tools:sample/cities" />
+                        android:layout_margin="5dp"
+                        android:alpha="0.8"
+                        android:background="@drawable/rounded_button_food"
+                        android:text="Main dish"
+                        android:textColor="#FFF" />
+
+                    <Button
+                        android:id="@+id/button_text_programme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:alpha="0.8"
+                        android:background="@drawable/rounded_button_food"
+                        android:text="weight loss"
+                        android:textColor="#FFF" />
+
+                </LinearLayout>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -120,7 +139,7 @@ xmlns:tools="http://schemas.android.com/tools">
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:drawablePadding="16dp"
-                        android:drawableStart="@drawable/ic_dashboard_black_24dp"
+                        android:drawableStart="@drawable/ic_info_black_24dp"
                         android:gravity="center"
                         android:text="@string/detail_description_label" />
 
@@ -158,7 +177,7 @@ xmlns:tools="http://schemas.android.com/tools">
                         android:layout_gravity="start"
                         android:layout_marginBottom="16dp"
                         android:drawablePadding="16dp"
-                        android:drawableStart="@drawable/ic_dashboard_black_24dp"
+                        android:drawableStart="@drawable/ic_assignment_black_24dp"
                         android:gravity="center"
                         android:text="@string/detail_ingredients_label" />
 
@@ -182,9 +201,9 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/ic_menu_send"
+        android:src="@drawable/main_dish"
         android:tint="@color/cardview_light_background"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="#EF5458"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|center" />
 </android.support.design.widget.CoordinatorLayout>

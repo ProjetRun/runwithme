@@ -3,11 +3,13 @@ package miage.parisnanterre.fr.runwithme.Challenges;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
@@ -96,36 +98,46 @@ public class VraiFaux extends AppCompatActivity {
     }
 
     public Questions anyItem() {
-        if(0>this.countdown){
+        resetTimer();
+        if(0>=this.countdown){
+
 
             pauseTimer();
+            resetTimer();
 
-            new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
-                    .setTopColorRes(R.color.colorPrimaryDark)
-                    .setButtonsColorRes(R.color.colorPrimaryDark)
-                    .setIcon(R.drawable.ic_menu_camera)
-                    .setTitle("Score")
-                    .setMessage(score+"/10")
-                    .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+
+            new BottomDialog.Builder(this)
+                    .setTitle("Score!")
+                    .setContent(score+"/10")
+                    .setPositiveText("continue")
+                    .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                    //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                    .setPositiveTextColorResource(android.R.color.white)
+                    //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                    .onPositive(new BottomDialog.ButtonCallback() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(BottomDialog dialog) {
+                            Log.d("BottomDialogs", "Do something!");
                             finish();
                         }
                     })
                     .show();
 
 
-        }
-        int index = randomGenerator.nextInt(catalogue.size());
-        item = catalogue.get(index);
-        if(item.getAppeared()){
-            return anyItem();
         }else{
-            item.setAppeared(true);
-            this.countdown--;
+            int index = randomGenerator.nextInt(catalogue.size());
+            item = catalogue.get(index);
+            if(item.getAppeared()){
+                return anyItem();
+            }else{
+                item.setAppeared(true);
+                this.countdown--;
 
-            return item;
+                return item;
+            }
+
         }
+        return item;
     }
 
 
@@ -141,10 +153,10 @@ public class VraiFaux extends AppCompatActivity {
     public void checkresult(boolean x){
         String y = x==true ? "vrai" : "faux";
         if(x == item.getReponse()){
-            FancyToast.makeText(this,"true !",FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+            FancyToast.makeText(this,"true !",25,FancyToast.SUCCESS,false).show();
             score++;
         }else{
-            FancyToast.makeText(this,"false !",FancyToast.LENGTH_SHORT, FancyToast.ERROR,false).show();
+            FancyToast.makeText(this,"false !",25, FancyToast.ERROR,false).show();
         }
     }
     public void click_true(View view) {
@@ -206,5 +218,12 @@ public class VraiFaux extends AppCompatActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
         mTextViewCountDown.setText(timeLeftFormatted);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+       pauseTimer();
+       finish();
     }
 }
