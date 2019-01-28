@@ -284,6 +284,53 @@
             mashed potato patty\",\"chilli peppers\",\"garlic\",\"ginger\",\"bread bun\"]}
         </item>
     </string-array>
+
+    <string-array name="sain_details">
+       <item>{\"name\":{\"mainName\":\"Thai Red Curry Chicken and Vegetables\",\"alsoKnownAs\":[]},\"placeOfOrigin\":\"\",\"description\":\"The key to this curry chicken is getting complex flavors without a heavy feel. For the veggies, I like colorful pea pods, sweet red peppers and water chestnuts. —David Dahlman, Chatsworth, California\",
+        \"image\":\"https://www.tasteofhome.com/wp-content/uploads/2018/03/exps166352_TH163620D11_12_4b-2-696x696.jpg\",
+        \"ingredients\":[\"chicken breasts\",\"coconut milk\",\"red curry paste\",\"brown rice\",\"vegetable blend\"]}
+        </item>
+        <!--
+        <item>
+            {\"name\":{\"mainName\":\"Mediterranean Pork and Orzo\",\"alsoKnownAs\":[\"Bosner\"]},\"placeOfOrigin\":\"Austria\",\"description\":\"On a really busy day, this meal-in-a-bowl is one of my top picks. It's quick to put together, leaving a lot more time to relax at the table. —Mary Relyea, Canastota, New York.\",\"image\":\"https://www.tasteofhome.com/wp-content/uploads/2018/01/exps23345_SD143205A01_24_3b_WEB-696x696.jpg\",
+            \"ingredients\":[\"pork tenderloin\",\"feta cheese\",\"grape tomatoes\",\"fresh baby spinach\",\"uncooked orzo pasta\",\"olive oil\",\"3 quarts water\"]}
+        </item>
+
+        <item>
+            {\"name\":{\"mainName\":\"Chicken and Asian Slaw\",\"alsoKnownAs\":[]},\"placeOfOrigin\":\"Uruguay\",\"description\":\"This meal is always a hit, and it goes together so quickly. Sesame ginger salad dressing adds refreshing flavor to this pairing of broiled chicken and an exotic homemade coleslaw. —Melissa Jelinek, Apple Valley, Minnesota .\",\"image\":\"https://www.tasteofhome.com/wp-content/uploads/2017/10/exps86512_SD153319C10_10_1b-696x696.jpg\",
+            \"ingredients\":[\"2 cups cubed fresh pineapple\",\"2 cups sliced bok choy\",\"shredded red cabbage\",\1/4 cup sesame ginger\",\"chicken breast halves\"]}
+        </item>
+        <item>{\"name\":{\"mainName\":\"Grilled Basil Chicken and Tomatoes\",\"alsoKnownAs\":[\"Clubhouse
+            sandwich\"]},\"placeOfOrigin\":\"United States\",\"description\":\"Relax after work with a cold drink while this savory chicken marinates in an herby tomato blend for an hour, then toss it on the grill. It tastes just like summer. —Laura Lunardi, West Chester, Pennsylvania .\",
+            \"image\":\"https://www.tasteofhome.com/wp-content/uploads/2017/10/Grilled-Basil-Chicken-and-Tomatoes_EXPS_DSBZ17_37304_B01_19_5b-1-696x696.jpg\",
+            \"ingredients\":[\"Balsamic vinegar\",\"fresh basil leaves\",\"olive oil\",\"garlic clove, minced\",\"plum tomatoes\",\"chicken breast\"]}
+        </item>
+
+        <item>{\"name\":{\"mainName\":\"Sloppy Tacos\",\"alsoKnownAs\":[\"Steamed bao\",\"Pork belly
+            bun\"]},\"placeOfOrigin\":\"Taiwan\",\"description\":\"No matter how hectic the weeknight, there's always time to serve your family a healthy meal with recipes this easy and good! —Kami Jones, Avondale, Arizona.\",
+            \"image\":\"https://www.tasteofhome.com/wp-content/uploads/2018/03/Mom-s-Sloppy-Tacos_exps108738_THHC2238741C07_28_1bC_RMS-696x696.jpg\",
+            \"ingredients\":[\"extra-lean ground beef (95% lean)\",\"1 can tomato sauce\",\"garlic powder\",\"cayenne pepper\",\"taco shells\"]}
+        </item>-->
+        <item>{\"name\":{\"mainName\":\"Roasted Curried Chickpeas and Cauliflower\",\"alsoKnownAs\":[\"Cuban
+            Sandwich\"]},\"placeOfOrigin\":\"Cuba\",\"description\":\"When there’s not much time to cook, try roasting potatoes and cauliflower with chickpeas for a warm-you-up dinner. Add chicken or tofu to the sheet pan if you like. —Pam Correll, Brockport, Pennsylvania .\",
+            \"image\":\"https://www.tasteofhome.com/wp-content/uploads/2018/02/exps138523_SD153319D10_10_4b-696x696.jpg\",
+            \"ingredients\":[\"1 can chickpeas\",\"1 small head cauliflower\",\"2 pounds potatoes\",\"olive oil\",\"curry powder\",\"fresh cilantro or parsley\"]}
+        </item>
+    </string-array>
+    <string-array name="perte_details">
+        <item>{\"name\":{\"mainName\":\"Chicken Parmigiana with Penne\",\"alsoKnownAs\":[]},\"placeOfOrigin\":\"\",\"description\":\"Sauté spinach in one teaspoon olive oil, and toss with chicken, penne, and tomato sauce. Top with Parmesan.\",
+        \"image\":\"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/images/1011-fbd-1516714275.jpg\",
+        \"ingredients\":[\"4 oz grilled chicken, diced\",\"1/2 cup tomato sauce\",\"1 cup spinach\",\"1/2 cup whole-wheat penne\",\"1 1/2 Tbsp grated Parmesan\"]}
+        </item>
+
+        <item>{\"name\":{\"mainName\":\"Jalapeño-Watermelon Salad\",\"alsoKnownAs\":[\"Cuban
+            Sandwich\"]},\"placeOfOrigin\":\"Cuba\",\"description\":\"Combine olive oil, vinegars, garlic, salt, and pepper in a large bowl. Whisk until emulsified. Add the arugula, watermelon, tomatoes, onion, feta, mint, and jalapeño. Toss with your hands to combine well. Serve immediately.\",
+            \"image\":\"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/jalapeno-watermelon-salad-c-tara-donne-1470869599.jpg\",
+            \"ingredients\":[\"1 Tbsp seeded and minced jalapeño\",\"2 Tbsp diced feta cheese\",\"2 c diced seedless watermelon\",\"3 c arugula\",\"1 Tbsp apple cider vinegar\",\"1 Tbsp balsamic vinegar\"]}
+        </item>
+
+    </string-array>
+
     <string name="title_activity_sandwich_detail">SandwichDetail</string>
 
     <string name="title_activity_objectif_nutrition">ObjectifNutritionActivity</string>

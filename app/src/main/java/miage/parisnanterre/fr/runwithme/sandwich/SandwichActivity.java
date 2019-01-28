@@ -26,14 +26,29 @@ public class SandwichActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sandwich);
 
         getSupportActionBar().hide();
+        Intent intent = getIntent();
+        String obj = intent.getStringExtra("obj");
 
-        setupListAdapter(setupListSandwich());
+        setupListAdapter(setupListSandwich(obj));
     }
 
-    private List<Sandwich> setupListSandwich(){
+    private List<Sandwich> setupListSandwich(String objectif){
         List<Sandwich> sandwicheList = new ArrayList<>();
 
-        String[] sandwiches = this.getResources().getStringArray(R.array.sandwich_details);
+        String[] sandwiches;
+        switch (objectif){
+            case "sain":
+                sandwiches = this.getResources().getStringArray(R.array.sain_details);
+                break;
+            case "perte":
+                sandwiches = this.getResources().getStringArray(R.array.perte_details);
+                break;
+
+            default:
+                sandwiches = this.getResources().getStringArray(R.array.sandwich_details);
+                break;
+        }
+
         System.out.println(sandwiches);
         for (String sandwiche : sandwiches) {
             System.out.println(sandwiche);

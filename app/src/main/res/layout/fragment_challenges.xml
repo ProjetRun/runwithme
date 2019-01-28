@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/solo">
+            android:background="@drawable/fitnessnutrition">
 
             <TextView
                 android:id="@+id/textView01"
@@ -33,7 +33,7 @@
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1"
-                android:text="Defis du courreur"
+                android:text="Nutrition"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
