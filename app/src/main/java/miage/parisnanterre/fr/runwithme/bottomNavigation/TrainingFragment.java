@@ -76,14 +76,14 @@ public class TrainingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int choice = getDefaults("choiceKey",getContext());
-          //      if (choice == 0){//on lance trainning choice
+                if (choice == 0){//on lance trainning choice
                     Intent intent = new Intent(getActivity(), TrainingChoiceActivity.class);
                     startActivity(intent);
-         //       }
-        /*        if(choice == 1){//on lance l'entrainement 1
+                }
+                if(choice == 1){//on lance l'entrainement 1
                     Intent intent = new Intent(getActivity(), MarathonTrainingActivity.class);
                     startActivity(intent);
-                }*/
+                }
             }
         });
     }

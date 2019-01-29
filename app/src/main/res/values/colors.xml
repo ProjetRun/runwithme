@@ -7,6 +7,8 @@
     <color name="background">#070a0f</color>
     <color name="fab">#ce2335</color>
     <color name="botNav">#203030</color>
+    <color name="emile">#066989</color>
+    <color name="nico">#3c7e98</color>
 
     <!--text colors-->
     <color name="text_black_87">#DE000000</color>
