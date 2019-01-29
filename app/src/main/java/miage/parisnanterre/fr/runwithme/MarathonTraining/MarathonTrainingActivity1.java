@@ -28,11 +28,11 @@ public class MarathonTrainingActivity1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_main4);
         db = new DatabaseStats(this);
-        listView = findViewById(R.id.lstSeance);
+        listView = findViewById(R.id._2ndSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
-        ArrayList<Seance> seances = db.getTaskList();
+        ArrayList<Seance> seances = db.getTaskList("2");
   //      db.deleteallseances();
         if (seances.isEmpty())
         loadBDexercices1();
@@ -41,7 +41,7 @@ public class MarathonTrainingActivity1 extends AppCompatActivity {
 
     private void loadTaskList() {
         // Construct the data source
-        ArrayList<Seance> seances = db.getTaskList();
+        ArrayList<Seance> seances = db.getTaskList("2");
 
         ArrayList<Seance> scs = new ArrayList<>();
         for(int i=0; i<seances.size(); i++){
@@ -53,17 +53,17 @@ public class MarathonTrainingActivity1 extends AppCompatActivity {
         if (scs.isEmpty()) {
             loadBDexercices1();
             // Construct the data source
-             scs = db.getTaskList();
+             scs = db.getTaskList("2");
             // Create the adapter to convert the array to views
             SeanceAdapter adapter = new SeanceAdapter(this, scs);
             // Attach the adapter to a ListView
-            listView = (ListView) findViewById(R.id.lstSeance);
+            listView = (ListView) findViewById(R.id._2ndSeance);
             listView.setAdapter(adapter);
         }
         // Create the adapter to convert the array to views
         SeanceAdapter adapter = new SeanceAdapter(this, seances);
         // Attach the adapter to a ListView
-        listView = (ListView) findViewById(R.id.lstSeance);
+        listView = (ListView) findViewById(R.id._2ndSeance);
         listView.setAdapter(adapter);
     }
 

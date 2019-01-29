@@ -45,7 +45,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String NUMERO_ID = "numero";
     public static final String NOM = "nom";
 
-    //public static final int ID = 0;
+    public static final String ID_SEANCE = "0";
     public static final String NUM_SEMAINE_COLUMN = "numSemaine";
     public static final String NUM_SEANCE_COLUMN = "NumSeance";
     public static final String TYPE_SEANCE_COLUMN = "typeSeance";
@@ -76,14 +76,14 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 NUMERO_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 NOM+ " TEXT);";
         String query = String.format("CREATE TABLE %s " +
-                        "(ID INTEGER PRIMARY KEY," +
+                        "(%s INTEGER PRIMARY KEY," +
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s INTEGER);",
                 DB_TABLE,
-                //ID,
+                ID_SEANCE,
                 NUM_SEMAINE_COLUMN,
                 NUM_SEANCE_COLUMN,
                 TYPE_SEANCE_COLUMN,
@@ -161,6 +161,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(ID_SEANCE, seance.getId());
         values.put(NUM_SEANCE_COLUMN,seance.getNumSeance());
         values.put(NUM_SEMAINE_COLUMN,seance.getNumSemaine());
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
@@ -255,10 +256,10 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Seance> getTaskList(){
+    public ArrayList<Seance> getTaskList(String id_number){
         ArrayList<Seance> seances = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query= "SELECT * FROM "+ DB_TABLE +";";
+        String query= "SELECT * FROM "+ DB_TABLE + "WHERE"+ ID_SEANCE + "= '"+ id_number + "';";
         Cursor cursor = db.rawQuery(query,null);
         while(cursor.moveToNext()){
             Seance seance = new Seance();
@@ -269,7 +270,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
             seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
             seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
             seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))>0);
-            seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+        //  seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             //boolean value = cursor.getInt(boolean_column_index) > 0;
             seances.add(seance);
         }
@@ -277,4 +278,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
         return seances;
     }
+
+
+
 }

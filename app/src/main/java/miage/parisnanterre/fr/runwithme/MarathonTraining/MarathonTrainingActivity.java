@@ -29,6 +29,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
     DatabaseStats db;
     ListView listView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +37,9 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db = new DatabaseStats(this);
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
-        ArrayList<Seance> seances = db.getTaskList();
+        ArrayList<Seance> seances = db.getTaskList("1");
     //    db.deleteallseances();
-        if (seances.isEmpty())
+        //if (seances.isEmpty())
             loadBDexercices();
 
         loadTaskList();
@@ -46,7 +47,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
 
     private void loadTaskList() {
         // Construct the data source
-        ArrayList<Seance> seances = db.getTaskList();
+        ArrayList<Seance> seances = db.getTaskList("2");
         ArrayList<Seance> scs = new ArrayList<>();
         for(int i=0; i<seances.size(); i++){
 
