@@ -166,6 +166,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         values.put(NUM_SEMAINE_COLUMN,seance.getNumSemaine());
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
         values.put(CONTENU_COLUMN,seance.getContenuSeance());
+
         //values.put(CHECKED_SEANCE,seance.checked);
 
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
@@ -256,11 +257,12 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Seance> getTaskList(String id_number){
+    public ArrayList<Seance> getTaskList(String id_numero){
         ArrayList<Seance> seances = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query= "SELECT * FROM "+ DB_TABLE + "WHERE"+ ID_SEANCE + "= '"+ id_number + "';";
-        Cursor cursor = db.rawQuery(query,null);
+        //String query= "SELECT * FROM "+ DB_TABLE + "WHERE"+ ID_SEANCE + "= '"+ id_number + "';";
+    //    String query= " '"+id_numero+"';";
+        Cursor cursor = db.rawQuery("SELECT * FROM "+DB_TABLE+" WHERE ID_SEANCE = '"+id_numero+"'", null);
         while(cursor.moveToNext()){
             Seance seance = new Seance();
             //String data = cursor.getString(cursor.getColumnIndex("data"));//
@@ -271,6 +273,31 @@ public class DatabaseStats extends SQLiteOpenHelper {
             seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
             seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))>0);
         //  seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            //boolean value = cursor.getInt(boolean_column_index) > 0;
+            seances.add(seance);
+        }
+        cursor.close();
+        db.close();
+        return seances;
+    }
+
+
+    public ArrayList<Seance> getTaskList(){
+        ArrayList<Seance> seances = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query= "SELECT * FROM "+ DB_TABLE +";";
+        //    String query= " '"+id_numero+"';";
+        Cursor cursor = db.rawQuery(query, null);
+        while(cursor.moveToNext()){
+            Seance seance = new Seance();
+            //String data = cursor.getString(cursor.getColumnIndex("data"));//
+            //       seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            seance.setContenuSeance(cursor.getString(cursor.getColumnIndex(CONTENU_COLUMN)));
+            seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
+            seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
+            seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
+            seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))>0);
+            //  seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             //boolean value = cursor.getInt(boolean_column_index) > 0;
             seances.add(seance);
         }

@@ -39,7 +39,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
         ArrayList<Seance> seances = db.getTaskList("1");
     //    db.deleteallseances();
-        //if (seances.isEmpty())
+        if (seances.isEmpty())
             loadBDexercices();
 
         loadTaskList();
@@ -47,15 +47,15 @@ public class MarathonTrainingActivity extends AppCompatActivity {
 
     private void loadTaskList() {
         // Construct the data source
-        ArrayList<Seance> seances = db.getTaskList("2");
-        ArrayList<Seance> scs = new ArrayList<>();
+        ArrayList<Seance> seances = db.getTaskList("1");
+    /*    ArrayList<Seance> scs = new ArrayList<>();
         for(int i=0; i<seances.size(); i++){
 
             if (seances.get(i).getId() == 1)
                 scs.add(seances.get(i));
 
         }
-
+*/
         // Create the adapter to convert the array to views
         SeanceAdapter adapter = new SeanceAdapter(this, seances);
         // Attach the adapter to a ListView
