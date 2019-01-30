@@ -41,7 +41,7 @@ public class TrainingChoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setDefaults("choiceKey", 2, getApplicationContext());
-                Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity1.class);
+                Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
                 startActivity(intent);
             }
         });

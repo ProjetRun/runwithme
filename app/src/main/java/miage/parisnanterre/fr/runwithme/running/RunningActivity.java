@@ -14,11 +14,14 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -37,11 +40,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
 import miage.parisnanterre.fr.runwithme.badges.Badge;
+import miage.parisnanterre.fr.runwithme.bottomNavigation.HomeFragment;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.database.DatabaseUser;
 import miage.parisnanterre.fr.runwithme.R;
@@ -268,6 +274,8 @@ public class RunningActivity extends AppCompatActivity {
         else
             pushStats.setUniteMesure("m");
         pushStats.setDuree(duree);
+        int minutes = transformInMinutes(duree);
+        checkSeance(minutes);
         pushStats.setRythme(rythme);
         pushStats.setCalories(calories);
         db.addStats(pushStats);
@@ -371,6 +379,41 @@ public class RunningActivity extends AppCompatActivity {
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
     }
+
+    public int transformInMinutes(String duree){
+        int milliseconds = Integer.parseInt(this.duree);
+        int seconds = (milliseconds / 1000) % 60 ;
+        int minutes = ((milliseconds / (1000*60)) % 60);
+        int hours   = ((milliseconds / (1000*60*60)) % 24);
+        int result = 1 + minutes + hours * 60;
+        Log.w("checkSeance", "result = nb de minutes parcouru" + result);
+        return result;
+    }
+
+    public void checkSeance (int duree){
+        // validation automatique de la séance si la duree de l'activité est égale ou spérieur à celle de la séance
+        ArrayList<Seance> seances = db.getSeanceList1();
+        Seance seance = nextSeance(seances);
+        Log.w("checkSeance", "nombre de minutes de la seance" +seance.getNumSemaine()+ "    "+ seance.getMinutes());
+        if(seance.getMinutes()>=0){
+            seance.setChecked(true);
+        }
+        db.insertSeanceChecked(seance);
+    }
+
+    public Seance nextSeance(ArrayList<Seance> seances){
+        Iterator<Seance> it = seances.iterator();
+        Seance seance2 = new Seance();
+        while (it.hasNext()) {
+            Seance seance = it.next();
+            if(seance.isChecked() == true){
+                seance2 = seance;
+                break;
+            }
+        }
+        return seance2;
+    }
+
 
     public void share_on_facebook(View v){
         //partage avec Facebook

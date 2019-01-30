@@ -4,6 +4,7 @@ public class Seance {
     int id;
     int numSemaine;
     int numSeance;
+    int minutes;
     String typeSeance;
     String contenuSeance;
     boolean checked;
@@ -19,6 +20,14 @@ public class Seance {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 
     public int getNumSemaine() {

@@ -17,6 +17,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,11 +93,11 @@ public class HomeFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar4);
 
         db = new DatabaseStats(getActivity());
-        ArrayList<Seance> seances = db.getTaskList();
+        ArrayList<Seance> seances = db.getSeanceList1();
         Seance seance = nextSeance(seances);
         int numSeance = seance.getNumSemaine();
-        int totalSeance = 20;
-        final int valProgBar = 100*numSeance /20;
+        int totalSeance = 12;
+        final int valProgBar = 100*numSeance /12;
         db.close();
 
         new Thread(new Runnable() {
@@ -277,9 +278,8 @@ public class HomeFragment extends Fragment {
 
                     //chargement des infos sur la séance du jour
                     db = new DatabaseStats(getActivity());
-                    ArrayList<Seance> seances = db.getTaskList();
-                    Seance seance = new Seance();
-                    seance = nextSeance(seances);
+                    ArrayList<Seance> seances = db.getSeanceList1();
+                    Seance seance = nextSeance(seances);
                     contenuSeance.setText(seance.getContenuSeance());
                     titreSeance.setText("--- Semaine " + seance.getNumSemaine() + " -  Seance " + seance.getNumSeance() +" ---");
 
@@ -357,7 +357,9 @@ public class HomeFragment extends Fragment {
         Seance seance2 = new Seance();
         while (it.hasNext()) {
             Seance seance = it.next();
-            if(seance.isChecked() == false){
+            Log.w("checkSeance", "seance" +seance.getContenuSeance() + seance.getNumSemaine() +"typee" + seance.getTypeSeance());
+
+            if(seance.isChecked() == true){
                 seance2 = seance;
                 break;
             }
