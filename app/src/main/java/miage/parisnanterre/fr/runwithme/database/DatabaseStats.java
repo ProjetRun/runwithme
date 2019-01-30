@@ -45,12 +45,14 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String NUMERO_ID = "numero";
     public static final String NOM = "nom";
 
+    //Columns pour la table des info de seances
     public static final String ID_SEANCE = "0";
     public static final String NUM_SEMAINE_COLUMN = "numSemaine";
     public static final String NUM_SEANCE_COLUMN = "NumSeance";
     public static final String TYPE_SEANCE_COLUMN = "typeSeance";
     public static final String CONTENU_COLUMN = "contenuSeance";
     public static final String CHECKED_SEANCE = "checkedSeance";
+    public static final String CATEGORIE_ID = "0";
 
 
     public DatabaseStats(Context context) {
@@ -76,19 +78,21 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 NUMERO_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 NOM+ " TEXT);";
         String query = String.format("CREATE TABLE %s " +
-                        "(%s INTEGER PRIMARY KEY," +
+                        "(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s TEXT NOT NULL, " +
-                        "%s INTEGER);",
+                        "%s INTEGER" +
+                        "%s INTEGER NOT NULL);",
                 DB_TABLE,
                 ID_SEANCE,
                 NUM_SEMAINE_COLUMN,
                 NUM_SEANCE_COLUMN,
                 TYPE_SEANCE_COLUMN,
                 CONTENU_COLUMN,
-                CHECKED_SEANCE);
+                CHECKED_SEANCE,
+                CATEGORIE_ID);
         db.execSQL(query);
         db.execSQL(CREATE_STATS_TABLE);
         db.execSQL(CREATE_BADGES_TABLE);
@@ -161,7 +165,8 @@ public class DatabaseStats extends SQLiteOpenHelper {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(ID_SEANCE, seance.getId());
+    //    values.put(ID_SEANCE, seance.getId());
+        values.put(CATEGORIE_ID, seance.getCategorie_id());
         values.put(NUM_SEANCE_COLUMN,seance.getNumSeance());
         values.put(NUM_SEMAINE_COLUMN,seance.getNumSemaine());
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
@@ -257,12 +262,14 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Seance> getTaskList(String id_numero){
+    public ArrayList<Seance> getTaskList(String categorie_id){
         ArrayList<Seance> seances = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         //String query= "SELECT * FROM "+ DB_TABLE + "WHERE"+ ID_SEANCE + "= '"+ id_number + "';";
     //    String query= " '"+id_numero+"';";
-        Cursor cursor = db.rawQuery("SELECT * FROM "+DB_TABLE+" WHERE ID_SEANCE = '"+id_numero+"'", null);
+       // Cursor cursor = db.rawQuery("SELECT * FROM "+DB_TABLE+" WHERE TRIM(CATEGORIE_ID) = '"+categorie_id+"'", null);
+        Cursor cursor = db.query("DB_TABLE", new String[]{"CATEGORIE_ID"}
+                , "CATEGORIE_ID LIKE ?" ,new String[]{categorie_id}, null, null, null);
         while(cursor.moveToNext()){
             Seance seance = new Seance();
             //String data = cursor.getString(cursor.getColumnIndex("data"));//
