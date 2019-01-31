@@ -39,7 +39,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
         ArrayList<Seance> seances = db.getTaskList("1");
     //    db.deleteallseances();
-        //if (seances.isEmpty())
+        if (seances.isEmpty())
             loadBDexercices();
 
         loadTaskList();
