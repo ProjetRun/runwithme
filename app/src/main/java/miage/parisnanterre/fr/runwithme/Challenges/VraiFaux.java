@@ -58,7 +58,7 @@ public class VraiFaux extends AppCompatActivity {
         randomGenerator = new Random();
         t_question = (TextView) findViewById(R.id.text_question);
         imGIF = (ImageView) findViewById(R.id.loadingImageView);
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+       // mTextViewCountDown = findViewById(R.id.text_view_countdown);
 
 
 
@@ -67,8 +67,8 @@ public class VraiFaux extends AppCompatActivity {
 
         insertQuestions();
         changeItem();
-        updateCountDownText();
-        startTimer();
+        //updateCountDownText();
+        //startTimer();
     }
 
     private void insertQuestions(){
@@ -98,12 +98,10 @@ public class VraiFaux extends AppCompatActivity {
     }
 
     public Questions anyItem() {
-        resetTimer();
+   
         if(0>=this.countdown){
 
 
-            pauseTimer();
-            resetTimer();
 
 
             new BottomDialog.Builder(this)
@@ -162,68 +160,19 @@ public class VraiFaux extends AppCompatActivity {
     public void click_true(View view) {
         checkresult(true);
         changeItem();
-        reloadTimer();
     }
     public void click_false(View view) {
         checkresult(false);
         changeItem();
-        reloadTimer();
+
     }
 
-    private void reloadTimer(){
-        pauseTimer();
-        resetTimer();
-        startTimer();
-    }
-    private void startTimer() {
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
 
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-                resetTimer();
-                if(item.getReponse() == true){
-                    checkresult(false);
-                }else{
-                    checkresult(true);
-                }
-                changeItem();
-                startTimer();
-            }
-        }.start();
 
-        mTimerRunning = true;
-    }
-
-    private void pauseTimer() {
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-    }
-
-    private void resetTimer() {
-        pauseTimer();
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
-    }
-
-    private void updateCountDownText() {
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-        mTextViewCountDown.setText(timeLeftFormatted);
-    }
 
 
     @Override
     public void onBackPressed() {
-       pauseTimer();
        finish();
     }
 }

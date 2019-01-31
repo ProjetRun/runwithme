@@ -15,16 +15,7 @@
         tools:layout_editor_absoluteY="8dp"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/text_view_countdown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="00:00"
-            android:textColor="#FFF"
-            android:textSize="60sp" />
+
 
         <ImageView
             android:id="@+id/loadingImageView"
