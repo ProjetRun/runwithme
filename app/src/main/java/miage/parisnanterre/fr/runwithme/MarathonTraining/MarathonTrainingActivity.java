@@ -37,7 +37,9 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db = new DatabaseStats(this);
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
-        ArrayList<Seance> seances = db.getTaskList("1");
+        Bundle b = getIntent().getExtras();
+        String taskListNumber = ""+b.getInt("Valeur");
+        ArrayList<Seance> seances = db.getTaskList(taskListNumber);
     //    db.deleteallseances();
         if (seances.isEmpty())
             loadBDexercices();
@@ -47,7 +49,9 @@ public class MarathonTrainingActivity extends AppCompatActivity {
 
     private void loadTaskList() {
         // Construct the data source
-        ArrayList<Seance> seances = db.getTaskList("1");
+        Bundle b = getIntent().getExtras();
+        String taskListNumber = ""+b.getInt("Valeur");
+        ArrayList<Seance> seances = db.getTaskList(taskListNumber);
     /*    ArrayList<Seance> scs = new ArrayList<>();
         for(int i=0; i<seances.size(); i++){
 
@@ -143,6 +147,84 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         seance.setTypeSeance("Debuter");
         db.insertNewSeance(seance);
 
+//        Seance seance = new Seance();
+        //TYPE d'entrainement = 'Débuter'
+        //OBJECTIF : courir 30mns - 2 séance / semaine
+        //PENDANT 6 semaines
+        //N°semaine | N°séance |Type | Contenu
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("10' marche - 6 * 2' course avec R=1' marche");
+        seance.setNumSeance(1);
+        seance.setNumSemaine(1);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("10' marche - 5 * 3' course avec R=1' marche");
+        seance.setNumSeance(2);
+        seance.setNumSemaine(1);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("8' marche - 4 * 4' course avec R=1' marche");
+        seance.setNumSeance(1);
+        seance.setNumSemaine(2);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("6' marche - 4 * 5' course avec R=1' marche");
+        seance.setNumSeance(2);
+        seance.setNumSemaine(2);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("2 * 6 ' course avec R=1'30 + 2 * 5' avec R=1'");
+        seance.setNumSeance(1);
+        seance.setNumSemaine(3);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("2 * 8 ' course avec R=1'30 + 3 * 4' avec R=1'");
+        seance.setNumSeance(2);
+        seance.setNumSemaine(3);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("12' - 10' - 8' de course avec R=2' marche");
+        seance.setNumSeance(1);
+        seance.setNumSemaine(4);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("2 * 10 ' course avec R=2' + 2 * 5' avec R=1'");
+        seance.setNumSeance(2);
+        seance.setNumSemaine(4);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("15' course - R=2' - 3 * 5' avec R=1'");
+        seance.setNumSeance(1);
+        seance.setNumSemaine(5);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("20' - 10' - 5' course avec R=2' marche");
+        seance.setNumSeance(2);
+        seance.setNumSemaine(5);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("25' course - R=2' + 2 * 5' avec R=1'");
+        seance.setNumSeance(1);
+        seance.setNumSemaine(6);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+        seance.setCategorie_id("2");
+        seance.setContenuSeance("30' - Bravo vous y êtes !!!");
+        seance.setNumSeance(2);
+        seance.setNumSemaine(6);
+        seance.setTypeSeance("Debuter");
+        db.insertNewSeance(seance);
+
     }
 
 
@@ -179,6 +261,9 @@ public class MarathonTrainingActivity extends AppCompatActivity {
                                 seance.setNumSemaine(2);
                                 seance.setNumSeance(4);
                                 seance.setTypeSeance("débutant");
+                                Bundle b = getIntent().getExtras();
+                                String taskListNumber = ""+b.getInt("Valeur");
+                                seance.setCategorie_id(taskListNumber);
                                 db.insertNewSeance(seance);
                                 loadTaskList();
                             }
