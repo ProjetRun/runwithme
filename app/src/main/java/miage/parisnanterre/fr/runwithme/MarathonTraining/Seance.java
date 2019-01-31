@@ -12,13 +12,13 @@ public class Seance {
     boolean echauffement_done;
     boolean etirement_done;
     boolean running_done;
-    int categorie_id;
+    String categorie_id;
 
-    public int getCategorie_id() {
+    public String getCategorie_id() {
         return categorie_id;
     }
 
-    public void setCategorie_id(int categorie_id) {
+    public void setCategorie_id(String categorie_id) {
         this.categorie_id = categorie_id;
     }
 
