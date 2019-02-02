@@ -67,6 +67,7 @@
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".badges.ListAllBadgesActivity" />
         <activity android:name=".MarathonTraining.MarathonTrainingActivity" />
+        <activity android:name=".MarathonTraining.MarathonTrainingActivity1" />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"

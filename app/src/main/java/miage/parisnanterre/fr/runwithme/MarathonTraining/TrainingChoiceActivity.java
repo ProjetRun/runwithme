@@ -29,7 +29,11 @@ public class TrainingChoiceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setDefaults("choiceKey", 1, getApplicationContext());
                 Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
+                Bundle b = new Bundle();
+                b.putString("Valeur", "1");
+                intent.putExtras(b);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -41,8 +45,12 @@ public class TrainingChoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setDefaults("choiceKey", 2, getApplicationContext());
-                Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity1.class);
+                Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
+                Bundle b = new Bundle();
+                b.putString("Valeur", "2");
+                intent.putExtras(b);
                 startActivity(intent);
+                finish();
             }
         });
 

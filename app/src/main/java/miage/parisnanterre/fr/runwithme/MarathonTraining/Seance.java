@@ -12,6 +12,15 @@ public class Seance {
     boolean echauffement_done;
     boolean etirement_done;
     boolean running_done;
+    String categorie_id;
+
+    public String getCategorie_id() {
+        return categorie_id;
+    }
+
+    public void setCategorie_id(String categorie_id) {
+        this.categorie_id = categorie_id;
+    }
 
     public int getId() {
         return id;
@@ -60,7 +69,7 @@ public class Seance {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-
+    
     public int getEchauffement() {
         return echauffement;
     }
