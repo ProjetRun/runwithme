@@ -30,7 +30,7 @@ public class TrainingChoiceActivity extends AppCompatActivity {
                 setDefaults("choiceKey", 1, getApplicationContext());
                 Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("Valeur", 1);
+                b.putString("Valeur", "1");
                 intent.putExtras(b);
                 startActivity(intent);
                 finish();
@@ -47,7 +47,7 @@ public class TrainingChoiceActivity extends AppCompatActivity {
                 setDefaults("choiceKey", 2, getApplicationContext());
                 Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("Valeur", 2);
+                b.putString("Valeur", "2");
                 intent.putExtras(b);
                 startActivity(intent);
                 finish();

@@ -38,8 +38,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
         Bundle b = getIntent().getExtras();
-        String taskListNumber = ""+b.getInt("Valeur");
-        ArrayList<Seance> seances = db.getTaskList(taskListNumber);
+        ArrayList<Seance> seances = db.getTaskList(b.getString("Valeur"));
     //    db.deleteallseances();
         if (seances.isEmpty())
             loadBDexercices();
@@ -50,8 +49,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
     private void loadTaskList() {
         // Construct the data source
         Bundle b = getIntent().getExtras();
-        String taskListNumber = ""+b.getInt("Valeur");
-        ArrayList<Seance> seances = db.getTaskList(taskListNumber);
+        ArrayList<Seance> seances = db.getTaskList(b.getString("Valeur"));
     /*    ArrayList<Seance> scs = new ArrayList<>();
         for(int i=0; i<seances.size(); i++){
 
@@ -63,7 +61,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         // Create the adapter to convert the array to views
         SeanceAdapter adapter = new SeanceAdapter(this, seances);
         // Attach the adapter to a ListView
-        listView = (ListView) findViewById(R.id.lstSeance);
+        listView =findViewById(R.id.lstSeance);
         listView.setAdapter(adapter);
     }
 

@@ -69,7 +69,7 @@ public class Seance {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-
+    
     public int getEchauffement() {
         return echauffement;
     }
