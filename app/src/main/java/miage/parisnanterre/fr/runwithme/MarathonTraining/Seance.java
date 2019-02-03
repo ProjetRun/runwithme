@@ -6,7 +6,7 @@ public class Seance {
     int numSeance;
     String typeSeance;
     String contenuSeance;
-    boolean checked;
+    public boolean checked;
     int echauffement;
     int etiremement;
     boolean echauffement_done;
@@ -69,7 +69,7 @@ public class Seance {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-    
+
     public int getEchauffement() {
         return echauffement;
     }

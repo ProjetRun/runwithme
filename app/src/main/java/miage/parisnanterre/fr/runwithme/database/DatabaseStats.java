@@ -174,7 +174,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
         values.put(CONTENU_COLUMN,seance.getContenuSeance());
 
-        //values.put(CHECKED_SEANCE,seance.checked);
+        values.put(CHECKED_SEANCE,seance.checked);
 
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
@@ -305,7 +305,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
             seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
             seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
             seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
-            seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))>0);
+            seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))==0);
             seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             //boolean value = cursor.getInt(boolean_column_index) > 0;
             seances.add(seance);
