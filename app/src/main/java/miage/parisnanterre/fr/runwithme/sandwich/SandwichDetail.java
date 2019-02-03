@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.Random;
 
 import miage.parisnanterre.fr.runwithme.R;
 
@@ -37,6 +39,8 @@ public class SandwichDetail extends AppCompatActivity {
         System.out.println(sandwich.getMainName());
 
         setUpUI(sandwich);
+        createKCal();
+        createTime();
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +52,27 @@ public class SandwichDetail extends AppCompatActivity {
         });*/
     }
 
+    private void createKCal(){
+        int kcal = randomNumber(300,500);
+        //button_text_type
+        Button bkcal = (Button) findViewById(R.id.button_text_type);
+        bkcal.setText(kcal+"kcal");
+
+
+    }
+
+    private void createTime(){
+        int time = randomNumber(10,35);
+        Button bTime = (Button) findViewById(R.id.button_text_programme);
+        bTime.setText(time+"min.");
+
+    }
+
+    private int randomNumber(int min,int max){
+        Random r = new Random();
+        int i1 = r.nextInt(max - min + 1) + min;
+        return i1;
+    }
     private void setUpUI(Sandwich sandwich) {
         // Sandwich image
         ImageView imageRecipe = (ImageView) findViewById(R.id.image_recipe);

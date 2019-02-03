@@ -118,10 +118,10 @@ public class RunningActivity extends AppCompatActivity {
         double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
         double t3 = Math.sin(a1) * Math.sin(b1);
         double tt = Math.acos(t1 + t2 + t3);
-        Toast.makeText(getBaseContext(),
+       /* Toast.makeText(getBaseContext(),
                 "distance = " + 6366000 * tt + "metres",
                 Toast.LENGTH_SHORT).show();
-
+        */
         return 6366000 * tt;
     }
 
@@ -163,9 +163,9 @@ public class RunningActivity extends AppCompatActivity {
                         longitude = (double) intent.getExtras().get("longi");
                         current_location.setLatitude(latitude);
                         current_location.setLongitude(longitude);
-                        Toast.makeText(getBaseContext(),
+                       /* Toast.makeText(getBaseContext(),
                                 "premières coordonnées " + latitude + longitude ,
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT).show(); */
                         first_call=false;
                     }
                     else{
