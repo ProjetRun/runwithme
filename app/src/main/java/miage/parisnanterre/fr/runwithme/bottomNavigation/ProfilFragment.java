@@ -2,6 +2,7 @@ package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.content.Intent;
 import android.icu.text.NumberFormat;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -117,6 +119,17 @@ public class ProfilFragment extends Fragment {
             @Override
             public void onClick(final View v) {
                 launchRunningStatActivity(v);
+            }
+        });
+
+        ImageView i = (ImageView) view.findViewById(R.id.imageView17);
+        i.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+
+
             }
         });
     }

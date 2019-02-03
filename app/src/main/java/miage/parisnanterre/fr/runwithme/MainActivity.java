@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void do_subscribe(View v){
-        Intent intent = new Intent(this, HomeFragment.class);
+        Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
         finish();
     }

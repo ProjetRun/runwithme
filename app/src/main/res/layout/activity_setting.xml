@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="miage.parisnanterre.fr.runwithme.bottomNavigation.SettingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/woman" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Changer votre photo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#000"
+                android:text="Prénom" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Jennifer" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_gravity="left"
+                android:layout_weight="0.1"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@drawable/chevron_r" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#000"
+                android:text="Nom" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Carpentier" />
+
+            <ImageView
+                android:id="@+id/imageView20"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#000"
+                android:text="Email" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="jennifer.c@mail.com" />
+
+            <ImageView
+                android:id="@+id/imageView100"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#000"
+                android:text="Sexe" />
+
+            <TextView
+                android:id="@+id/textView51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Femme" />
+
+            <ImageView
+                android:id="@+id/imageView52"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#000"
+                android:text="Taille" />
+
+            <TextView
+                android:id="@+id/textView61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="1m53" />
+
+            <ImageView
+                android:id="@+id/imageView62"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#000"
+                android:text="Poids" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="56 KG." />
+
+            <ImageView
+                android:id="@+id/imageView79"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="22dp"
+            android:layout_marginBottom="5dp"
+            android:text="A propos" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="politique de confidentialité" />
+
+
+            <ImageView
+                android:id="@+id/imageView89"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="Condition d'utilisation" />
+
+
+            <ImageView
+                android:id="@+id/imageView99"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFF"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView102"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="Gérer mes données personnelles" />
+
+
+            <ImageView
+                android:id="@+id/imageView109"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="left"
+                app:srcCompat="@drawable/chevron_r" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

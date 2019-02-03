@@ -22,7 +22,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="74dp"
                 android:layout_height="72dp"
-                android:background="@mipmap/ic_user_foreground" />
+                android:background="@drawable/woman" />
 
             <TextView
                 android:id="@+id/profilName"
@@ -35,6 +35,14 @@
                 android:textColor="#FFFF"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/setting" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,7 +123,7 @@
                     android:text="Age"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -144,7 +152,7 @@
                     android:text="BMI"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -173,7 +181,7 @@
                     android:text="Height(cm)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -202,7 +210,7 @@
                     android:text="Weight(kg)"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>
