@@ -6,7 +6,7 @@ public class Seance {
     int numSeance;
     String typeSeance;
     String contenuSeance;
-    public boolean checked;
+    boolean checked;
     int echauffement;
     int etiremement;
     boolean echauffement_done;

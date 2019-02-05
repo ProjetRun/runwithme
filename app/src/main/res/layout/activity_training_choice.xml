@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/list_exs"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingRight="16dp"
+    tools:context=".MarathonTraining.TrainingChoiceActivity">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +29,8 @@
                 android:text="My Training"
                 android:textAlignment="center"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -36,7 +42,8 @@
             android:layout_marginTop="2dp"
             android:text="Débutant"
             android:textAlignment="viewStart"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/deb_30min_12"
@@ -44,8 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="19dp"
-            android:background="@drawable/rounded_button"
-            android:text="Débuter - courir 30mns - 1 séance / semaine - 12 semaines" />
+            android:background="@drawable/rounded_button1"
+            android:text="Débuter - courir 30mns - 1 séance / semaine - 12 semaines"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/deb_30min_6"
@@ -53,8 +61,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_button"
-            android:text="Débuter - courir 30mns - 2 séances / semaine - 6 semaines " />
+            android:background="@drawable/rounded_button1"
+            android:text="Débuter - courir 30mns - 2 séances / semaine - 6 semaines "
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

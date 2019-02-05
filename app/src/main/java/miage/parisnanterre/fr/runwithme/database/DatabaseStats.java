@@ -174,7 +174,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
         values.put(CONTENU_COLUMN,seance.getContenuSeance());
 
-        values.put(CHECKED_SEANCE,seance.checked);
+        values.put(CHECKED_SEANCE,seance.isChecked());
 
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
@@ -184,7 +184,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         Log.e("DBHelper_Checked", "insertSeanceChecked  :  " + seance.isChecked());
         SQLiteDatabase db= this.getWritableDatabase();
         int isChecked;
-        if(seance.isChecked() == true)
+        if(seance.isChecked())
             isChecked = 1;
         else
             isChecked = 0;

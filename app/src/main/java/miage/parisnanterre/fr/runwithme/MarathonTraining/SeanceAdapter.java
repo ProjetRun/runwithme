@@ -40,6 +40,7 @@ public class SeanceAdapter extends ArrayAdapter<Seance> {
         //TextView Type_seance = convertView.findViewById(R.id.Type_seance);
 
         // Populate the data into the template view using the data object
+        assert seance != null;
         num_seance.setText(String.valueOf(seance.getNumSeance()));
         num_semaine.setText(String.valueOf(seance.getNumSemaine()));
         contenu.setText(seance.getContenuSeance());
@@ -59,6 +60,7 @@ public class SeanceAdapter extends ArrayAdapter<Seance> {
 
                 CheckBox cb = (CheckBox) view;
                 Seance seance = getItem(position);
+                assert seance != null;
                 seance.setChecked(cb.isChecked());
                 dbHelper.insertSeanceChecked(seance);
                 Log.e("Adapter", "onCLick" + seance.getContenuSeance());
