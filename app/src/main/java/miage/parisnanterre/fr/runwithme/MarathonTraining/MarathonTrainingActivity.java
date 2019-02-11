@@ -36,11 +36,21 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db = new DatabaseStats(this);
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
-        ArrayList<Seance> seances = db.getSeanceList1();
+        int choice = getDefaults("choiceKey",this);
+        ArrayList<Seance> seances = null;
+        if(choice == 1){//on lance l'entrainement 1
+            seances = db.getSeanceList3();
+        }
+
+        if(choice == 3){//on lance l'entrainement 1
+            seances = db.getSeanceList3();
+        }
+
         //db.deleteallseances();
         if (seances.isEmpty()){
             loadBDexercices();
             loadBDexercices1();
+            loadBDexercices2();
         }
 
         loadTaskList();
@@ -48,7 +58,15 @@ public class MarathonTrainingActivity extends AppCompatActivity {
 
     private void loadTaskList() {
         // Construct the data source
-        ArrayList<Seance> seances = db.getSeanceList1();
+        int choice = getDefaults("choiceKey",this);
+        ArrayList<Seance> seances = null;
+        if(choice == 1){//on lance l'entrainement 1
+            seances = db.getSeanceList1();
+        }
+
+        if(choice == 3){//on lance l'entrainement 1
+            seances = db.getSeanceList3();
+        }
         ArrayList<Seance> scs = new ArrayList<>();
         for(int i=0; i<seances.size(); i++){
 
@@ -250,6 +268,444 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         seance1.setMinutes(35);
         db.insertNewSeance(seance1);
 
+    }
+
+    private void loadBDexercices2() {
+
+        Seance seance1 = new Seance();
+        //TYPE d'entrainement = 'Débuter'
+        //OBJECTIF : courir 30mns - 2 séance / semaine
+        //PENDANT 6 semaines
+        //N°semaine | N°séance |Type | Contenu
+
+        //semaine 1
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(1);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 6 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(1);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(1);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 30\"-30\" à 100-105%VMA avec 3 minutes de récupération entre chaque série.");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(1);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+
+        seance1.setContenuSeance("Sortie Longue de 1h10");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(1);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+
+        //semaine 2
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(2);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(2);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(2);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(2);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(2);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(2);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 3
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(3);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(3);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(3);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(3);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(3);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(3);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 4
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 5
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(5);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(5);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(5);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(5);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(5);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(5);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 4
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(6);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(6);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(6);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(6);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(6);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(6);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 7
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(7);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(7);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(7);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(7);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(7);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(7);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 8
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(8);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(8);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(8);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(8);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(8);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 9
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(9);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(9);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(4);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(9);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(9);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(9);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        //semaine 10
+        seance1.setContenuSeance("Footing de 20 minutes suivi de 2 fois 8 minutes de travail de PPG/PPS en circuit en circuit avec une récupération de 3 minutes entre chaque effort.");
+        seance1.setNumSeance(1);
+        seance1.setNumSemaine(10);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes");
+        seance1.setNumSeance(2);
+        seance1.setNumSemaine(10);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 10 fois 200m à 100-105%VMA avec une récupération de 30 sec entre les 200m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(3);
+        seance1.setNumSemaine(10);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(45);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 45 minutes à 1 h");
+        seance1.setNumSeance(4);
+        seance1.setNumSemaine(10);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Footing de 20-30 minutes suivi de 2 séries de 5 fois 400m à 95%VMA avec une récupération de 1 minutes entre les 400m et 3 minutes entre chaque série.");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(10);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
+
+        seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
+        seance1.setNumSeance(5);
+        seance1.setNumSemaine(10);
+        seance1.setTypeSeance("Semi_experimente");
+        seance1.setMinutes(32);
+        db.insertNewSeance(seance1);
     }
 
     @Override

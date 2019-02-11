@@ -46,6 +46,16 @@ public class TrainingChoiceActivity extends AppCompatActivity {
             }
         });
 
+        Button button2 = findViewById(R.id.exp_semi);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDefaults("choiceKey", 3, getApplicationContext());
+                Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
     public static void setDefaults(String key, int value, Context context) {
