@@ -115,14 +115,17 @@ public class HomeFragment extends Fragment {
             Seance seance = nextSeance(seances);
             numSeance = (seance.getNumSemaine()-1)*6+seance.getNumSeance();
         }
+        int valProgBar = 0;
+        if(totalSeance != 0)
+            valProgBar = 100*(numSeance-1) /totalSeance;
 
-        final int valProgBar = 100*(numSeance-1) /totalSeance;
         db.close();
 
+        final int finalValProgBar = valProgBar;
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (pStatus <= valProgBar) {
+                while (pStatus <= finalValProgBar) {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -307,16 +310,22 @@ public class HomeFragment extends Fragment {
                     ArrayList<Seance> seances = null;
                     Seance seance = null;
                     int choice = getDefaults("choiceKey",getContext());
-                    if(choice == 1){
-                        seances = db.getSeanceList1();
-                        seance = nextSeance(seances);
+                    if(choice == 0){
+                        contenuSeance.setText("You need to choice a trainning");
+                        titreSeance.setText("no workout");
+                    }else{
+                        if(choice == 1){
+                            seances = db.getSeanceList1();
+                            seance = nextSeance(seances);
+                        }
+                        if(choice == 3){
+                            seances = db.getSeanceList3();
+                            seance = nextSeance(seances);
+                        }
+                        contenuSeance.setText(seance.getContenuSeance());
+                        titreSeance.setText("--- Semaine " + seance.getNumSemaine() + " -  Seance " + seance.getNumSeance() +" ---");
                     }
-                    if(choice == 3){
-                        seances = db.getSeanceList3();
-                        seance = nextSeance(seances);
-                    }
-                    contenuSeance.setText(seance.getContenuSeance());
-                    titreSeance.setText("--- Semaine " + seance.getNumSemaine() + " -  Seance " + seance.getNumSeance() +" ---");
+
 
                 }
 
