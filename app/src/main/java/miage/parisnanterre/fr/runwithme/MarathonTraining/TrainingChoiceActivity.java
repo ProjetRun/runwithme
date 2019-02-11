@@ -12,8 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Objects;
-
 import miage.parisnanterre.fr.runwithme.R;
 
 public class TrainingChoiceActivity extends AppCompatActivity {
@@ -22,43 +20,37 @@ public class TrainingChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_choice);
-     //   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-     //   setSupportActionBar(toolbar);
-
-
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         Button button = findViewById(R.id.deb_30min_12);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDefaults("choiceKey", 1, getApplicationContext());
                 Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
-                Bundle b = new Bundle();
-                b.putString("Valeur", "1");
-                intent.putExtras(b);
                 startActivity(intent);
-                finish();
             }
         });
-
-
-
-
         Button button1 = findViewById(R.id.deb_30min_6);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDefaults("choiceKey", 2, getApplicationContext());
                 Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
-                Bundle b = new Bundle();
-                b.putString("Valeur", "2");
-                intent.putExtras(b);
                 startActivity(intent);
-                finish();
             }
         });
-
-
+        Button button2 = findViewById(R.id.exp_semi);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDefaults("choiceKey", 3, getApplicationContext());
+                Intent intent = new Intent(TrainingChoiceActivity.this, MarathonTrainingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
     public static void setDefaults(String key, int value, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();

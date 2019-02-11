@@ -20,7 +20,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
 
     // Database Name
     private static final String DATABASE_NAME = "userManager";
@@ -45,14 +45,13 @@ public class DatabaseStats extends SQLiteOpenHelper {
     public static final String NUMERO_ID = "numero";
     public static final String NOM = "nom";
 
-    //Columns pour la table des info de seances
-//    public static final String ID_SEANCE = "0";
+    //public static final int ID = 0;
     public static final String NUM_SEMAINE_COLUMN = "numSemaine";
     public static final String NUM_SEANCE_COLUMN = "NumSeance";
     public static final String TYPE_SEANCE_COLUMN = "typeSeance";
     public static final String CONTENU_COLUMN = "contenuSeance";
     public static final String CHECKED_SEANCE = "checkedSeance";
-    public static final String CATEGORIE_ID = "categorieId";
+    public static final String DUREE_run = "duree";
 
 
     public DatabaseStats(Context context) {
@@ -78,21 +77,21 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 NUMERO_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 NOM+ " TEXT);";
         String query = String.format("CREATE TABLE %s " +
-                        "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "(ID INTEGER PRIMARY KEY," +
                         "%s INTEGER NOT NULL, " +
                         "%s INTEGER NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s INTEGER, " +
-                        "%s TEXT NOT NULL);",
+                        "%s INTEGER);",
                 DB_TABLE,
-             //   ID_SEANCE,
+                //ID,
                 NUM_SEMAINE_COLUMN,
                 NUM_SEANCE_COLUMN,
                 TYPE_SEANCE_COLUMN,
                 CONTENU_COLUMN,
                 CHECKED_SEANCE,
-                CATEGORIE_ID);
+                DUREE_run);
         db.execSQL(query);
         db.execSQL(CREATE_STATS_TABLE);
         db.execSQL(CREATE_BADGES_TABLE);
@@ -165,16 +164,12 @@ public class DatabaseStats extends SQLiteOpenHelper {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-
-
-    //  values.put(ID_SEANCE, seance.getId());
-        values.put(CATEGORIE_ID, seance.getCategorie_id());
         values.put(NUM_SEANCE_COLUMN,seance.getNumSeance());
         values.put(NUM_SEMAINE_COLUMN,seance.getNumSemaine());
         values.put(TYPE_SEANCE_COLUMN,seance.getTypeSeance());
         values.put(CONTENU_COLUMN,seance.getContenuSeance());
-
-        values.put(CHECKED_SEANCE,seance.isChecked());
+        values.put(CHECKED_SEANCE,0);
+        values.put(DUREE_run,seance.getMinutes());
 
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
@@ -184,7 +179,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
         Log.e("DBHelper_Checked", "insertSeanceChecked  :  " + seance.isChecked());
         SQLiteDatabase db= this.getWritableDatabase();
         int isChecked;
-        if(seance.isChecked())
+        if(seance.isChecked() == false)
             isChecked = 1;
         else
             isChecked = 0;
@@ -264,18 +259,15 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Seance> getTaskList(String categorie_id){
+    public ArrayList<Seance> getTaskList(){
         ArrayList<Seance> seances = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        //String query= "SELECT * FROM "+ DB_TABLE + "WHERE"+ ID_SEANCE + "= '"+ id_number + "';";
-    //    String query= " '"+id_numero+"';";
-        Cursor cursor = db.rawQuery("SELECT * FROM "+DB_TABLE+" WHERE " + CATEGORIE_ID +" = '"+categorie_id+"'", null);
-      //  Cursor cursor = db.rawQuery("DB_TABLE", new String[]{"CATEGORIE_ID"}
-          //      , "CATEGORIE_ID LIKE ?" ,new String[]{categorie_id}, null, null, null);
+        String query= "SELECT * FROM "+ DB_TABLE +";";
+        Cursor cursor = db.rawQuery(query,null);
         while(cursor.moveToNext()){
             Seance seance = new Seance();
             //String data = cursor.getString(cursor.getColumnIndex("data"));//
-     //       seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            //       seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             seance.setContenuSeance(cursor.getString(cursor.getColumnIndex(CONTENU_COLUMN)));
             seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
             seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
@@ -290,13 +282,11 @@ public class DatabaseStats extends SQLiteOpenHelper {
         return seances;
     }
 
-
-    public ArrayList<Seance> getTaskList(){
+    public ArrayList<Seance> getSeanceList1(){
         ArrayList<Seance> seances = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query= "SELECT * FROM "+ DB_TABLE +";";
-        //    String query= " '"+id_numero+"';";
-        Cursor cursor = db.rawQuery(query, null);
+        String typeEntrainement = "Debuter";
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ DB_TABLE +" WHERE "+TYPE_SEANCE_COLUMN+" = '"+typeEntrainement+"'", null);
         while(cursor.moveToNext()){
             Seance seance = new Seance();
             //String data = cursor.getString(cursor.getColumnIndex("data"));//
@@ -314,7 +304,26 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
         return seances;
     }
-
-
-
+    public ArrayList<Seance> getSeanceList3(){
+        ArrayList<Seance> seances = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String typeEntrainement = "Semi_experimente";
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ DB_TABLE +" WHERE "+TYPE_SEANCE_COLUMN+" = '"+typeEntrainement+"'", null);
+        while(cursor.moveToNext()){
+            Seance seance = new Seance();
+            //String data = cursor.getString(cursor.getColumnIndex("data"));//
+            //       seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            seance.setContenuSeance(cursor.getString(cursor.getColumnIndex(CONTENU_COLUMN)));
+            seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
+            seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
+            seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
+            seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))==0);
+            seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            //boolean value = cursor.getInt(boolean_column_index) > 0;
+            seances.add(seance);
+        }
+        cursor.close();
+        db.close();
+        return seances;
+    }
 }

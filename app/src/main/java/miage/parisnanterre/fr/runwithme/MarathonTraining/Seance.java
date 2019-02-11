@@ -4,6 +4,7 @@ public class Seance {
     int id;
     int numSemaine;
     int numSeance;
+    int minutes;
     String typeSeance;
     String contenuSeance;
     boolean checked;
@@ -12,15 +13,6 @@ public class Seance {
     boolean echauffement_done;
     boolean etirement_done;
     boolean running_done;
-    String categorie_id;
-
-    public String getCategorie_id() {
-        return categorie_id;
-    }
-
-    public void setCategorie_id(String categorie_id) {
-        this.categorie_id = categorie_id;
-    }
 
     public int getId() {
         return id;
@@ -28,6 +20,14 @@ public class Seance {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 
     public int getNumSemaine() {
