@@ -5,13 +5,16 @@ import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -42,7 +45,9 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+import miage.parisnanterre.fr.runwithme.MarathonTraining.MarathonTrainingActivity;
 import miage.parisnanterre.fr.runwithme.MarathonTraining.Seance;
+import miage.parisnanterre.fr.runwithme.MarathonTraining.TrainingChoiceActivity;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.running.GPSService;
 import miage.parisnanterre.fr.runwithme.R;
@@ -93,11 +98,25 @@ public class HomeFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar4);
 
         db = new DatabaseStats(getActivity());
-        ArrayList<Seance> seances = db.getSeanceList1();
-        Seance seance = nextSeance(seances);
-        int numSeance = seance.getNumSemaine();
-        int totalSeance = 12;
-        final int valProgBar = 100*numSeance /12;
+
+        ArrayList<Seance> seances = null;
+        int totalSeance = 0;
+        int numSeance = 0;
+        int choice = getDefaults("choiceKey",getContext());
+        if(choice == 1){
+            seances = db.getSeanceList1();
+            totalSeance = 12;
+            Seance seance = nextSeance(seances);
+            numSeance = seance.getNumSemaine();
+        }
+        if(choice == 3){
+            seances = db.getSeanceList3();
+            totalSeance = 59;
+            Seance seance = nextSeance(seances);
+            numSeance = (seance.getNumSemaine()-1)*6+seance.getNumSeance();
+        }
+
+        final int valProgBar = 100*(numSeance-1) /totalSeance;
         db.close();
 
         new Thread(new Runnable() {
@@ -277,9 +296,25 @@ public class HomeFragment extends Fragment {
                     loader.setVisibility(View.GONE);
 
                     //chargement des infos sur la séance du jour
+
+
+
+                    //db = new DatabaseStats(getActivity());
+                    //ArrayList<Seance> seances = db.getSeanceList1();
+
                     db = new DatabaseStats(getActivity());
-                    ArrayList<Seance> seances = db.getSeanceList1();
-                    Seance seance = nextSeance(seances);
+
+                    ArrayList<Seance> seances = null;
+                    Seance seance = null;
+                    int choice = getDefaults("choiceKey",getContext());
+                    if(choice == 1){
+                        seances = db.getSeanceList1();
+                        seance = nextSeance(seances);
+                    }
+                    if(choice == 3){
+                        seances = db.getSeanceList3();
+                        seance = nextSeance(seances);
+                    }
                     contenuSeance.setText(seance.getContenuSeance());
                     titreSeance.setText("--- Semaine " + seance.getNumSemaine() + " -  Seance " + seance.getNumSeance() +" ---");
 
@@ -455,7 +490,17 @@ public class HomeFragment extends Fragment {
                 break;
         }
     }
+    public static void setDefaults(String key, int value, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
 
+    public static int getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt(key, 0);
+    }
     public void launchRunningActivity(View v){
         Intent intent = new Intent(getActivity(), RunningActivity.class);
         startActivity(intent);

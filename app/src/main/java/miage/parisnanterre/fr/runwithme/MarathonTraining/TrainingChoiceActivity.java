@@ -22,7 +22,6 @@ public class TrainingChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_training_choice);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
         Button button = findViewById(R.id.deb_30min_12);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,10 +31,6 @@ public class TrainingChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
         Button button1 = findViewById(R.id.deb_30min_6);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +40,6 @@ public class TrainingChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         Button button2 = findViewById(R.id.exp_semi);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +49,8 @@ public class TrainingChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
+
     public static void setDefaults(String key, int value, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();

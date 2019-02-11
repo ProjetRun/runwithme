@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="312dp"
-            android:layout_height="100dp"
+            android:layout_height="97dp"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:alpha="0.7"
@@ -235,13 +235,13 @@
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="marathon goal"
+                    android:text="GOAL : Semi Marathon"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -313,7 +313,7 @@
                 android:text="30 minutes de footing - 2 minutes de récupération"
                 android:textAlignment="center"
                 android:textColor="@color/com_facebook_button_background_color_focused"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="italic" />
 
             <Button

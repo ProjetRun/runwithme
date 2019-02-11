@@ -37,19 +37,15 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         listView = findViewById(R.id.lstSeance);
         //utiliser loadBDexercices(); pour mettre un plan d'entrainement dans la base sqlite
         int choice = getDefaults("choiceKey",this);
-        ArrayList<Seance> seances = null;
-        if(choice == 1){//on lance l'entrainement 1
-            seances = db.getSeanceList3();
-        }
-
-        if(choice == 3){//on lance l'entrainement 1
-            seances = db.getSeanceList3();
-        }
-
+        ArrayList<Seance> seances  = db.getSeanceList1();
+        ArrayList<Seance> seances3 = db.getSeanceList3();
         //db.deleteallseances();
+
         if (seances.isEmpty()){
             loadBDexercices();
             loadBDexercices1();
+        }
+        if(seances3.isEmpty()){
             loadBDexercices2();
         }
 
@@ -354,7 +350,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(2);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -398,7 +394,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(3);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -442,7 +438,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(4);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -486,7 +482,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(5);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -529,7 +525,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(6);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -572,7 +568,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(7);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -615,7 +611,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(8);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -658,7 +654,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(9);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
@@ -701,7 +697,7 @@ public class MarathonTrainingActivity extends AppCompatActivity {
         db.insertNewSeance(seance1);
 
         seance1.setContenuSeance("Sortie Longue de 1h20 à 70-75%FCM");
-        seance1.setNumSeance(5);
+        seance1.setNumSeance(6);
         seance1.setNumSemaine(10);
         seance1.setTypeSeance("Semi_experimente");
         seance1.setMinutes(32);
