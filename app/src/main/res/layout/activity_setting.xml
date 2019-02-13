@@ -46,12 +46,13 @@
                 android:textColor="#000"
                 android:text="Prénom" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:inputType="textPersonName"
                 android:text="Jennifer" />
 
             <ImageView
@@ -80,12 +81,13 @@
                 android:textColor="#000"
                 android:text="Nom" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:inputType="textPersonName"
                 android:text="Carpentier" />
 
             <ImageView
@@ -113,12 +115,13 @@
                 android:textColor="#000"
                 android:text="Email" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:inputType="textEmailAddress"
                 android:text="jennifer.c@mail.com" />
 
             <ImageView
@@ -145,7 +148,7 @@
                 android:gravity="left"
                 android:textColor="#000"
                 android:text="Sexe" />
-
+            <!--
             <TextView
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
@@ -153,6 +156,13 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="Femme" />
+              -->
+            <Spinner
+                android:id="@+id/spinnerSexe"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageView52"
@@ -179,6 +189,7 @@
                 android:textColor="#000"
                 android:text="Taille" />
 
+            <!--
             <TextView
                 android:id="@+id/textView61"
                 android:layout_width="wrap_content"
@@ -186,6 +197,13 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="1m53" />
+                -->
+            <Spinner
+                android:id="@+id/spinnerTaille"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageView62"
@@ -212,6 +230,7 @@
                 android:textColor="#000"
                 android:text="Poids" />
 
+            <!--
             <TextView
                 android:id="@+id/textView71"
                 android:layout_width="wrap_content"
@@ -219,6 +238,13 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="56 KG." />
+              -->
+            <Spinner
+                android:id="@+id/spinnerKG"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageView79"
@@ -303,7 +329,8 @@
             android:layout_weight="1"
             android:background="#FFF"
             android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+           >
 
             <TextView
                 android:id="@+id/textView102"
@@ -313,7 +340,8 @@
                 android:gravity="left"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Gérer mes données personnelles" />
+                android:text="Gérer mes données personnelles"
+                android:onClick="GoToURL"/>
 
 
             <ImageView
@@ -326,4 +354,7 @@
 
         </LinearLayout>
     </LinearLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>
