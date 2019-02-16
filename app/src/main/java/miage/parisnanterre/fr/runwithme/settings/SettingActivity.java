@@ -3,6 +3,8 @@ package miage.parisnanterre.fr.runwithme.settings;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -11,11 +13,16 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.internal.IMapFragmentDelegate;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,12 +44,15 @@ import miage.parisnanterre.fr.runwithme.R;
 public class SettingActivity extends AppCompatActivity {
 
     static Profil profil = new Profil();
+    ImageView profilIMG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         getSupportActionBar().hide();
+
+        profilIMG = (ImageView) findViewById(R.id.imageViewProfilSettings);
 
         File file = new File(getApplicationContext().getFilesDir(),"whatever.txt");
         if(file.exists()){
@@ -57,12 +67,21 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         save();
         finish();
 
+    }
+
+    public void changeProfileIMG(View v){
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Change sex is the only way to change the profile picture",
+                Toast.LENGTH_LONG);
+
+        toast.show();
     }
 
     public void save(){
@@ -137,6 +156,21 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+
+    public void updateIMG(){
+        switch (profil.getSexe()){
+            case 0:
+                profilIMG.setBackgroundResource(R.drawable.woman);
+                break;
+            case 1 :
+                profilIMG.setBackgroundResource(R.drawable.homme);
+                break;
+            default:
+                profilIMG.setBackgroundResource(R.drawable.superman);
+                break;
+        }
+
+    }
     public void setUpAllSpinner(){
         setUpInfo();
         setUpSexe();
@@ -214,11 +248,14 @@ public class SettingActivity extends AppCompatActivity {
         //ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, items);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, items);
         mspinSexe.setAdapter(adapter);
+        mspinSexe.setGravity(Gravity.CENTER);
         mspinSexe.setSelection(profil.getSexe());
+        updateIMG();
         mspinSexe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 profil.setSexe(position);
+                updateIMG();
             }
 
             @Override

@@ -9,10 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="4dp">
 
         <ImageView
-            android:id="@+id/imageView18"
+            android:id="@+id/imageViewProfilSettings"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -27,6 +28,7 @@
             android:gravity="center"
             android:paddingBottom="20dp"
             android:textColor="@color/colorPrimaryDark"
+            android:onClick="changeProfileIMG"
             android:text="Changer votre photo" />
 
         <LinearLayout
@@ -43,8 +45,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Prénom" />
+                android:text="Prénom :" />
 
             <EditText
                 android:id="@+id/editPrenom"
@@ -53,6 +56,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:inputType="textPersonName"
+                android:background="@android:color/transparent"
                 android:text="Jennifer" />
 
             <ImageView
@@ -78,8 +82,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Nom" />
+                android:text="Nom :" />
 
             <EditText
                 android:id="@+id/editNom"
@@ -88,6 +93,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:inputType="textPersonName"
+                android:background="@android:color/transparent"
                 android:text="Carpentier" />
 
             <ImageView
@@ -112,8 +118,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Email" />
+                android:text="Email :" />
 
             <EditText
                 android:id="@+id/editMail"
@@ -122,6 +129,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:inputType="textEmailAddress"
+                android:background="@android:color/transparent"
                 android:text="jennifer.c@mail.com" />
 
             <ImageView
@@ -146,8 +154,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Sexe" />
+                android:text="Sexe : " />
             <!--
             <TextView
                 android:id="@+id/textView51"
@@ -161,8 +170,10 @@
                 android:id="@+id/spinnerSexe"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:layout_gravity="right"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:textAlignment="center"/>
 
             <ImageView
                 android:id="@+id/imageView52"
@@ -186,8 +197,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Taille" />
+                android:text="Taille : " />
 
             <!--
             <TextView
@@ -203,7 +215,8 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:textAlignment="center"/>
 
             <ImageView
                 android:id="@+id/imageView62"
@@ -227,8 +240,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
+                android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Poids" />
+                android:text="Poids : " />
 
             <!--
             <TextView
@@ -244,7 +258,8 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:textAlignment="center"/>
 
             <ImageView
                 android:id="@+id/imageView79"

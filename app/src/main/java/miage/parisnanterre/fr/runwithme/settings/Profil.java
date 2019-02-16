@@ -13,10 +13,10 @@ public class Profil implements Serializable {
     int poids;
 
     public Profil() {
-        this.prenom = "Jennifer";
-        this.nom = "Carpentier";
-        this.email = "jennifer.c@gmail.com";
-        this.sexe = 0;
+        this.prenom = "Prenom";
+        this.nom = "Nom";
+        this.email = "prenom.nom@mail.fr";
+        this.sexe = 2;
         this.taille = 66;
         this.poids = 16;
     }
