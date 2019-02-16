@@ -23,6 +23,8 @@ public class ListAllBadgesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_badges);
+        getSupportActionBar().setTitle("Mes badges");
+
         badges=db.getAllBadges();
         ListBadgesAdapter adapter = new ListBadgesAdapter(
              this,

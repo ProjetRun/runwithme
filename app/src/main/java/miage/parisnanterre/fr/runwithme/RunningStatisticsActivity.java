@@ -35,6 +35,7 @@ public class RunningStatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
+        getSupportActionBar().hide();
 
         //statistics = new ArrayList<RunningStatistics>();
         statistics = db.getAllStats();
