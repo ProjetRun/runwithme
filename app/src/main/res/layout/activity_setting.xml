@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="miage.parisnanterre.fr.runwithme.bottomNavigation.SettingActivity">
+    tools:context="miage.parisnanterre.fr.runwithme.settings.SettingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:text="Prénom" />
 
             <EditText
-                android:id="@+id/textView21"
+                android:id="@+id/editPrenom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -82,7 +82,7 @@
                 android:text="Nom" />
 
             <EditText
-                android:id="@+id/textView25"
+                android:id="@+id/editNom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -116,7 +116,7 @@
                 android:text="Email" />
 
             <EditText
-                android:id="@+id/textView26"
+                android:id="@+id/editMail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -282,7 +282,8 @@
                 android:gravity="left"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:text="politique de confidentialité" />
+                android:text="politique de confidentialité"
+                android:onClick="GoToURLConfidentialite"/>
 
 
             <ImageView
@@ -311,7 +312,8 @@
                 android:gravity="left"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Condition d'utilisation" />
+                android:text="Condition d'utilisation"
+                android:onClick="GoToURLUtilisation"/>
 
 
             <ImageView
@@ -341,7 +343,7 @@
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:text="Gérer mes données personnelles"
-                android:onClick="GoToURL"/>
+                android:onClick="GoToURlGestion"/>
 
 
             <ImageView

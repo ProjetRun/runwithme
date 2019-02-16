@@ -85,7 +85,7 @@
             android:label="@string/title_activity_sandwich_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".sandwich.ObjectifNutritionActivity" />
-        <activity android:name=".bottomNavigation.SettingActivity"></activity>
+        <activity android:name=".settings.SettingActivity"></activity>
     </application>
 
 </manifest>

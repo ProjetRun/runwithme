@@ -2,7 +2,6 @@ package miage.parisnanterre.fr.runwithme.bottomNavigation;
 
 import android.content.Intent;
 import android.icu.text.NumberFormat;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +31,7 @@ import miage.parisnanterre.fr.runwithme.R;
 import miage.parisnanterre.fr.runwithme.RunningStatisticsActivity;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
+import miage.parisnanterre.fr.runwithme.settings.SettingActivity;
 
 
 public class ProfilFragment extends Fragment {
