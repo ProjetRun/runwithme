@@ -1,19 +1,36 @@
 package miage.parisnanterre.fr.runwithme.settings;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.NoSuchPaddingException;
 
 import miage.parisnanterre.fr.runwithme.R;
 
@@ -27,7 +44,97 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         getSupportActionBar().hide();
 
-        setUpAllSpinner();
+        File file = new File(getApplicationContext().getFilesDir(),"whatever.txt");
+        if(file.exists()){
+            load();
+            setUpAllSpinner();
+        }
+        else{
+            //Nothing
+            setUpAllSpinner();
+        }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        save();
+        finish();
+
+    }
+
+    public void save(){
+        OutputStream os = null;
+        File path = getBaseContext().getFilesDir();
+        File file = new File(path, "whatever.txt");
+
+        try {
+            os = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Crypto.encrypt((Serializable) profil, os, "RWM");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void load(){
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            try {
+                read();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            }
+        }else{
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},2);
+        }
+
+    }
+
+    public void read() throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
+
+
+
+        InputStream is = null;
+        File path = getBaseContext().getFilesDir();
+        File file = new File(path, "whatever.txt");
+
+        try {
+            is = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            profil = (Profil) Crypto.decrypt(is, "RWM");
+            setUpAllSpinner();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void setUpAllSpinner(){
