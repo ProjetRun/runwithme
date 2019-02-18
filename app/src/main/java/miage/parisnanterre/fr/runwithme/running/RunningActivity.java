@@ -243,10 +243,12 @@ public class RunningActivity extends AppCompatActivity {
         //String nb = button_distance.getText().toString();
         //println(nb);
 
-        /*Toast.makeText(getBaseContext(),
-                "number = "+number+", autres:"+nbKilometre,
+        /*
+        Toast.makeText(getBaseContext(),
+                user.toString(),
                 Toast.LENGTH_LONG).show();
         */
+
         String str_distance;
         if(is_km==false){
             nbKilometre=0.0;
@@ -257,6 +259,19 @@ public class RunningActivity extends AppCompatActivity {
         Double double_distance = Double.valueOf(str_distance);
         //user.updateKm(nbKilometre);
         user.updateKm(double_distance);
+
+        List<RunningStatistics> data = db.getAllStats();
+        for(RunningStatistics r : data){
+            if(r.getUniteMesure().equals("km")){
+                user.updateKm(Double.valueOf(r.getDistance()));
+            }/*else{
+                double d = Double.valueOf(r.getDistance());
+                int i = (int) d;
+                String result = "0."+i;
+                user.updateKm(Double.valueOf(result));
+            }*/
+
+        }
 
 
 
