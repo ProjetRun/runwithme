@@ -127,14 +127,14 @@ public class RunningActivity extends AppCompatActivity {
 
         if(Double.isNaN(tt)){
             tt = 0;
-            Toast.makeText(getBaseContext(),
+            /*Toast.makeText(getBaseContext(),
                     "distance = NAN --> tt = " + 6366000 * tt + "metres",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();*/
         }
-        else
-            Toast.makeText(getBaseContext(),
+        //else
+            /*Toast.makeText(getBaseContext(),
                     "distance = " + 6366000 * tt + "metres",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();*/
 
         return 6366000 * tt;
     }
@@ -243,10 +243,23 @@ public class RunningActivity extends AppCompatActivity {
         //String nb = button_distance.getText().toString();
         //println(nb);
 
+        /*Toast.makeText(getBaseContext(),
+                "number = "+number+", autres:"+nbKilometre,
+                Toast.LENGTH_LONG).show();
+        */
+        String str_distance;
         if(is_km==false){
             nbKilometre=0.0;
+            str_distance = "0."+button_distance.getText().toString();
+        }else{
+            str_distance = button_distance.getText().toString();
         }
-        user.updateKm(nbKilometre);
+        Double double_distance = Double.valueOf(str_distance);
+        //user.updateKm(nbKilometre);
+        user.updateKm(double_distance);
+
+
+
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
 
         View sheetView = this.getLayoutInflater().inflate(R.layout.popup_after_tracking, null);
@@ -259,13 +272,13 @@ public class RunningActivity extends AppCompatActivity {
         mNotificationManager.cancelAll();
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println( sdf.format(cal.getTime()) );
+        //System.out.println( sdf.format(cal.getTime()) );
         date = sdf.format(cal.getTime());
         cal = Calendar.getInstance();
         sdf = new SimpleDateFormat("HH:mm:ss");
         TimeZone gmt = TimeZone.getTimeZone("GMT");
         sdf.setTimeZone(gmt);
-        System.out.println( sdf.format(cal.getTime()) );
+        //System.out.println( sdf.format(cal.getTime()) );
         heure =sdf.format(cal.getTime());
         distancee = button_distance.getText().toString();
         int elapsedMillis = (int)((SystemClock.elapsedRealtime()-simpleChronometer.getBase()));
@@ -275,7 +288,7 @@ public class RunningActivity extends AppCompatActivity {
         RunningStatistics pushStats = new RunningStatistics();
         pushStats.setDate(date);
         pushStats.setHeure(heure);
-        pushStats.setDistance(distancee);
+        pushStats.setDistance(str_distance);
         String uniteMesure = button_distance_titre.getText().toString();
         if(uniteMesure.equals("Distance(km)"))
             pushStats.setUniteMesure("km");

@@ -22,13 +22,13 @@
             android:text="Félicitation"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="25dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/button_badge"
             android:layout_width="wrap_content"
-            android:layout_height="105dp"
+            android:layout_height="80dp"
             android:background="@mipmap/ic_first_badge_foreground"
             android:layout_gravity="center_horizontal"
             android:baselineAligned="false"
