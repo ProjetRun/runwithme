@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.net.IDN;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import miage.parisnanterre.fr.runwithme.MarathonTraining.MarathonTrainingActivity;
@@ -239,7 +240,7 @@ public class DatabaseStats extends SQLiteOpenHelper {
                 statisticsList.add(rs);
             } while (cursor.moveToNext());
         }
-
+        Collections.reverse(statisticsList);
         Log.i("DATABASE","getAllStats invoked");
         return statisticsList;
     }
