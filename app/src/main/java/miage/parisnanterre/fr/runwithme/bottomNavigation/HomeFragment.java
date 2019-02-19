@@ -109,6 +109,12 @@ public class HomeFragment extends Fragment {
             Seance seance = nextSeance(seances);
             numSeance = seance.getNumSemaine();
         }
+        if(choice == 2){
+            seances = db.getSeanceList2();
+            totalSeance = 6;
+            Seance seance = nextSeance(seances);
+            numSeance = seance.getNumSemaine();
+        }
         if(choice == 3){
             seances = db.getSeanceList3();
             totalSeance = 59;
@@ -316,6 +322,10 @@ public class HomeFragment extends Fragment {
                     }else{
                         if(choice == 1){
                             seances = db.getSeanceList1();
+                            seance = nextSeance(seances);
+                        }
+                        if(choice == 2){
+                            seances = db.getSeanceList2();
                             seance = nextSeance(seances);
                         }
                         if(choice == 3){

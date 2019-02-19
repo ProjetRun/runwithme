@@ -84,6 +84,10 @@ public class TrainingFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), MarathonTrainingActivity.class);
                     startActivity(intent);
                 }
+                if(choice == 2){//on lance l'entrainement 1
+                    Intent intent = new Intent(getActivity(), MarathonTrainingActivity.class);
+                    startActivity(intent);
+                }
                 if(choice == 3){//on lance l'entrainement 1
                     Intent intent = new Intent(getActivity(), MarathonTrainingActivity.class);
                     startActivity(intent);

@@ -60,6 +60,10 @@ public class MarathonTrainingActivity extends AppCompatActivity {
             seances = db.getSeanceList1();
         }
 
+        if(choice == 2){//on lance l'entrainement 1
+            seances = db.getSeanceList2();
+        }
+
         if(choice == 3){//on lance l'entrainement 1
             seances = db.getSeanceList3();
         }

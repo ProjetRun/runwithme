@@ -305,6 +305,29 @@ public class DatabaseStats extends SQLiteOpenHelper {
         db.close();
         return seances;
     }
+
+    public ArrayList<Seance> getSeanceList2(){
+        ArrayList<Seance> seances = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String typeEntrainement = "Debuter6";
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ DB_TABLE +" WHERE "+TYPE_SEANCE_COLUMN+" = '"+typeEntrainement+"'", null);
+        while(cursor.moveToNext()){
+            Seance seance = new Seance();
+            //String data = cursor.getString(cursor.getColumnIndex("data"));//
+            //       seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            seance.setContenuSeance(cursor.getString(cursor.getColumnIndex(CONTENU_COLUMN)));
+            seance.setNumSeance(cursor.getInt(cursor.getColumnIndex(NUM_SEANCE_COLUMN)));
+            seance.setNumSemaine(cursor.getInt(cursor.getColumnIndex(NUM_SEMAINE_COLUMN)));
+            seance.setTypeSeance(cursor.getString(cursor.getColumnIndex(TYPE_SEANCE_COLUMN)));
+            seance.setChecked(cursor.getInt(cursor.getColumnIndex(CHECKED_SEANCE))==0);
+            seance.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            //boolean value = cursor.getInt(boolean_column_index) > 0;
+            seances.add(seance);
+        }
+        cursor.close();
+        db.close();
+        return seances;
+    }
     public ArrayList<Seance> getSeanceList3(){
         ArrayList<Seance> seances = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
