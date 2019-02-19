@@ -1,4 +1,4 @@
-package miage.parisnanterre.fr.runwithme;
+package miage.parisnanterre.fr.runwithme.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -18,11 +18,11 @@ import java.util.Collections;
 
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.adapter;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_dist;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_speed;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.button_record_time;
-import static miage.parisnanterre.fr.runwithme.RunningStatisticsActivity.statistics;
+import static miage.parisnanterre.fr.runwithme.database.RunningStatisticsActivity.adapter;
+import static miage.parisnanterre.fr.runwithme.database.RunningStatisticsActivity.button_record_dist;
+import static miage.parisnanterre.fr.runwithme.database.RunningStatisticsActivity.button_record_speed;
+import static miage.parisnanterre.fr.runwithme.database.RunningStatisticsActivity.button_record_time;
+import static miage.parisnanterre.fr.runwithme.database.RunningStatisticsActivity.statistics;
 
 
 public class PullStatsBackgroundTask extends AsyncTask<String,Void,String> {

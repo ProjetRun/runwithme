@@ -53,7 +53,7 @@
             android:name=".running.RunningActivity"
             android:launchMode="singleInstance" />
         <!-- android:launchMode="singleTask" -->
-        <activity android:name=".RunningStatisticsActivity" />
+        <activity android:name=".database.RunningStatisticsActivity" />
         <activity android:name=".weather.WeatherActivity" />
         <activity
             android:name=".tab.TabActivity"

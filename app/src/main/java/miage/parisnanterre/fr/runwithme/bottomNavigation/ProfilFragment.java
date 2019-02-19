@@ -28,7 +28,7 @@ import lecho.lib.hellocharts.model.SubcolumnValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
 import miage.parisnanterre.fr.runwithme.R;
-import miage.parisnanterre.fr.runwithme.RunningStatisticsActivity;
+import miage.parisnanterre.fr.runwithme.database.RunningStatisticsActivity;
 import miage.parisnanterre.fr.runwithme.database.DatabaseStats;
 import miage.parisnanterre.fr.runwithme.running.RunningStatistics;
 import miage.parisnanterre.fr.runwithme.settings.SettingActivity;

@@ -35,6 +35,7 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -360,7 +361,7 @@ public class RunningActivity extends AppCompatActivity {
         }
 
         //u.updateKm(Integer.parseInt(button_distance.getText().toString()));
-        txtv_pogress.setText(user.getKm()+"/"+user.getkmNextLevel()+"km");
+        txtv_pogress.setText(new DecimalFormat("#0.00").format(user.getKm())+"/"+user.getkmNextLevel()+"km");
         ProgressBar progressBar4 = (ProgressBar) mBottomSheetDialog.getWindow().findViewById(R.id.progressBar4);
         //progressBar4.setMax(u.getkmNextLevel());
         progressBar4.setMax(user.getkmNextLevel());
