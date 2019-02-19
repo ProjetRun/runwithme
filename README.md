@@ -23,14 +23,6 @@ RunWithMe is a tool that will help you :
 
 For more information visit our website : https://projetrun.github.io/runwithme/
 
-## Features
-
-### version 1.0-alpha
-- do a running with tracking
-- see your statistics
-- see your reccords
-- you will stay motivated to run even more thanks to a system of intelligent level
-
 
 
 ## Download and installation 
@@ -38,12 +30,12 @@ For more information visit our website : https://projetrun.github.io/runwithme/
 
 Application can be downloaded 
 
-- either via the url : https://github.com/ProjetRun/runwithme/releases/download/1.0.0_Alpha/runwithme.apk
+- either via the url : https://github.com/ProjetRun/runwithme/releases/download/1.5.1/runwithme.apk
 
 - either via the QR Code : 
 
-
-<a href='http://www.unitag.io/qrcode'><img src='http://www.unitag.io/qreator/generate?crs=xnjFkEn%252FP85fCPDXJ%252FXXKg5g6yQi7H4qzUlRVUntU035Re8CX7iHj071HbqF%252BCfYW0fkByoDtlWAYEP%252FkF2dipjP8Ux69VtYkusoonlKTAkgSRnmfwEzhpz3ulb%252BfgcH8xxrpOTbfLtqZS7YE5Pf9g%253D%253D&crd=fhOysE0g3Bah%252BuqXA7NPQx2rrS2o9rjHfmG68tV%252F4kxUO%252FYpN3tUfh15i8xOwmYDv%252Ff1kwlxP8bpaEE4xpYk8NIv3kMMuP5b5PcABpqsLU1k06UAxaFyKnSLtF5U%252B3jWuzv8Vzy0eXteUJKIDXoIiXJrds95Pws9k1PRIHZPah0%253D' alt='QR Code'/></a>
+<a rel='nofollow' href='http://www.qrcode-generator.de
+        ' border='0' style='cursor:default'><img src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fgithub.com%2FProjetRun%2Frunwithme%2Freleases%2Fdownload%2F1.5.1%2Frunwithme.apk&chs=180x180&choe=UTF-8&chld=L|2' alt=''></a>
 
 ### SDK and android studio
 RunWithMe uses android sdk version 26 Gradle automatically downloads the sdk if you have already accepted the licenses with the SDK manager and :
