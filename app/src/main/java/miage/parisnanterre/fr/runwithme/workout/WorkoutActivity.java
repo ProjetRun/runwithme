@@ -100,6 +100,8 @@ public class WorkoutActivity extends AppCompatActivity {
                         @Override
                         public void onClick(BottomDialog dialog) {
                             Log.d("BottomDialogs", "Do something!");
+                            ImageButton btnStop = (ImageButton) findViewById(R.id.btn_stop);
+                            btnStop.performClick();
                             finish();
                         }
                     })
