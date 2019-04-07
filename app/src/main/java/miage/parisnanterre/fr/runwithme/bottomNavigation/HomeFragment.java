@@ -83,6 +83,14 @@ public class HomeFragment extends Fragment {
         // Defines the xml file for the fragment
         return inflater.inflate(R.layout.fragment_home, parent, false);
     }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
     private TextView txtProgress;
     private ProgressBar progressBar;
     private int pStatus = 0;

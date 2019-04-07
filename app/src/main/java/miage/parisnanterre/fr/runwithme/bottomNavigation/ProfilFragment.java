@@ -45,6 +45,15 @@ public class ProfilFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_profil, parent, false);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     private TextView txtProgress;
     private ProgressBar progressBar;
     private int pStatus = 0;

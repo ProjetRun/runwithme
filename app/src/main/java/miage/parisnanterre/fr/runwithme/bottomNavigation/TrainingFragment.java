@@ -26,6 +26,15 @@ public class TrainingFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_training, parent, false);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     LinearLayout cardioLayout;
     LinearLayout stretchingLayout;
     LinearLayout hiitLayout;

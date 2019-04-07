@@ -31,6 +31,14 @@ public class ChallengesFragment extends Fragment {
         // Defines the xml file for the fragment
         return inflater.inflate(R.layout.fragment_challenges, parent, false);
     }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
@@ -86,5 +94,7 @@ public class ChallengesFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
     }
 }
