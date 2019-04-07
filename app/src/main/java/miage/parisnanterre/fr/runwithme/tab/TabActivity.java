@@ -105,6 +105,15 @@ public class TabActivity extends AppCompatActivity {
         public PlaceholderFragment() {
         }
 
+        @Override
+        public void onDetach() {
+            super.onDetach();
+        }
+        @Override
+        public void onStop() {
+            super.onStop();
+        }
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.

@@ -34,6 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
                     currentFragment = new HomeFragment();
                     ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, currentFragment);
+                    ft.addToBackStack(null);
                     ft.commit();
                     return true;
                 case R.id.training:
@@ -41,12 +42,14 @@ public class DashboardActivity extends AppCompatActivity {
                     currentFragment = new TrainingFragment();
                     ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, currentFragment);
+                    ft.addToBackStack(null);
                     ft.commit();
                     return true;
                 case R.id.group:
                     position=2;
                     currentFragment = new GroupFragment();
                     ft = getSupportFragmentManager().beginTransaction();
+                    ft.addToBackStack(null);
                     ft.replace(R.id.container, currentFragment);
                     ft.commit();
                     return true;
@@ -54,6 +57,7 @@ public class DashboardActivity extends AppCompatActivity {
                     position= 3;
                     currentFragment = new ChallengesFragment();
                     ft = getSupportFragmentManager().beginTransaction();
+                    ft.addToBackStack(null);
                     ft.replace(R.id.container, currentFragment);
                     ft.commit();
                     return true;
@@ -62,6 +66,7 @@ public class DashboardActivity extends AppCompatActivity {
                     currentFragment = new ProfilFragment();
                     ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.container, currentFragment);
+                    ft.addToBackStack(null);
                     ft.commit();
                     return true;
             }
