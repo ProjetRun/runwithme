@@ -1,8 +1,13 @@
 package miage.parisnanterre.fr.runwithme.sandwich;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.io.Serializable;
 import java.util.List;
+
+import miage.parisnanterre.fr.runwithme.R;
 
 public class Sandwich implements Serializable {
 
@@ -11,6 +16,7 @@ public class Sandwich implements Serializable {
     private String placeOfOrigin;
     private String description;
     private String image;
+    private transient Bitmap imageBMP;
     private List<String> ingredients = null;
 
     /**
@@ -25,6 +31,7 @@ public class Sandwich implements Serializable {
         this.placeOfOrigin = placeOfOrigin;
         this.description = description;
         this.image = image;
+        this.imageBMP = null;
         this.ingredients = ingredients;
     }
 
@@ -66,6 +73,14 @@ public class Sandwich implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Bitmap getImageBMP(){return imageBMP;}
+
+    public void setImageBMP(Bitmap imageBMP) {
+        if (imageBMP != null) {
+            this.imageBMP = imageBMP;
+        }
     }
 
     public List<String> getIngredients() {

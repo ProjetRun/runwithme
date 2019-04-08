@@ -55,18 +55,10 @@ public class SandwichAdapter extends RecyclerView.Adapter<SandwichAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Sandwich sandwich = mSandwichList.get(position);
-
-        /*try {
-            holder.imageSandwich.setImageBitmap( BitmapFactory.decodeStream(new URL(sandwich.getImage()).openConnection().getInputStream()));
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }*/
-
-        Glide.with(context)
+        /*Glide.with(context)
                 .load(sandwich.getImage())
-                .into(holder.imageSandwich);
-        //holder.imageSandwich.setImageURI(Uri.parse(sandwich.getImage()));
+                .into(holder.imageSandwich);*/
+        holder.imageSandwich.setImageBitmap(sandwich.getImageBMP());
         holder.textName.setText(sandwich.getMainName());
         holder.textDescription.setText(sandwich.getDescription());
 
