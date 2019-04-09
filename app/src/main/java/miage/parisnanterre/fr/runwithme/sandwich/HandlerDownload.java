@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
+import java.lang.ref.WeakReference;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -18,13 +19,13 @@ import java.util.List;
 
 public class HandlerDownload  implements Runnable {
     List<Sandwich> sandwiches;
-    SandwichAdapter adapter;
-    Activity a;
+    WeakReference <SandwichAdapter> adapter;
+    WeakReference<Activity> a;
 
     public HandlerDownload(List<Sandwich> sandwiches, SandwichAdapter adapter, Activity a) {
         this.sandwiches = sandwiches;
-        this.adapter = adapter;
-        this.a= a;
+        this.adapter = new WeakReference <SandwichAdapter>(adapter);
+        this.a = new WeakReference <Activity>(a);
         // doStuff();
     }
 
@@ -46,7 +47,7 @@ public class HandlerDownload  implements Runnable {
                 Log.e("Hub", "Error getting the image from server : " + e.getMessage().toString());
             }
             s.setImageBMP(bm);
-            /*
+
             Activity activity = null;
             if(a.get() != null){
                 activity = a.get();
@@ -54,11 +55,13 @@ public class HandlerDownload  implements Runnable {
             SandwichAdapter sandwichAdapter = null;
             if(adapter.get()!=null){
                 sandwichAdapter=adapter.get();
-            }*/
+            }
 
-            a.runOnUiThread(new Runnable() {
+            final  SandwichAdapter finalSandwichAdapter = sandwichAdapter;
+
+            activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    adapter.notifyDataSetChanged();
+                    finalSandwichAdapter.notifyDataSetChanged();
                 }
             });
 
