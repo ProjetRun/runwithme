@@ -84,6 +84,10 @@ There you go ! the project is ready for use.
 
 
 ## Authors
-* GVIMRADZE Ana
+![alt text](https://i.pinimg.com/originals/3b/73/31/3b7331c793d2ba7f8cbc57a50b1a62f8.jpg)
+### does 99% of the work
 * MICHEL Fabien  : https://github.com/fabienmcl 
-* ROUGE Nicolas
+* ROUGE Nicolas  : https://github.com/nicolasrouge
+### other tourists : 
+has no idea what's going on the whole time
+
